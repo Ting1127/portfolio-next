@@ -11,8 +11,8 @@ export default function AboutPage() {
   ];
 
   const community = [
-    { logo: "/logos/twds.png", title: "Content Manager", company: "Taiwan Data Science Association", period: "Dec 2022 – Present" },
-    { logo: "/logos/uxtw.png", title: "Researcher", company: "UXTW Taiwan UX Professional Association", period: "Mar 2021 – Feb 2022" },
+    { logo: "/logos/twds.png", title: "Content Manager", company: "Taiwan Data Science Association", period: "Dec 2022 – Present", link: "https://www.facebook.com/share/g/14hU21YtanM/" },
+    { logo: "/logos/uxtw.png", title: "Researcher", company: "UXTW Taiwan UX Professional Association", period: "Mar 2021 – Feb 2022", link: "https://www.facebook.com/theUXTW/?locale=zh_TW" },
   ];
 
   const education = [
@@ -27,12 +27,14 @@ export default function AboutPage() {
       venue: "Full Paper · DRS 2026",
       citation: "Hsu, Y., Zeng, Y., and Tang, H. (2026)",
       accent: true,
+      link: "https://dl.designresearchsociety.org/drs-conference-papers/drs2026/researchpapers/69/",
     },
     {
       title: "Weighting key driving forces of consumers choosing coffee chains in different scenarios",
       venue: "Short Paper · IASDR 2023",
       citation: "Zeng, Y., Tang, H., and Chen, S. (2023)",
       accent: false,
+      link: "https://dl.designresearchsociety.org/iasdr/iasdr2023/shortpapers/46/",
     },
   ];
 
@@ -86,9 +88,8 @@ export default function AboutPage() {
         {/* Intro */}
         <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent)" }}>About</p>
         <div className="flex flex-col md:flex-row gap-12 items-start mb-20">
-          {/* 左側文字 */}
           <div className="flex-1">
-            <h1 className="text-3xl md:text-4xl font-medium tracking-tight mb-8"style={{ color: "var(--text)" }}>
+            <h1 className="text-3xl md:text-4xl font-medium tracking-tight mb-8" style={{ color: "var(--text)" }}>
               Hi, I'm Jennie Zeng (曾鈺婷) ⟡
             </h1>
             <div className="text-base leading-relaxed space-y-5" style={{ color: "var(--text)" }}>
@@ -97,9 +98,7 @@ export default function AboutPage() {
               <p>Right now I'm most interested in how generative AI is changing brand discovery, user decision-making, and how teams should build differently as a result.</p>
             </div>
           </div>
-          {/* 右側照片 */}
-          <div className="flex-shrink-0 w-64 md:w-72 rounded-2xl overflow-hidden"
-            style={{ aspectRatio: "3/4" }}>
+          <div className="flex-shrink-0 w-64 md:w-72 rounded-2xl overflow-hidden" style={{ aspectRatio: "3/4" }}>
             <img src="/about-photo.jpg" alt="Jennie" className="w-full h-full object-cover" />
           </div>
         </div>
@@ -109,12 +108,12 @@ export default function AboutPage() {
           <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--muted)" }}>Outside of work, I love</p>
           <div className="text-sm leading-loose mb-8" style={{ color: "var(--text)" }}>
             Learning Japanese 🇯🇵<br />
-            Good coffee & matcha ☕<br />
-            Illustration & photography 📷<br />
+            Good coffee ☕ & matcha 🍵<br />
+            Illustration 🎨 & photography 📷<br />
             Travelling for food 🍜<br />
-            Exhibitions & art history 🎨<br />
+            Exhibitions & art history 🖼️<br />
             Miffy 🐰<br />
-            Blackpink 🖤
+            Blackpink 🖤🩷
           </div>
         </div>
 
@@ -134,34 +133,13 @@ export default function AboutPage() {
             {experiences.map((e) => (
               <div key={e.company} className="flex gap-4 items-start">
                 <div className="w-10 h-10 rounded-xl overflow-hidden bg-white flex-shrink-0 flex items-center justify-center">
-  <img src={e.logo} alt={e.company}
-    className={`object-contain ${e.company.includes("Wisconsin") ? "w-full h-full" : "w-8 h-8"}`} />
-</div>
-                <div>
-                  <p className="text-sm font-medium" style={{ color: "var(--text)" }}>
-                    {e.title} — <span className="italic" style={{ color: "var(--muted)" }}>{e.company}</span>
-                  </p>
-                  <p className="text-xs mt-0.5" style={{ color: "var(--muted)" }}>{e.period} · {e.location}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Community */}
-        <div className="mb-16">
-          <p className="text-xs tracking-widest uppercase mb-8" style={{ color: "var(--muted)" }}>Community</p>
-          <div className="space-y-6">
-            {community.map((e) => (
-              <div key={e.company} className="flex gap-4 items-start">
-                <div className="w-10 h-10 rounded-xl overflow-hidden bg-white flex-shrink-0 flex items-center justify-center">
                   <img src={e.logo} alt={e.company} className="w-8 h-8 object-contain" />
                 </div>
                 <div>
                   <p className="text-sm font-medium" style={{ color: "var(--text)" }}>
                     {e.title} — <span className="italic" style={{ color: "var(--muted)" }}>{e.company}</span>
                   </p>
-                  <p className="text-xs mt-0.5" style={{ color: "var(--muted)" }}>{e.period}</p>
+                  <p className="text-xs mt-0.5" style={{ color: "var(--muted)" }}>{e.period} · {e.location}</p>
                 </div>
               </div>
             ))}
@@ -189,6 +167,33 @@ export default function AboutPage() {
           </div>
         </div>
 
+        {/* Community */}
+        <div className="mb-16">
+          <p className="text-xs tracking-widest uppercase mb-8" style={{ color: "var(--muted)" }}>Community</p>
+          <div className="space-y-6">
+            {community.map((e) => (
+              <div key={e.company} className="flex gap-4 items-start">
+                <div className="w-10 h-10 rounded-xl overflow-hidden bg-white flex-shrink-0 flex items-center justify-center">
+                  <img src={e.logo} alt={e.company} className="w-8 h-8 object-contain" />
+                </div>
+                <div>
+                  <p className="text-sm font-medium" style={{ color: "var(--text)" }}>
+                    {e.title} — <span className="italic" style={{ color: "var(--muted)" }}>{e.company}</span>
+                  </p>
+                  <p className="text-xs mt-0.5 mb-2" style={{ color: "var(--muted)" }}>{e.period}</p>
+                  {e.link && (
+                    <a href={e.link} target="_blank"
+                      className="text-xs px-3 py-1 rounded-full border inline-block hover:opacity-80 transition-opacity"
+                      style={{ borderColor: "var(--border)", color: "var(--muted)" }}>
+                      Visit ↗
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Publications */}
         <div className="mb-16">
           <p className="text-xs tracking-widest uppercase mb-8" style={{ color: "var(--muted)" }}>Publications</p>
@@ -197,8 +202,15 @@ export default function AboutPage() {
               <div key={p.title} className="pl-5 border-l-2"
                 style={{ borderColor: p.accent ? "var(--accent)" : "var(--border)" }}>
                 <p className="text-sm font-medium mb-1" style={{ color: "var(--text)" }}>{p.title}</p>
-                <p className="text-xs mb-1" style={{ color: "var(--accent)" }}>{p.venue}</p>
-                <p className="text-xs" style={{ color: "var(--muted)" }}>{p.citation}</p>
+                <p className="text-xs mb-2" style={{ color: "var(--accent)" }}>{p.venue}</p>
+                <p className="text-xs mb-3" style={{ color: "var(--muted)" }}>{p.citation}</p>
+                {p.link && (
+                  <a href={p.link} target="_blank"
+                    className="text-xs px-3 py-1 rounded-full border inline-block hover:opacity-80 transition-opacity"
+                    style={{ borderColor: "var(--accent)", color: "var(--accent)" }}>
+                    View Paper ↗
+                  </a>
+                )}
               </div>
             ))}
           </div>
