@@ -1,6 +1,33 @@
 import { getProjects } from "@/lib/notion";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
+const earlyWork = [
+  {
+    title: "Cross-Device Multilingual Keyboard",
+    company: "BenQ",
+    role: "UX Design Intern",
+    year: "2020",
+    desc: "Designed a multilingual keyboard app for smart displays across device sizes.",
+    cover: "/case/early/benq.jpg",
+  },
+  {
+    title: "Singapore Brand Website UI",
+    company: "Snapask",
+    role: "UIUX Designer",
+    year: "2021",
+    desc: "Redesigned the Singapore learning platform with a self-directed learning visual identity.",
+    cover: "/case/early/snapask.jpg",
+  },
+  {
+    title: "OCR in Open Account Journey",
+    company: "NEXT BANK",
+    role: "Product Design Intern",
+    year: "2020",
+    desc: "Designed the OCR-assisted onboarding flow for Taiwan's first pure digital bank.",
+    cover: "/case/early/nextbank.jpg",
+  },
+];
+
 export default async function WorkPage() {
   const projects = await getProjects();
 
@@ -33,7 +60,8 @@ export default async function WorkPage() {
           {projects.length} cases across product, consulting, and research
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Main cases */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-24">
           {projects.map((project: any) => {
             const props = project.properties;
             const title = props.Name?.title?.[0]?.plain_text || "";
@@ -46,9 +74,7 @@ export default async function WorkPage() {
             const isConsulting = category.toLowerCase() === "consulting";
 
             return (
-              <a key={project.id} href={`/work/${slug}`}
-                className="case-card group"
-                style={{ ...(isConsulting ? {} : {}) }}>
+              <a key={project.id} href={`/work/${slug}`} className="case-card group">
                 <div className="aspect-[4/3]" style={{ background: "var(--border)" }} />
                 <div className="p-6">
                   <div className="flex justify-between items-center mb-3">
@@ -79,6 +105,29 @@ export default async function WorkPage() {
               </a>
             );
           })}
+        </div>
+
+        {/* Early work */}
+        <div className="border-t pt-16" style={{ borderColor: "var(--border)" }}>
+          <p className="text-xs tracking-widest uppercase mb-2" style={{ color: "var(--muted)" }}>Earlier Work</p>
+          <p className="text-sm mb-10" style={{ color: "var(--muted)" }}>Design & UX internships before moving into product.</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {earlyWork.map((w) => (
+  <div key={w.title} className="rounded-2xl overflow-hidden border" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
+    <div className="aspect-[4/3] overflow-hidden" style={{ background: "var(--border)" }}>
+      <img src={w.cover} alt={w.title} className="w-full h-full object-cover" />
+    </div>
+    <div className="p-5">
+      <div className="flex justify-between items-center mb-2">
+        <p className="text-xs uppercase tracking-widest" style={{ color: "var(--muted)" }}>{w.company}</p>
+        <p className="text-xs" style={{ color: "var(--muted)" }}>{w.year}</p>
+      </div>
+      <h3 className="text-base font-medium mb-1" style={{ color: "var(--text)" }}>{w.title}</h3>
+      <p className="text-xs leading-relaxed" style={{ color: "var(--muted)" }}>{w.desc}</p>
+    </div>
+  </div>
+))}
+          </div>
         </div>
       </section>
 

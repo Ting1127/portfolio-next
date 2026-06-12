@@ -39,6 +39,21 @@ export default function DriftPage() {
     },
   ];
 
+  const communityWork = [
+    {
+      title: "2021 Taiwan UX Industry Survey",
+      org: "UXTW",
+      desc: "Led visual design for the annual UX industry report — data visualization, infographics, and survey analysis.",
+      cover: "/case/community/uxtw.jpg",
+    },
+    {
+      title: "Event Branding & Communications",
+      org: "Taiwan Data Science",
+      desc: "Designed event banners, managed LinkedIn and FB channels, and handled speaker communications since 2022.",
+      cover: "/case/community/twds.jpg",
+    },
+  ];
+
   const tagColors: Record<string, { border: string; color: string }> = {
     Tool:       { border: "var(--accent)",        color: "var(--accent)" },
     Log:        { border: "#1D9E75",               color: "#1D9E75" },
@@ -75,7 +90,8 @@ export default function DriftPage() {
           Tools I build, logs I keep, and rabbit holes I fall into — outside of work.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Playground projects */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-24">
           {projects.map((p) => {
             const tc = tagColors[p.tag] ?? { border: "var(--border)", color: "var(--muted)" };
             const Wrapper = p.link ? "a" : "div";
@@ -87,7 +103,6 @@ export default function DriftPage() {
               <Wrapper key={p.title} {...(wrapperProps as any)}
                 className="block rounded-2xl overflow-hidden border transition-all duration-300"
                 style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
-                {/* Cover placeholder */}
                 <div className="aspect-[16/9]" style={{ background: "var(--border)" }} />
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-3">
@@ -108,6 +123,26 @@ export default function DriftPage() {
               </Wrapper>
             );
           })}
+        </div>
+
+        {/* Community design */}
+        <div className="border-t pt-16" style={{ borderColor: "var(--border)" }}>
+          <p className="text-xs tracking-widest uppercase mb-2" style={{ color: "var(--muted)" }}>Community Design</p>
+          <p className="text-sm mb-10" style={{ color: "var(--muted)" }}>Visual work for communities I care about.</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {communityWork.map((w) => (
+              <div key={w.title} className="rounded-2xl overflow-hidden border" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
+                <div className="aspect-[4/3] overflow-hidden" style={{ background: "var(--border)" }}>
+                  <img src={w.cover} alt={w.title} className="w-full h-full object-cover" />
+                </div>
+                <div className="p-5">
+                  <p className="text-xs uppercase tracking-widest mb-2" style={{ color: "var(--muted)" }}>{w.org}</p>
+                  <h3 className="text-base font-medium mb-1" style={{ color: "var(--text)" }}>{w.title}</h3>
+                  <p className="text-xs leading-relaxed" style={{ color: "var(--muted)" }}>{w.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
