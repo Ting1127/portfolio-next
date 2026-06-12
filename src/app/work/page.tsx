@@ -5,19 +5,19 @@ export default async function WorkPage() {
 
   return (
     <main className="min-h-screen bg-[#0D0F14] text-[#EDE9DF]">
-      <nav className="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center bg-[#0D0F14]/90 backdrop-blur-sm border-b border-[#1E2A3A]">
-      <a href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-  <span className="text-[#C9A84C] text-base">⟡</span>
-  <span className="text-sm font-medium tracking-tight text-[#EDE9DF]">Jennie Z</span>
-</a>
-        <div className="flex items-center gap-8 text-sm text-[#EDE9DF]">
-          <a href="/work" className="text-[#C9A84C]">Work</a>
-          <a href="/drift" className="hover:text-[#C9A84C] transition-colors">Drift</a>
-          <a href="/about" className="hover:text-[#C9A84C] transition-colors">About</a>
-          <a href="https://linkedin.com/in/yuting-zeng1127" target="_blank"
-            className="hover:text-[#C9A84C] transition-colors">LinkedIn ↗</a>
-        </div>
-      </nav>
+      <nav className="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center bg-[#0D0F14]/90 backdrop-blur-sm border-b border-[#1E2A3A]">
+  <a href="/" className="flex items-center gap-1.5 hover:opacity-80 transition-opacity">
+    <span className="text-[#C9A84C] text-sm">⟡</span>
+    <span className="text-sm font-medium tracking-tight text-[#EDE9DF]">Jennie Z</span>
+  </a>
+  <div className="flex items-center gap-5 text-sm text-[#EDE9DF]">
+    <a href="/work" className="hover:text-[#C9A84C] transition-colors">Work</a>
+    <a href="/drift" className="hover:text-[#C9A84C] transition-colors">Drift</a>
+    <a href="/about" className="hover:text-[#C9A84C] transition-colors">About</a>
+    <a href="https://linkedin.com/in/yuting-zeng1127" target="_blank"
+      className="hidden sm:block hover:text-[#C9A84C] transition-colors">LinkedIn ↗</a>
+  </div>
+</nav>
 
       <section className="pt-48 pb-32 px-8 max-w-5xl mx-auto">
         <p className="text-xs tracking-widest uppercase text-[#C9A84C] mb-4">Work</p>
