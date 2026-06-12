@@ -55,8 +55,19 @@ export default function KadoSubscriptionPage() {
         </div>
       </section>
 
-      {/* Cover image */}
-      <div className="w-full aspect-[16/7] mb-16" style={{ background: "var(--bg-card)" }} />
+      {/* Cover video */}
+      <div className="w-full mb-16 px-8 max-w-5xl mx-auto">
+        <div className="rounded-2xl overflow-hidden">
+          <video
+            src="/case/kado/KadoPlus_project_cover.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full object-cover"
+          />
+        </div>
+      </div>
 
       {/* Content + Sidebar */}
       <div className="px-8 max-w-5xl mx-auto flex gap-16 pb-32">
@@ -107,13 +118,16 @@ export default function KadoSubscriptionPage() {
             <p className="leading-relaxed mb-8" style={{ color: "var(--muted)" }}>
               Kado+ is a subscription service tailored for Japanese light novel enthusiasts, offering digital, chapter-based access to the latest titles. The goal: reduce cost and time barriers for Taiwanese readers while building a sustainable content ecosystem for readers, the platform, and creators.
             </p>
-            <div className="rounded-2xl p-6 border" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
+            <div className="rounded-2xl p-6 border mb-8" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
               <p className="text-xs uppercase tracking-widest mb-4" style={{ color: "var(--muted)" }}>Team</p>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 {["2 Product Designers", "5 Engineers", "2 App Developers", "2 Data Scientists", "2 Marketing", "2 Content Strategy"].map(r => (
                   <span key={r} className="text-sm" style={{ color: "var(--muted)" }}>{r}</span>
                 ))}
               </div>
+            </div>
+            <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
+              <img src="/case/kado/service-diagram.jpg" alt="Kado+ service diagram" className="w-full" />
             </div>
           </section>
 
