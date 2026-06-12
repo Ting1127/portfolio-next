@@ -1,65 +1,150 @@
-import Image from "next/image";
+import { getFeaturedProjects } from "@/lib/notion";
 
-export default function Home() {
+const testimonials = [
+  {
+    name: "PinChen Wu",
+    role: "Web & UI Designer, KadoKawa",
+    avatar: "/avatars/pinpin.jpeg",
+    text: "Ting is a proactive and detail-oriented Product Owner who consistently drove product development forward with clarity and focus. She's quick to identify challenges, propose solutions, and facilitate team discussions to keep momentum going. She excels at aligning cross-functional teams around shared goals, and led user research initiatives and data tracking strategies to evaluate product impact — always seeking ways to iterate and improve based on real insights.",
+  },
+  {
+    name: "Cloudia Shen",
+    role: "UIUX / Product Designer, AI-integrated Design",
+    avatar: "/avatars/cloudia.jpeg",
+    text: "One thing I really appreciate about Ting is how she often shares new insights about the industry, especially around user experience and business trends. Every time we chat, I walk away with a new idea or perspective. If you're looking for someone who's smart, curious, and always eager to learn and share, Ting's the kind of person you want on your team.",
+  },
+];
+
+export default async function Home() {
+  const featured = await getFeaturedProjects();
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="min-h-screen bg-[#0D0F14] text-[#EDE9DF]">
+
+      {/* Nav */}
+      <nav className="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center bg-[#0D0F14]/90 backdrop-blur-sm border-b border-[#1E2A3A]">
+      <a href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+  <span className="text-[#C9A84C] text-base">⟡</span>
+  <span className="text-sm font-medium tracking-tight text-[#EDE9DF]">Jennie Z</span>
+</a>
+        <div className="flex items-center gap-8 text-sm text-[#EDE9DF]">
+          <a href="/work" className="hover:text-[#C9A84C] transition-colors">Work</a>
+          <a href="/drift" className="hover:text-[#C9A84C] transition-colors">Drift</a>
+          <a href="/about" className="hover:text-[#C9A84C] transition-colors">About</a>
+          <a href="https://linkedin.com/in/yuting-zeng1127" target="_blank"
+            className="hover:text-[#C9A84C] transition-colors">LinkedIn ↗</a>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
+      </nav>
+
+      {/* Hero */}
+      <section className="pt-48 pb-32 px-8 max-w-5xl mx-auto">
+        <p className="text-xs tracking-widest uppercase text-[#C9A84C] mb-6">
+          Product Manager
+        </p>
+        <h1 className="text-4xl md:text-6xl font-medium leading-[1.15] tracking-tight mb-8">
+          PM with a designer&apos;s eye,<br />
+          researcher&apos;s instinct,<br />
+          and AI-first mindset —<br />
+          <span className="text-[#6B7280]">
+            turning unfamiliar problems<br />into shipped products. ⟡
+          </span>
+        </h1>
+        <div className="flex gap-6 mt-12">
+          <a href="/work"
+            className="px-6 py-3 border border-[#C9A84C] text-[#C9A84C] text-sm rounded-full hover:bg-[#C9A84C] hover:text-[#0D0F14] transition-all">
+            View Work
           </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
+          <a href="/about"
+            className="px-6 py-3 border border-[#1E2A3A] text-[#6B7280] text-sm rounded-full hover:border-[#EDE9DF] hover:text-[#EDE9DF] transition-all">
+            About Me
           </a>
         </div>
-      </main>
+      </section>
+
+      {/* Featured Cases */}
+      <section className="px-8 pb-32 max-w-5xl mx-auto">
+        <p className="text-xs tracking-widest uppercase text-[#6B7280] mb-8">
+          Selected Work
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {featured.map((project: any) => {
+            const props = project.properties;
+            const title = props.Name?.title?.[0]?.plain_text || "";
+            const slug = props.Slug?.rich_text?.[0]?.plain_text || "";
+            const summary = props.Summary?.rich_text?.[0]?.plain_text || "";
+            const category = props.Category?.select?.name || "";
+            const tags = props.Tags?.multi_select?.map((t: any) => t.name) || [];
+            
+            return (
+              <a key={project.id} href={`/work/${slug}`}
+                className="group block bg-[#141820] border border-[#1E2A3A] rounded-2xl overflow-hidden hover:border-[#C9A84C]/40 transition-all duration-300">
+                <div className="aspect-[4/3] bg-[#1E2A3A]" />
+                <div className="p-6">
+                  <p className="text-xs text-[#C9A84C] mb-3 uppercase tracking-widest">
+                    {category}
+                  </p>
+                  <h2 className="text-xl font-medium mb-2 text-[#EDE9DF]">{title}</h2>
+                  <p className="text-sm text-[#6B7280] mb-4">{summary}</p>
+                  {tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2">
+                      {tags.map((tag: string) => (
+                        <span key={tag}
+                          className="text-xs px-2 py-1 rounded-full border border-[#1E2A3A] text-[#6B7280]">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </a>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="px-8 pb-32 max-w-5xl mx-auto">
+        <p className="text-xs tracking-widest uppercase text-[#6B7280] mb-8">
+          What people say
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {testimonials.map((t, i) => (
+            <div key={i}
+              className="bg-[#141820] border border-[#1E2A3A] rounded-2xl p-8">
+              <p className="text-[#C9A84C] text-lg mb-6">⟡</p>
+              <p className="text-[#EDE9DF] text-sm leading-relaxed mb-6">
+                &ldquo;{t.text}&rdquo;
+              </p>
+              <div className="flex items-center gap-3">
+  <img
+    src={t.avatar}
+    alt={t.name}
+    className="w-10 h-10 rounded-full object-cover"
+  />
+  <div>
+    <p className="text-sm font-medium text-[#EDE9DF]">{t.name}</p>
+    <p className="text-xs text-[#6B7280] mt-0.5">{t.role}</p>
+  </div>
+</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="px-8 py-12 border-t border-[#1E2A3A] max-w-5xl mx-auto w-full">
+  <div className="flex justify-between items-center">
+  <span className="text-xs text-[#6B7280]">Jennie Z © 2026</span>
+    <div className="flex items-center gap-6">
+      <a href="https://linkedin.com/in/yuting-zeng1127" target="_blank"
+        className="text-xs text-[#6B7280] hover:text-[#C9A84C] transition-colors">LinkedIn ↗</a>
+      <a href="mailto:zyting.info@gmail.com"
+        className="text-xs text-[#6B7280] hover:text-[#C9A84C] transition-colors">zyting.info@gmail.com</a>
+      <span className="text-[#C9A84C]">⟡</span>
     </div>
+  </div>
+</footer>
+
+    </main>
   );
 }
