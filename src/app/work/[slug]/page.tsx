@@ -1,3 +1,5 @@
+import { ThemeToggle } from "@/components/ThemeToggle";
+
 export default function CaseStudyPage() {
   const sections = [
     { id: "tldr", label: "TL;DR" },
@@ -10,35 +12,36 @@ export default function CaseStudyPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-[#0D0F14] text-[#EDE9DF]">
+    <main className="min-h-screen" style={{ background: "var(--bg)", color: "var(--text)" }}>
 
       {/* Nav */}
-      <nav className="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center bg-[#0D0F14]/90 backdrop-blur-sm border-b border-[#1E2A3A]">
-  <a href="/" className="flex items-center gap-1.5 hover:opacity-80 transition-opacity">
-    <span className="text-[#C9A84C] text-sm">⟡</span>
-    <span className="text-sm font-medium tracking-tight text-[#EDE9DF]">Jennie Z</span>
-  </a>
-  <div className="flex items-center gap-5 text-sm text-[#EDE9DF]">
-    <a href="/work" className="hover:text-[#C9A84C] transition-colors">Work</a>
-    <a href="/drift" className="hover:text-[#C9A84C] transition-colors">Drift</a>
-    <a href="/about" className="hover:text-[#C9A84C] transition-colors">About</a>
-    <a href="https://linkedin.com/in/yuting-zeng1127" target="_blank"
-      className="hidden sm:block hover:text-[#C9A84C] transition-colors">LinkedIn ↗</a>
-  </div>
-</nav>
+      <nav className="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center backdrop-blur-sm border-b"
+        style={{ background: "color-mix(in srgb, var(--bg) 90%, transparent)", borderColor: "var(--border)" }}>
+        <a href="/" className="flex items-center gap-1.5 hover:opacity-80 transition-opacity">
+          <span className="text-sm" style={{ color: "var(--accent)" }}>⟡</span>
+          <span className="text-sm font-medium tracking-tight" style={{ color: "var(--text)" }}>Jennie Z</span>
+        </a>
+        <div className="flex items-center gap-5 text-sm">
+          <a href="/work" className="hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Work</a>
+          <a href="/drift" className="hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Drift</a>
+          <a href="/about" className="hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>About</a>
+          <a href="https://linkedin.com/in/yuting-zeng1127" target="_blank"
+            className="hidden sm:block hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>LinkedIn ↗</a>
+          <ThemeToggle />
+        </div>
+      </nav>
 
       {/* Hero */}
       <section className="pt-48 pb-16 px-8 max-w-5xl mx-auto">
-        <p className="text-xs tracking-widest uppercase text-[#C9A84C] mb-4">Product · KadoKawa · 2023–2025</p>
-        <h1 className="text-4xl md:text-6xl font-medium tracking-tight leading-[1.1] mb-6">
+        <h1 className="text-4xl md:text-5xl font-medium tracking-tight leading-[1.1] mb-6" style={{ color: "var(--text)" }}>
           Kado+ Subscription
         </h1>
-        <p className="text-xl text-[#6B7280] max-w-2xl">
+        <p className="text-xl max-w-2xl" style={{ color: "var(--muted)" }}>
           Building a 0→1 subscription product with global payment integration — from zero revenue to 10% growth.
         </p>
 
         {/* Overview bar */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 pt-8 border-t border-[#1E2A3A]">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 pt-8 border-t" style={{ borderColor: "var(--border)" }}>
           {[
             { label: "Role", value: "Product Manager" },
             { label: "Timeline", value: "Jun 2023 – Jul 2025" },
@@ -46,15 +49,15 @@ export default function CaseStudyPage() {
             { label: "Tools", value: "Figma · Amplitude · Notion" },
           ].map((item) => (
             <div key={item.label}>
-              <p className="text-xs text-[#6B7280] uppercase tracking-widest mb-1">{item.label}</p>
-              <p className="text-sm text-[#EDE9DF]">{item.value}</p>
+              <p className="text-xs uppercase tracking-widest mb-1" style={{ color: "var(--muted)" }}>{item.label}</p>
+              <p className="text-sm" style={{ color: "var(--text)" }}>{item.value}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Cover image */}
-      <div className="w-full aspect-[16/7] bg-[#1E2A3A] mb-16" />
+      <div className="w-full aspect-[16/7] mb-16" style={{ background: "var(--bg-card)" }} />
 
       {/* Content + Sidebar */}
       <div className="px-8 max-w-5xl mx-auto flex gap-16 pb-32">
@@ -62,11 +65,12 @@ export default function CaseStudyPage() {
         {/* Sticky sidebar */}
         <aside className="hidden lg:block w-48 flex-shrink-0">
           <div className="sticky top-32">
-            <p className="text-xs text-[#6B7280] uppercase tracking-widest mb-4">Contents</p>
+            <p className="text-xs uppercase tracking-widest mb-4" style={{ color: "var(--muted)" }}>Contents</p>
             <nav className="space-y-3">
               {sections.map((s) => (
                 <a key={s.id} href={`#${s.id}`}
-                  className="block text-sm text-[#6B7280] hover:text-[#C9A84C] transition-colors">
+                  className="block text-sm hover:opacity-80 transition-opacity"
+                  style={{ color: "var(--muted)" }}>
                   {s.label}
                 </a>
               ))}
@@ -79,16 +83,16 @@ export default function CaseStudyPage() {
 
           {/* TL;DR */}
           <section id="tldr">
-            <p className="text-xs tracking-widest uppercase text-[#C9A84C] mb-6">TL;DR</p>
+            <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent)" }}>TL;DR</p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
                 { number: "0→1", label: "Built subscription product from scratch" },
                 { number: "10%", label: "Revenue growth after launch" },
                 { number: "3", label: "Payment integrations shipped (Apple IAP, Google Play, web)" },
               ].map((stat) => (
-                <div key={stat.label} className="bg-[#141820] border border-[#1E2A3A] rounded-2xl p-6">
-                  <p className="text-3xl font-medium text-[#C9A84C] mb-2">{stat.number}</p>
-                  <p className="text-sm text-[#6B7280]">{stat.label}</p>
+                <div key={stat.label} className="rounded-2xl p-6 border" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
+                  <p className="text-3xl font-medium mb-2" style={{ color: "var(--accent)" }}>{stat.number}</p>
+                  <p className="text-sm" style={{ color: "var(--muted)" }}>{stat.label}</p>
                 </div>
               ))}
             </div>
@@ -96,44 +100,44 @@ export default function CaseStudyPage() {
 
           {/* Context */}
           <section id="context">
-            <p className="text-xs tracking-widest uppercase text-[#C9A84C] mb-6">Context</p>
-            <h2 className="text-2xl font-medium mb-4">Background placeholder</h2>
-            <p className="text-[#6B7280] leading-relaxed">Content coming soon...</p>
+            <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent)" }}>Context</p>
+            <h2 className="text-2xl font-medium mb-4" style={{ color: "var(--text)" }}>Background placeholder</h2>
+            <p className="leading-relaxed" style={{ color: "var(--muted)" }}>Content coming soon...</p>
           </section>
 
           {/* Problem */}
           <section id="problem">
-            <p className="text-xs tracking-widest uppercase text-[#C9A84C] mb-6">Problem</p>
-            <h2 className="text-2xl font-medium mb-4">Problem placeholder</h2>
-            <p className="text-[#6B7280] leading-relaxed">Content coming soon...</p>
+            <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent)" }}>Problem</p>
+            <h2 className="text-2xl font-medium mb-4" style={{ color: "var(--text)" }}>Problem placeholder</h2>
+            <p className="leading-relaxed" style={{ color: "var(--muted)" }}>Content coming soon...</p>
           </section>
 
           {/* Approach */}
           <section id="approach">
-            <p className="text-xs tracking-widest uppercase text-[#C9A84C] mb-6">My Approach</p>
-            <h2 className="text-2xl font-medium mb-4">Approach placeholder</h2>
-            <p className="text-[#6B7280] leading-relaxed">Content coming soon...</p>
+            <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent)" }}>My Approach</p>
+            <h2 className="text-2xl font-medium mb-4" style={{ color: "var(--text)" }}>Approach placeholder</h2>
+            <p className="leading-relaxed" style={{ color: "var(--muted)" }}>Content coming soon...</p>
           </section>
 
           {/* What I Shipped */}
           <section id="shipped">
-            <p className="text-xs tracking-widest uppercase text-[#C9A84C] mb-6">What I Shipped</p>
-            <h2 className="text-2xl font-medium mb-4">Shipped placeholder</h2>
-            <p className="text-[#6B7280] leading-relaxed">Content coming soon...</p>
+            <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent)" }}>What I Shipped</p>
+            <h2 className="text-2xl font-medium mb-4" style={{ color: "var(--text)" }}>Shipped placeholder</h2>
+            <p className="leading-relaxed" style={{ color: "var(--muted)" }}>Content coming soon...</p>
           </section>
 
           {/* Results */}
           <section id="results">
-            <p className="text-xs tracking-widest uppercase text-[#C9A84C] mb-6">Results & Impact</p>
-            <h2 className="text-2xl font-medium mb-4">Results placeholder</h2>
-            <p className="text-[#6B7280] leading-relaxed">Content coming soon...</p>
+            <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent)" }}>Results & Impact</p>
+            <h2 className="text-2xl font-medium mb-4" style={{ color: "var(--text)" }}>Results placeholder</h2>
+            <p className="leading-relaxed" style={{ color: "var(--muted)" }}>Content coming soon...</p>
           </section>
 
           {/* Learnings */}
           <section id="learnings">
-            <p className="text-xs tracking-widest uppercase text-[#C9A84C] mb-6">Learnings</p>
-            <h2 className="text-2xl font-medium mb-4">Learnings placeholder</h2>
-            <p className="text-[#6B7280] leading-relaxed">Content coming soon...</p>
+            <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent)" }}>Learnings</p>
+            <h2 className="text-2xl font-medium mb-4" style={{ color: "var(--text)" }}>Learnings placeholder</h2>
+            <p className="leading-relaxed" style={{ color: "var(--muted)" }}>Content coming soon...</p>
           </section>
 
         </div>
@@ -141,19 +145,19 @@ export default function CaseStudyPage() {
 
       {/* Next case */}
       <div className="px-8 pb-16 max-w-5xl mx-auto">
-        <div className="border-t border-[#1E2A3A] pt-12">
-          <p className="text-xs text-[#6B7280] uppercase tracking-widest mb-4">Next Case</p>
+        <div className="border-t pt-12" style={{ borderColor: "var(--border)" }}>
+          <p className="text-xs uppercase tracking-widest mb-4" style={{ color: "var(--muted)" }}>Next Case</p>
           <a href="/work/geo-monitoring"
             className="group flex justify-between items-center hover:opacity-70 transition-opacity">
-            <p className="text-2xl font-medium">GEO Monitoring & Strategy →</p>
+            <p className="text-2xl font-medium" style={{ color: "var(--text)" }}>GEO Monitoring & Strategy →</p>
           </a>
         </div>
       </div>
 
-      <footer className="px-8 py-12 border-t border-[#1E2A3A] max-w-5xl mx-auto w-full">
-        <div className="flex justify-between items-center text-xs text-[#6B7280]">
-          <span>Ting-Yu Yu © 2026</span>
-          <span className="text-[#C9A84C]">⟡</span>
+      <footer className="px-8 py-12 border-t max-w-5xl mx-auto w-full" style={{ borderColor: "var(--border)" }}>
+        <div className="flex justify-between items-center text-xs">
+          <span style={{ color: "var(--muted)" }}>Jennie Z © 2026</span>
+          <span style={{ color: "var(--accent)" }}>⟡</span>
         </div>
       </footer>
 
