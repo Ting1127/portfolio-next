@@ -67,40 +67,46 @@ export default async function WorkPage() {
             const title = props.Name?.title?.[0]?.plain_text || "";
             const slug = props.Slug?.rich_text?.[0]?.plain_text || "";
             const summary = props.Summary?.rich_text?.[0]?.plain_text || "";
-            const category = props.Category?.select?.name || "";
-            const year = props.Year?.number || "";
-            const company = props.Company?.rich_text?.[0]?.plain_text || "";
             const tags = props.Tags?.multi_select?.map((t: any) => t.name) || [];
-            const isConsulting = category.toLowerCase() === "consulting";
+            const coverImage = props["Cover Image"]?.rich_text?.[0]?.plain_text || "";
 
             return (
               <a key={project.id} href={`/work/${slug}`} className="case-card group">
-                <div className="aspect-[4/3]" style={{ background: "var(--border)" }} />
-                <div className="p-6">
-                  <div className="flex justify-between items-center mb-3">
-                    <p className="text-xs uppercase tracking-widest"
-                      style={{ color: isConsulting ? "var(--accent-purple)" : "var(--accent)" }}>
-                      {category}
-                    </p>
-                    <p className="text-xs" style={{ color: "var(--muted)" }}>{year}</p>
-                  </div>
-                  <h2 className="text-xl font-medium mb-2" style={{ color: "var(--text)" }}>{title}</h2>
-                  <p className="text-sm mb-4" style={{ color: "var(--muted)" }}>{summary}</p>
-                  {company && (
-                    <p className="text-xs border-t pt-3 mb-3"
-                      style={{ color: "var(--muted)", borderColor: "var(--border)" }}>{company}</p>
+                {/* Cover wrap — separate overflow context prevents bleed on rotate */}
+                <div className="card-cover-wrap aspect-[4/3]" style={{ background: "var(--border)" }}>
+                  {coverImage ? (
+                    <img
+                      src={coverImage}
+                      alt={title}
+                      className="w-full h-full object-cover card-cover-img"
+                    />
+                  ) : (
+                    <div className="w-full h-full" style={{ background: "var(--border)" }} />
                   )}
                   {tags.length > 0 && (
-                    <div className="flex flex-wrap gap-2">
+                    <div className="card-tag-overlay absolute bottom-0 left-0 right-0 px-4 pb-4 pt-10 flex flex-wrap gap-2">
                       {tags.map((tag: string) => (
-                        <span key={tag}
-                          className="text-xs px-3 py-1 rounded-full border"
-                          style={{ borderColor: "var(--tag-border)", color: "var(--tag-text)" }}>
+                        <span
+                          key={tag}
+                          className="text-xs px-3 py-1 rounded-full"
+                          style={{
+                            background: "rgba(15,27,51,0.08)",
+                            backdropFilter: "blur(4px)",
+                            color: "var(--text)",
+                            border: "1px solid rgba(15,27,51,0.12)",
+                          }}
+                        >
                           {tag}
                         </span>
                       ))}
                     </div>
                   )}
+                </div>
+
+                {/* Card body */}
+                <div className="p-6">
+                  <h2 className="text-xl font-medium mb-2" style={{ color: "var(--text)" }}>{title}</h2>
+                  <p className="text-sm" style={{ color: "var(--muted)" }}>{summary}</p>
                 </div>
               </a>
             );
@@ -112,21 +118,25 @@ export default async function WorkPage() {
           <p className="text-xs tracking-widest uppercase mb-2" style={{ color: "var(--muted)" }}>Earlier Work</p>
           <p className="text-sm mb-10" style={{ color: "var(--muted)" }}>Design & UX internships before moving into product.</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {earlyWork.map((w) => (
-  <div key={w.title} className="rounded-2xl overflow-hidden border" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
-    <div className="aspect-[4/3] overflow-hidden" style={{ background: "var(--border)" }}>
-      <img src={w.cover} alt={w.title} className="w-full h-full object-cover" />
-    </div>
-    <div className="p-5">
-      <div className="flex justify-between items-center mb-2">
-        <p className="text-xs uppercase tracking-widest" style={{ color: "var(--muted)" }}>{w.company}</p>
-        <p className="text-xs" style={{ color: "var(--muted)" }}>{w.year}</p>
-      </div>
-      <h3 className="text-base font-medium mb-1" style={{ color: "var(--text)" }}>{w.title}</h3>
-      <p className="text-xs leading-relaxed" style={{ color: "var(--muted)" }}>{w.desc}</p>
-    </div>
-  </div>
-))}
+            {earlyWork.map((w) => (
+              <div key={w.title} className="case-card group">
+                <div className="card-cover-wrap aspect-[4/3]" style={{ background: "var(--border)" }}>
+                  <img
+                    src={w.cover}
+                    alt={w.title}
+                    className="w-full h-full object-cover card-cover-img"
+                  />
+                </div>
+                <div className="p-5">
+                  <div className="flex justify-between items-center mb-2">
+                    <p className="text-xs uppercase tracking-widest" style={{ color: "var(--muted)" }}>{w.company}</p>
+                    <p className="text-xs" style={{ color: "var(--muted)" }}>{w.year}</p>
+                  </div>
+                  <h3 className="text-base font-medium mb-1" style={{ color: "var(--text)" }}>{w.title}</h3>
+                  <p className="text-xs leading-relaxed" style={{ color: "var(--muted)" }}>{w.desc}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

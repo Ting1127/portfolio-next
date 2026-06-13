@@ -69,32 +69,46 @@ export default async function Home() {
             const title = props.Name?.title?.[0]?.plain_text || "";
             const slug = props.Slug?.rich_text?.[0]?.plain_text || "";
             const summary = props.Summary?.rich_text?.[0]?.plain_text || "";
-            const category = props.Category?.select?.name || "";
             const tags = props.Tags?.multi_select?.map((t: any) => t.name) || [];
-            const isConsulting = category.toLowerCase() === "consulting";
+            const coverImage = props["Cover Image"]?.rich_text?.[0]?.plain_text || "";
 
             return (
-              <a key={project.id} href={`/work/${slug}`}
-                className={`case-card group ${isConsulting ? "consulting" : ""}`}>
-                <div className="aspect-[4/3]" style={{ background: "var(--border)" }} />
-                <div className="p-6">
-                  <p className="text-xs mb-3 uppercase tracking-widest"
-                    style={{ color: isConsulting ? "var(--accent-purple)" : "var(--accent)" }}>
-                    {category}
-                  </p>
-                  <h2 className="text-xl font-medium mb-2" style={{ color: "var(--text)" }}>{title}</h2>
-                  <p className="text-sm mb-4" style={{ color: "var(--muted)" }}>{summary}</p>
+              <a key={project.id} href={`/work/${slug}`} className="case-card group">
+                {/* Cover wrap — separate overflow context prevents bleed on rotate */}
+                <div className="card-cover-wrap aspect-[4/3]" style={{ background: "var(--border)" }}>
+                  {coverImage ? (
+                    <img
+                      src={coverImage}
+                      alt={title}
+                      className="w-full h-full object-cover card-cover-img"
+                    />
+                  ) : (
+                    <div className="w-full h-full" style={{ background: "var(--border)" }} />
+                  )}
                   {tags.length > 0 && (
-                    <div className="flex flex-wrap gap-2">
+                    <div className="card-tag-overlay absolute bottom-0 left-0 right-0 px-4 pb-4 pt-10 flex flex-wrap gap-2">
                       {tags.map((tag: string) => (
-                        <span key={tag}
-                          className="text-xs px-3 py-1 rounded-full border"
-                          style={{ borderColor: "var(--tag-border)", color: "var(--tag-text)" }}>
+                        <span
+                          key={tag}
+                          className="text-xs px-3 py-1 rounded-full"
+                          style={{
+                            background: "rgba(15,27,51,0.08)",
+                            backdropFilter: "blur(4px)",
+                            color: "var(--text)",
+                            border: "1px solid rgba(15,27,51,0.12)",
+                          }}
+                        >
                           {tag}
                         </span>
                       ))}
                     </div>
                   )}
+                </div>
+
+                {/* Card body */}
+                <div className="p-6">
+                  <h2 className="text-xl font-medium mb-2" style={{ color: "var(--text)" }}>{title}</h2>
+                  <p className="text-sm" style={{ color: "var(--muted)" }}>{summary}</p>
                 </div>
               </a>
             );
