@@ -1,4 +1,5 @@
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { TableOfContents } from "@/components/TableOfContents";
 
 export default function CreatorCenterPage() {
   const sections = [
@@ -69,15 +70,7 @@ export default function CreatorCenterPage() {
         <aside className="hidden lg:block w-48 flex-shrink-0">
           <div className="sticky top-32">
             <p className="text-xs uppercase tracking-widest mb-4" style={{ color: "var(--muted)" }}>Contents</p>
-            <nav className="space-y-3">
-              {sections.map((s) => (
-                <a key={s.id} href={`#${s.id}`}
-                  className="block text-sm hover:opacity-80 transition-opacity"
-                  style={{ color: "var(--muted)" }}>
-                  {s.label}
-                </a>
-              ))}
-            </nav>
+            <TableOfContents sections={sections} />
           </div>
         </aside>
 

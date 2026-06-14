@@ -56,7 +56,7 @@ export default async function WorkPage() {
           <a href="https://drive.google.com/YOUR_RESUME_FILE_ID/view" target="_blank"
             className="hidden sm:block hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Resume</a>
           <a href="https://linkedin.com/in/yuting-zeng1127" target="_blank"
-            className="hidden sm:block hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>LinkedIn ↗</a>
+            className="hidden sm:block hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>LinkedIn ↗︎</a>
           <ThemeToggle />
         </div>
       </nav>
@@ -156,8 +156,10 @@ export default async function WorkPage() {
         <div className="flex justify-between items-center">
           <span className="text-xs" style={{ color: "var(--muted)" }}>Jennie Z © 2026</span>
           <div className="flex items-center gap-6">
+            <a href="https://drive.google.com/YOUR_RESUME_FILE_ID/view" target="_blank"
+              className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Resume</a>
             <a href="https://linkedin.com/in/yuting-zeng1127" target="_blank"
-              className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>LinkedIn ↗</a>
+              className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>LinkedIn ↗︎</a>
             <a href="mailto:zyting.info@gmail.com"
               className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>zyting.info@gmail.com</a>
             <span style={{ color: "var(--accent)" }}>⟡</span>

@@ -156,4 +156,30 @@ body {
       transform: translate(-50%, -50%) scale(0.25);
     }
   }
+
+  /* Life photos marquee — continuous right-to-left loop */
+  .marquee-wrapper {
+    overflow: hidden;
+    position: relative;
+    -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0.25) 0%, black 16%, black 84%, rgba(0,0,0,0.25) 100%);
+    mask-image: linear-gradient(to right, rgba(0,0,0,0.25) 0%, black 16%, black 84%, rgba(0,0,0,0.25) 100%);
+  }
+  .marquee-track {
+    display: flex;
+    gap: 12px;
+    width: max-content;
+    animation: marquee-scroll linear infinite;
+  }
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+    }
+  }
 }

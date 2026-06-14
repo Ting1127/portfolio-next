@@ -1,4 +1,5 @@
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { TableOfContents } from "@/components/TableOfContents";
 
 export default function KadoSubscriptionPage() {
   const sections = [
@@ -40,12 +41,11 @@ export default function KadoSubscriptionPage() {
         <p className="text-xl max-w-2xl" style={{ color: "var(--muted)" }}>
           Building a 0→1 subscription service for Japanese light novels — from zero revenue to 10% growth.
         </p>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 pt-8 border-t" style={{ borderColor: "var(--border)" }}>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-16 pt-8 border-t" style={{ borderColor: "var(--border)" }}>
           {[
             { label: "Role", value: "Product Manager" },
             { label: "Timeline", value: "Jun 2023 – Jul 2025" },
             { label: "Company", value: "KadoKawa Corp." },
-            { label: "Tools", value: "Figma · Amplitude · Notion" },
           ].map((item) => (
             <div key={item.label}>
               <p className="text-xs uppercase tracking-widest mb-1" style={{ color: "var(--muted)" }}>{item.label}</p>
@@ -76,15 +76,7 @@ export default function KadoSubscriptionPage() {
         <aside className="hidden lg:block w-48 flex-shrink-0">
           <div className="sticky top-32">
             <p className="text-xs uppercase tracking-widest mb-4" style={{ color: "var(--muted)" }}>Contents</p>
-            <nav className="space-y-3">
-              {sections.map((s) => (
-                <a key={s.id} href={`#${s.id}`}
-                  className="block text-sm hover:opacity-80 transition-opacity"
-                  style={{ color: "var(--muted)" }}>
-                  {s.label}
-                </a>
-              ))}
-            </nav>
+            <TableOfContents sections={sections} />
           </div>
         </aside>
 
@@ -177,7 +169,7 @@ export default function KadoSubscriptionPage() {
             <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent)" }}>My Approach</p>
             <h2 className="text-2xl font-medium mb-4" style={{ color: "var(--text)" }}>Defining the model before building the product</h2>
             <p className="leading-relaxed mb-6" style={{ color: "var(--muted)" }}>
-              As the sole PM, I was responsible for defining the product model, business logic, and feature requirements before engineering started. This meant working across content, marketing, tech, data, and finance teams to align on what "success" looked like — and more importantly, how to measure it.
+              As the lead PM, I was responsible for defining the product model, business logic, and feature requirements before engineering started. This meant working across content, marketing, tech, data, and finance teams to align on development phases and expected outcomes.
             </p>
             <div className="rounded-2xl p-6 border mb-8" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
               <p className="text-xs uppercase tracking-widest mb-4" style={{ color: "var(--muted)" }}>Three roles, one model</p>
@@ -195,7 +187,7 @@ export default function KadoSubscriptionPage() {
               </div>
             </div>
             <p className="leading-relaxed mb-8" style={{ color: "var(--muted)" }}>
-              I ran two parallel workstreams before launch: define the subscription business logic (pricing, revenue share formula, platform rules), and define the user-facing product (flows, copy, states, edge cases). Both had to be ready simultaneously — you can't ship a subscription service without a working revenue model, and you can't ship a revenue model without a working product.
+              I ran two parallel workstreams before launch: define the subscription business logic (pricing, revenue share formula, platform rules), and define the user-facing product (flows, copy, states, edge cases). Both had to be ready simultaneously.
             </p>
             <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
               <img src="/case/kado/subscription-architecture.jpg" alt="Subscription architecture — User to IAP to platform auto-renewal flow" className="w-full" />
@@ -220,19 +212,19 @@ export default function KadoSubscriptionPage() {
                 </div>
                 <div className="pl-6 space-y-4">
                   <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-                    Defined the full user journey from discovery to purchase — subscription-gated chapter logic, plan page copy in both Traditional and Simplified Chinese, error states, processing states, cancellation flow, and subscription state management across App and Web.
+                    Defined the full user journey from discovery to purchase — subscription-gated chapter logic, subscription page copy in both Traditional and Simplified Chinese, error states, processing states, cancellation flow, and subscription state management across App and Web. This also included working with engineering to define the API call flow.
                   </p>
                   <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-                    One early call: web users can browse but can't subscribe directly. This was a three-way tradeoff — Apple and Google IAP policies restrict web-based payment flows; building a parallel web checkout would have delayed launch by months; and strategically, we wanted to drive app downloads. Rather than ship a half-baked web checkout, I designed a clear web-to-app handoff: desktop users see a QR code, mobile users get a deep link that opens the App Store or launches the app directly.
+                    One early call: web users can browse but can't subscribe directly. Building a parallel web checkout would have delayed launch by months, and strategically, we wanted to drive app downloads. I designed a clear web-to-app handoff: desktop users see a QR code, mobile users get a deep link that opens the App Store or launches the app directly.
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
                     <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
-                      <img src="/case/kado/mvp-web.jpg" alt="Web subscription plan page — desktop QR code and mobile deep link variants" className="w-full" />
+                      <img src="/case/kado/mvp-web.jpg" alt="Web subscription page — desktop QR code and mobile deep link variants" className="w-full" />
                       <p className="px-4 py-3 text-xs" style={{ color: "var(--muted)", background: "var(--bg-card)" }}>Web — desktop QR code · mobile deep link</p>
                     </div>
                     <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
-                      <img src="/case/kado/mvp-app.jpg" alt="App subscription plan page, IAP payment screen, and subscription success screen" className="w-full" />
-                      <p className="px-4 py-3 text-xs" style={{ color: "var(--muted)", background: "var(--bg-card)" }}>App — plan page · IAP payment · success state</p>
+                      <img src="/case/kado/mvp-app.jpg" alt="App subscription page, IAP payment screen, and subscription success screen" className="w-full" />
+                      <p className="px-4 py-3 text-xs" style={{ color: "var(--muted)", background: "var(--bg-card)" }}>App — subscription page · IAP payment · success state</p>
                     </div>
                   </div>
                 </div>
@@ -263,7 +255,7 @@ export default function KadoSubscriptionPage() {
                     ))}
                   </div>
                   <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-                    I also designed the subscription hierarchy: a Subscription Theme (Product ID) contains multiple Subscription Plans (Plan IDs) — a user can only subscribe to one plan per theme (Basic or Premium, not both). This maps to Apple and Google's subscription group logic and required careful coordination between our internal system and both platform back-ends.
+                    I also designed the subscription hierarchy: a Subscription Theme (Product ID) contains multiple Subscription Plans (Plan IDs) — a user can only subscribe to one plan per theme (Basic or Premium, not both). This maps to Apple and Google's subscription group logic and required careful coordination between our internal system and both platform back-ends. This structure also left room to expand into other subscription types in the future — such as creator-specific plans — though that direction wasn't pursued in this phase.
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
                     <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
@@ -418,10 +410,10 @@ export default function KadoSubscriptionPage() {
                 </div>
                 <div className="pl-6 space-y-4">
                   <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-                    A dedicated back-end tool for batch or individual generation of redeemable codes for the subscription service — primarily used for comic convention promotions, partner campaigns, and internal testing.
+                    I extended an existing back-end ticket-generation tool to support batch or individual generation of redeemable codes for the subscription service — primarily used for comic convention promotions, partner campaigns, and internal testing.
                   </p>
                   <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-                    Unlike the existing point-based promo system (1 pt = NT$1, real cost), subscription codes have zero generation cost. This opened up new promotional scenarios: comic convention gift-with-purchase, partnership bundles with external brands, and free trial codes for influencer campaigns — all without the fraud risk and traceability issues of bulk point distribution.
+                    This opened up new promotional scenarios: comic convention gift-with-purchase, partnership bundles with external brands, and free trial codes for influencer campaigns.
                   </p>
                   <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
                     The system allows ops teams to set code quantity, expiry rules, and redemption limits per batch. Each code grants a defined period of subscription access rather than currency, which also simplifies accounting.

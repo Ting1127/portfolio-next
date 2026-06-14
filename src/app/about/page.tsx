@@ -27,6 +27,9 @@ export default function AboutPage() {
     { label: "Miffy 🐰 & Blackpink 🖤🩷", link: null, external: false },
   ];
 
+  // Life photos — shown as an auto-scrolling marquee in "Out of Work"
+  const lifePhotos = ["01.JPG", "02.JPG", "03.JPG", "04.png", "05.png", "06.png"];
+
   const community = [
     { logo: "/logos/twds.png", title: "Content Manager", company: "Taiwan Data Science Association", period: "Dec 2022 – Present", link: "https://www.facebook.com/share/g/14hU21YtanM/" },
     { logo: "/logos/uxtw.png", title: "Researcher", company: "UXTW Taiwan UX Professional Association", period: "Mar 2021 – Feb 2022", link: "https://www.facebook.com/theUXTW/?locale=zh_TW" },
@@ -91,7 +94,7 @@ export default function AboutPage() {
           <a href="https://drive.google.com/YOUR_RESUME_FILE_ID/view" target="_blank"
             className="hidden sm:block hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Resume</a>
           <a href="https://linkedin.com/in/yuting-zeng1127" target="_blank"
-            className="hidden sm:block hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>LinkedIn ↗</a>
+            className="hidden sm:block hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>LinkedIn ↗︎</a>
           <ThemeToggle />
         </div>
       </nav>
@@ -168,7 +171,7 @@ export default function AboutPage() {
                 <a key={item.label} href={item.link} target={item.external ? "_blank" : undefined}
                   className="text-sm px-4 py-2 rounded-full border hover:opacity-80 transition-opacity"
                   style={{ borderColor: "var(--border)", color: "var(--text)" }}>
-                  {item.label} ↗
+                  {item.label} ↗︎
                 </a>
               ) : (
                 <span key={item.label}
@@ -180,13 +183,31 @@ export default function AboutPage() {
             ))}
           </div>
 
-          {/* Life photos */}
-          <div className="flex gap-3 overflow-x-auto pb-4 mb-10 scrollbar-hide">
-            {["01.JPG","02.JPG","03.JPG","04.png","05.png"].map((f, i) => (
-              <div key={i} className="flex-shrink-0 w-44 h-56 rounded-2xl overflow-hidden">
-                <img src={`/life/${f}`} alt="" className="w-full h-full object-cover" />
-              </div>
-            ))}
+          {/* Life photos — auto-scrolling marquee */}
+          <div
+            className="marquee-wrapper mb-10"
+            style={{
+              overflow: "hidden",
+              position: "relative",
+              WebkitMaskImage: "linear-gradient(to right, rgba(0,0,0,0.25) 0%, black 16%, black 84%, rgba(0,0,0,0.25) 100%)",
+              maskImage: "linear-gradient(to right, rgba(0,0,0,0.25) 0%, black 16%, black 84%, rgba(0,0,0,0.25) 100%)",
+            }}
+          >
+            <div
+              className="marquee-track"
+              style={{
+                display: "flex",
+                gap: "12px",
+                width: "max-content",
+                animationDuration: `${lifePhotos.length * 6}s`,
+              }}
+            >
+              {[...lifePhotos, ...lifePhotos].map((f, i) => (
+                <div key={i} className="flex-shrink-0 w-44 h-56 rounded-2xl overflow-hidden">
+                  <img src={`/life/${f}`} alt="" className="w-full h-full object-cover" />
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Community */}
@@ -202,13 +223,20 @@ export default function AboutPage() {
                     {e.title} — <span className="italic" style={{ color: "var(--muted)" }}>{e.company}</span>
                   </p>
                   <p className="text-xs mt-0.5 mb-2" style={{ color: "var(--muted)" }}>{e.period}</p>
-                  {e.link && (
-                    <a href={e.link} target="_blank"
+                  <div className="flex gap-2">
+                    {e.link && (
+                      <a href={e.link} target="_blank"
+                        className="text-xs px-3 py-1 rounded-full border inline-block hover:opacity-80 transition-opacity"
+                        style={{ borderColor: "var(--border)", color: "var(--muted)" }}>
+                        Page ↗︎
+                      </a>
+                    )}
+                    <a href="/drift#community-design"
                       className="text-xs px-3 py-1 rounded-full border inline-block hover:opacity-80 transition-opacity"
                       style={{ borderColor: "var(--border)", color: "var(--muted)" }}>
-                      Visit ↗
+                      See work ↗︎
                     </a>
-                  )}
+                  </div>
                 </div>
               </div>
             ))}
@@ -229,7 +257,7 @@ export default function AboutPage() {
                   <a href={p.link} target="_blank"
                     className="text-xs px-3 py-1 rounded-full border inline-block hover:opacity-80 transition-opacity"
                     style={{ borderColor: "var(--accent)", color: "var(--accent)" }}>
-                    View Paper ↗
+                    View Paper ↗︎
                   </a>
                 )}
               </div>
@@ -238,7 +266,7 @@ export default function AboutPage() {
           <p className="text-xs mt-6" style={{ color: "var(--muted)" }}>
             Both papers grew out of an early service-design study on coffee brand experience —{" "}
             <a href="/drift#coffee-log" className="underline hover:opacity-80 transition-opacity" style={{ color: "var(--accent)" }}>
-              see the Coffee Log on Drift ↗
+              see the Coffee Log on Drift ↗︎
             </a>
           </p>
         </div>
@@ -275,7 +303,7 @@ export default function AboutPage() {
             Starting September 2026 at UW–Madison, I&apos;m open to student assistant, RA, and project roles — especially anything at the intersection of AI, data, and product.
           </p>
           <a href="mailto:zyting.info@gmail.com" className="btn-primary inline-block">
-            Get in touch ↗
+            Get in touch ↗︎
           </a>
         </div>
 
@@ -285,8 +313,10 @@ export default function AboutPage() {
         <div className="flex justify-between items-center">
           <span className="text-xs" style={{ color: "var(--muted)" }}>Jennie Z © 2026</span>
           <div className="flex items-center gap-6">
+            <a href="https://drive.google.com/YOUR_RESUME_FILE_ID/view" target="_blank"
+              className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Resume</a>
             <a href="https://linkedin.com/in/yuting-zeng1127" target="_blank"
-              className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>LinkedIn ↗</a>
+              className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>LinkedIn ↗︎</a>
             <a href="mailto:zyting.info@gmail.com"
               className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>zyting.info@gmail.com</a>
             <span style={{ color: "var(--accent)" }}>⟡</span>

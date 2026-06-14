@@ -83,7 +83,7 @@ export default function DriftPage() {
           <a href="https://drive.google.com/YOUR_RESUME_FILE_ID/view" target="_blank"
             className="hidden sm:block hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Resume</a>
           <a href="https://linkedin.com/in/yuting-zeng1127" target="_blank"
-            className="hidden sm:block hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>LinkedIn ↗</a>
+            className="hidden sm:block hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>LinkedIn ↗︎</a>
           <ThemeToggle />
         </div>
       </nav>
@@ -98,7 +98,7 @@ export default function DriftPage() {
         </p>
 
         {/* Playground projects */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-24">
           {projects.map((p) => {
             const tc = tagColors[p.tag] ?? { border: "var(--border)", color: "var(--muted)" };
             const Wrapper = p.link ? "a" : "div";
@@ -121,7 +121,7 @@ export default function DriftPage() {
                       <span className="text-xs" style={{ color: "var(--muted)" }}>In progress</span>
                     )}
                     {p.status === "live" && (
-                      <span className="text-xs" style={{ color: "#1D9E75" }}>↗ Live</span>
+                      <span className="text-xs" style={{ color: "#1D9E75" }}>↗︎ Live</span>
                     )}
                   </div>
                   <h2 className="text-lg font-medium mb-2" style={{ color: "var(--text)" }}>{p.title}</h2>
@@ -133,7 +133,7 @@ export default function DriftPage() {
         </div>
 
         {/* Community design */}
-        <div className="border-t pt-16" style={{ borderColor: "var(--border)" }}>
+        <div id="community-design" className="border-t pt-16 scroll-mt-24" style={{ borderColor: "var(--border)" }}>
           <p className="text-xs tracking-widest uppercase mb-2" style={{ color: "var(--muted)" }}>Community Design</p>
           <p className="text-sm mb-10" style={{ color: "var(--muted)" }}>Visual work for communities I care about.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -157,8 +157,10 @@ export default function DriftPage() {
         <div className="flex justify-between items-center">
           <span className="text-xs" style={{ color: "var(--muted)" }}>Jennie Z © 2026</span>
           <div className="flex items-center gap-6">
+            <a href="https://drive.google.com/YOUR_RESUME_FILE_ID/view" target="_blank"
+              className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Resume</a>
             <a href="https://linkedin.com/in/yuting-zeng1127" target="_blank"
-              className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>LinkedIn ↗</a>
+              className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>LinkedIn ↗︎</a>
             <a href="mailto:zyting.info@gmail.com"
               className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>zyting.info@gmail.com</a>
             <span style={{ color: "var(--accent)" }}>⟡</span>
