@@ -310,19 +310,19 @@ export default function AboutPage() {
       </section>
 
       <footer className="px-8 py-12 border-t max-w-5xl mx-auto w-full" style={{ borderColor: "var(--border)" }}>
-        <div className="flex justify-between items-center">
-          <span className="text-xs" style={{ color: "var(--muted)" }}>Jennie Z © 2026</span>
-          <div className="flex items-center gap-6">
-            <a href="https://drive.google.com/YOUR_RESUME_FILE_ID/view" target="_blank"
-              className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Resume</a>
-            <a href="https://linkedin.com/in/yuting-zeng1127" target="_blank"
-              className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>LinkedIn ↗︎</a>
-            <a href="mailto:zyting.info@gmail.com"
-              className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>zyting.info@gmail.com</a>
-            <span style={{ color: "var(--accent)" }}>⟡</span>
-          </div>
-        </div>
-      </footer>
+  <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center">
+    <span className="text-xs" style={{ color: "var(--muted)" }}>Jennie Z © 2026</span>
+    <div className="flex items-center gap-4 sm:gap-6 flex-wrap">
+      <a href="https://drive.google.com/YOUR_RESUME_FILE_ID/view" target="_blank"
+        className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Resume</a>
+      <a href="https://linkedin.com/in/yuting-zeng1127" target="_blank"
+        className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>LinkedIn ↗︎</a>
+      <a href="mailto:zyting.info@gmail.com"
+        className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>zyting.info@gmail.com</a>
+      <span style={{ color: "var(--accent)" }}>⟡</span>
+    </div>
+  </div>
+</footer>
 
     </main>
   );
