@@ -33,6 +33,8 @@ export default async function Home() {
           <a href="/work" className="hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Work</a>
           <a href="/drift" className="hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Drift</a>
           <a href="/about" className="hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>About</a>
+          <a href="https://drive.google.com/YOUR_RESUME_FILE_ID/view" target="_blank"
+            className="hidden sm:block hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Resume</a>
           <a href="https://linkedin.com/in/yuting-zeng1127" target="_blank"
             className="hidden sm:block hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>LinkedIn ↗</a>
           <ThemeToggle />
@@ -40,11 +42,14 @@ export default async function Home() {
       </nav>
 
       {/* Hero */}
-      <section className="pt-48 pb-32 px-8 max-w-5xl mx-auto">
+      <section className="pt-24 pb-20 px-8 max-w-5xl mx-auto">
+        <p className="text-2xl md:text-3xl font-medium mb-4" style={{ color: "var(--accent)" }}>
+          Hello! I&apos;m Jennie. ⟡
+        </p>
         <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent)" }}>
           Product Manager
         </p>
-        <h1 className="text-3xl md:text-5xl font-medium leading-[1.15] tracking-tight mb-8" style={{ color: "var(--text)" }}>
+        <h1 className="text-2xl md:text-4xl font-medium leading-[1.15] tracking-tight mb-8" style={{ color: "var(--text)" }}>
           PM with a designer&apos;s eye,<br />
           researcher&apos;s instinct,<br />
           and AI-first mindset —<br />
@@ -73,8 +78,8 @@ export default async function Home() {
             const coverImage = props["Cover Image"]?.rich_text?.[0]?.plain_text || "";
 
             return (
-              <a key={project.id} href={`/work/${slug}`} className="case-card group">
-                {/* Cover wrap — separate overflow context prevents bleed on rotate */}
+              <a key={project.id} href={`/work/${slug}`} className="case-card">
+                {/* Cover wrap */}
                 <div className="card-cover-wrap aspect-[4/3]" style={{ background: "var(--border)" }}>
                   {coverImage ? (
                     <img
@@ -85,17 +90,18 @@ export default async function Home() {
                   ) : (
                     <div className="w-full h-full" style={{ background: "var(--border)" }} />
                   )}
+                  {/* Tag overlay on cover */}
                   {tags.length > 0 && (
-                    <div className="card-tag-overlay absolute bottom-0 left-0 right-0 px-4 pb-4 pt-10 flex flex-wrap gap-2">
+                    <div className="card-tag-overlay">
                       {tags.map((tag: string) => (
                         <span
                           key={tag}
                           className="text-xs px-3 py-1 rounded-full"
                           style={{
-                            background: "rgba(15,27,51,0.08)",
+                            background: "rgba(255,255,255,0.9)",
                             backdropFilter: "blur(4px)",
-                            color: "var(--text)",
-                            border: "1px solid rgba(15,27,51,0.12)",
+                            color: "#0F1B33",
+                            border: "1px solid rgba(255,255,255,0.5)",
                           }}
                         >
                           {tag}
@@ -113,6 +119,11 @@ export default async function Home() {
               </a>
             );
           })}
+        </div>
+
+        {/* Explore more */}
+        <div className="flex justify-center mt-12">
+          <a href="/work" className="btn-secondary">Explore more</a>
         </div>
       </section>
 
