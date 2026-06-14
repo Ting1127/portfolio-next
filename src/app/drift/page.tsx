@@ -3,6 +3,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 export default function DriftPage() {
   const projects = [
     {
+      id: "learning-japanese",
       title: "Learning Japanese",
       description: "An interactive phonetics tool I built to learn hiragana, katakana, and pitch accent — because existing apps didn't work for me.",
       tag: "Tool",
@@ -10,6 +11,7 @@ export default function DriftPage() {
       link: "/tools/japanese.html",
     },
     {
+      id: "travel",
       title: "Ting & Guan Journey",
       description: "971 days of travels mapped and documented together. A collaborative record built on Google Sites.",
       tag: "Log",
@@ -17,6 +19,7 @@ export default function DriftPage() {
       link: "https://sites.google.com/view/ourjourneytinguan/our-journey",
     },
     {
+      id: "coffee-log",
       title: "Coffee Log",
       description: "Tracking every café and coffee brand I've visited — photos, notes, and the story behind each cup.",
       tag: "Log",
@@ -24,6 +27,7 @@ export default function DriftPage() {
       link: null,
     },
     {
+      id: "pm-workflow",
       title: "PM Workflow",
       description: "Templates, frameworks, and thinking tools I actually use as a PM. Opinionated and evolving.",
       tag: "Workflow",
@@ -31,6 +35,7 @@ export default function DriftPage() {
       link: null,
     },
     {
+      id: "exhibitions-films",
       title: "Exhibitions & Films",
       description: "A running collection of exhibitions and movies that shaped how I think about design and storytelling.",
       tag: "Collection",
@@ -75,6 +80,8 @@ export default function DriftPage() {
           <a href="/work" className="hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Work</a>
           <a href="/drift" style={{ color: "var(--accent)" }}>Drift</a>
           <a href="/about" className="hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>About</a>
+          <a href="https://drive.google.com/YOUR_RESUME_FILE_ID/view" target="_blank"
+            className="hidden sm:block hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Resume</a>
           <a href="https://linkedin.com/in/yuting-zeng1127" target="_blank"
             className="hidden sm:block hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>LinkedIn ↗</a>
           <ThemeToggle />
@@ -100,8 +107,8 @@ export default function DriftPage() {
               : {};
 
             return (
-              <Wrapper key={p.title} {...(wrapperProps as any)}
-                className="block rounded-2xl overflow-hidden border transition-all duration-300"
+              <Wrapper key={p.title} id={p.id} {...(wrapperProps as any)}
+                className="block rounded-2xl overflow-hidden border transition-all duration-300 scroll-mt-24"
                 style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
                 <div className="aspect-[16/9]" style={{ background: "var(--border)" }} />
                 <div className="p-6">
