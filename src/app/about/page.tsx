@@ -93,9 +93,9 @@ export default function AboutPage() {
               Hi, I'm Jennie Zeng (曾鈺婷) ⟡
             </h1>
             <div className="text-base leading-relaxed space-y-5" style={{ color: "var(--text)" }}>
-              <p>I'm a Taipei-based Product Manager with a background in UX design and research — currently consulting on AI & GEO strategy at Teleworker, and heading to UW–Madison's Information Systems program in September 2026.</p>
-              <p>My path started in design, moved through research, and landed in product. That sequence wasn't accidental — I think the best PMs understand how people experience things, not just how systems work. I bring that designer's eye and researcher's instinct to every product decision I make.</p>
-              <p>Right now I'm most interested in how generative AI is changing brand discovery, user decision-making, and how teams should build differently as a result.</p>
+              <p>I'm an incoming MSI student at UW–Madison, starting this September — which means Wisconsin is home from here on out. Before grad school, I worked as a Product Manager across content platforms, SaaS, B2B, and hardware-software products — spanning industries from publishing to finance to semiconductors.</p>
+              <p>My background started in UX design and research, and that's still how I approach product work: understand how people experience something first, then figure out the system behind it. What I'm drawn to is unfamiliar territory — industries I haven't worked in yet, technology that doesn't have a playbook yet. </p>
+              <p>Right now that's generative AI and how it's reshaping the way people find and trust information. Figuring out what "good" looks like before anyone's written the rules is, honestly, my favorite part of the job</p>
             </div>
           </div>
           <div className="flex-shrink-0 w-64 md:w-72 rounded-2xl overflow-hidden" style={{ aspectRatio: "3/4" }}>

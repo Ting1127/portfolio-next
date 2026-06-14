@@ -1,23 +1,43 @@
-import { getFeaturedProjects } from "@/lib/notion";
+import { getProjects } from "@/lib/notion";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
-const testimonials = [
+const earlyWork = [
   {
-    name: "PinChen Wu",
-    role: "Web & UI Designer, KadoKawa",
-    avatar: "/avatars/pinpin.jpeg",
-    text: "Ting is a proactive and detail-oriented Product Owner who consistently drove product development forward with clarity and focus. She's quick to identify challenges, propose solutions, and facilitate team discussions to keep momentum going. She excels at aligning cross-functional teams around shared goals, and led user research initiatives and data tracking strategies to evaluate product impact — always seeking ways to iterate and improve based on real insights.",
+    title: "Synology Photos Home User Research",
+    company: "Synology",
+    role: "PM Intern",
+    year: "2022",
+    desc: "Led user research on home photo management — interviews and surveys across user types, synthesized into personas and an optimization roadmap.",
+    cover: "/case/early/synology.jpg",
   },
   {
-    name: "Cloudia Shen",
-    role: "UIUX / Product Designer, AI-integrated Design",
-    avatar: "/avatars/cloudia.jpeg",
-    text: "One thing I really appreciate about Ting is how she often shares new insights about the industry, especially around user experience and business trends. Every time we chat, I walk away with a new idea or perspective. If you're looking for someone who's smart, curious, and always eager to learn and share, Ting's the kind of person you want on your team.",
+    title: "Cross-Device Multilingual Keyboard",
+    company: "BenQ",
+    role: "UX Design Intern",
+    year: "2020",
+    desc: "Designed a multilingual keyboard app for smart displays across device sizes.",
+    cover: "/case/early/benq.jpg",
+  },
+  {
+    title: "Singapore Brand Website UI",
+    company: "Snapask",
+    role: "UIUX Designer",
+    year: "2021",
+    desc: "Redesigned the Singapore learning platform with a self-directed learning visual identity.",
+    cover: "/case/early/snapask.jpg",
+  },
+  {
+    title: "OCR in Open Account Journey",
+    company: "NEXT BANK",
+    role: "Product Design Intern",
+    year: "2020",
+    desc: "Designed the OCR-assisted onboarding flow for Taiwan's first pure digital bank.",
+    cover: "/case/early/nextbank.jpg",
   },
 ];
 
-export default async function Home() {
-  const featured = await getFeaturedProjects();
+export default async function WorkPage() {
+  const projects = await getProjects();
 
   return (
     <main className="min-h-screen" style={{ background: "var(--bg)", color: "var(--text)" }}>
@@ -30,7 +50,7 @@ export default async function Home() {
           <span className="text-sm font-medium tracking-tight" style={{ color: "var(--text)" }}>Jennie Z</span>
         </a>
         <div className="flex items-center gap-5 text-sm">
-          <a href="/work" className="hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Work</a>
+          <a href="/work" style={{ color: "var(--accent)" }}>Work</a>
           <a href="/drift" className="hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Drift</a>
           <a href="/about" className="hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>About</a>
           <a href="https://drive.google.com/YOUR_RESUME_FILE_ID/view" target="_blank"
@@ -41,46 +61,18 @@ export default async function Home() {
         </div>
       </nav>
 
-      {/* Hero */}
-      <section className="pt-24 pb-20 px-8 max-w-5xl mx-auto">
-        <div className="flex items-center gap-3 mb-4">
-          <p
-            className="text-4xl md:text-5xl"
-            style={{ color: "var(--accent)", fontFamily: "var(--font-caveat)", fontWeight: 600 }}
-          >
-            Hello! I&apos;m Jennie.
-          </p>
-          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-            <circle cx="18" cy="18" r="15" stroke="var(--accent)" strokeWidth="2" />
-            <circle cx="13" cy="15" r="1.5" fill="var(--accent)" />
-            <circle cx="23" cy="15" r="1.5" fill="var(--accent)" />
-            <path d="M12 21C13.5 24 16 25.5 18 25.5C20 25.5 22.5 24 24 21" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" fill="none" />
-          </svg>
-        </div>
-        <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent)" }}>
-          Product Manager
-        </p>
-        <h1 className="text-2xl md:text-4xl font-medium leading-[1.15] tracking-tight mb-8" style={{ color: "var(--text)" }}>
-          PM with a designer&apos;s eye,<br />
-          researcher&apos;s instinct,<br />
-          and AI-first mindset —<br />
-          <span style={{ color: "var(--muted)" }}>
-            turning unfamiliar problems<br />into shipped products. ⟡
-          </span>
+      <section className="pt-48 pb-32 px-8 max-w-5xl mx-auto">
+        <p className="text-xs tracking-widest uppercase mb-4" style={{ color: "var(--accent)" }}>Work</p>
+        <h1 className="text-4xl md:text-5xl font-medium tracking-tight mb-4" style={{ color: "var(--text)" }}>
+          All Projects
         </h1>
-        <div className="flex gap-6 mt-12">
-          <a href="/work" className="btn-primary">View Work</a>
-          <a href="/about" className="btn-secondary">About Me</a>
-        </div>
-      </section>
-
-      {/* Featured Cases */}
-      <section className="px-8 pb-32 max-w-5xl mx-auto">
-        <p className="text-xs tracking-widest uppercase mb-8" style={{ color: "var(--muted)" }}>
-          Selected Work
+        <p className="text-sm mb-16" style={{ color: "var(--muted)" }}>
+          {projects.length} cases across product, consulting, and research
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {featured.map((project: any) => {
+
+        {/* Main cases */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-24">
+          {projects.map((project: any) => {
             const props = project.properties;
             const title = props.Name?.title?.[0]?.plain_text || "";
             const slug = props.Slug?.rich_text?.[0]?.plain_text || "";
@@ -132,39 +124,34 @@ export default async function Home() {
           })}
         </div>
 
-        {/* Explore more */}
-        <div className="flex justify-center mt-12">
-          <a href="/work" className="btn-secondary">Explore more</a>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="px-8 pb-32 max-w-5xl mx-auto">
-        <p className="text-xs tracking-widest uppercase mb-8" style={{ color: "var(--muted)" }}>
-          What people say
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {testimonials.map((t, i) => (
-            <div key={i}
-              className="rounded-2xl p-8 border"
-              style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
-              <p className="text-lg mb-6" style={{ color: "var(--accent)" }}>⟡</p>
-              <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--text)" }}>
-                &ldquo;{t.text}&rdquo;
-              </p>
-              <div className="flex items-center gap-3">
-                <img src={t.avatar} alt={t.name} className="w-10 h-10 rounded-full object-cover" />
-                <div>
-                  <p className="text-sm font-medium" style={{ color: "var(--text)" }}>{t.name}</p>
-                  <p className="text-xs mt-0.5" style={{ color: "var(--muted)" }}>{t.role}</p>
+        {/* Early work */}
+        <div className="border-t pt-16" style={{ borderColor: "var(--border)" }}>
+          <p className="text-xs tracking-widest uppercase mb-2" style={{ color: "var(--muted)" }}>Earlier Work</p>
+          <p className="text-sm mb-10" style={{ color: "var(--muted)" }}>Design & UX internships before moving into product.</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {earlyWork.map((w) => (
+              <div key={w.title} className="case-card">
+                <div className="card-cover-wrap aspect-[4/3]" style={{ background: "var(--border)" }}>
+                  <img
+                    src={w.cover}
+                    alt={w.title}
+                    className="w-full h-full object-cover card-cover-img"
+                  />
+                </div>
+                <div className="p-5">
+                  <div className="flex justify-between items-center mb-2">
+                    <p className="text-xs uppercase tracking-widest" style={{ color: "var(--muted)" }}>{w.company}</p>
+                    <p className="text-xs" style={{ color: "var(--muted)" }}>{w.year}</p>
+                  </div>
+                  <h3 className="text-base font-medium mb-1" style={{ color: "var(--text)" }}>{w.title}</h3>
+                  <p className="text-xs leading-relaxed" style={{ color: "var(--muted)" }}>{w.desc}</p>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="px-8 py-12 border-t max-w-5xl mx-auto w-full" style={{ borderColor: "var(--border)" }}>
         <div className="flex justify-between items-center">
           <span className="text-xs" style={{ color: "var(--muted)" }}>Jennie Z © 2026</span>
