@@ -104,16 +104,26 @@ export default function KadoSubscriptionPage() {
           <section id="context">
             <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent)" }}>Context</p>
             <h2 className="text-2xl font-medium mb-4" style={{ color: "var(--text)" }}>About KadoKawa & Kado+</h2>
-            <p className="leading-relaxed mb-6" style={{ color: "var(--muted)" }}>
-              KadoKawa is a publicly listed Japanese media group operating under a Global Media-Mix philosophy — creating IP with authors, distributing it across platforms, and connecting fans through communities. Major shareholders include Sony, Tencent, and Kakao.
-            </p>
-            <p className="leading-relaxed mb-8" style={{ color: "var(--muted)" }}>
-              Kado+ is a subscription service tailored for Japanese light novel enthusiasts, offering unlimited, chapter-based access to officially licensed Japanese titles. The goal: reduce cost and time barriers for Taiwanese readers while building a sustainable content ecosystem that works for readers, the platform, and creators simultaneously.
-            </p>
+            <div className="flex gap-4 items-start mb-6">
+              <div className="w-12 h-12 rounded-xl overflow-hidden bg-white flex items-center justify-center border flex-shrink-0" style={{ borderColor: "var(--border)" }}>
+                <img src="/logos/kadokawa.png" alt="KadoKawa" className="w-9 h-9 object-contain" />
+              </div>
+              <p className="leading-relaxed" style={{ color: "var(--muted)" }}>
+                KadoKawa is a publicly listed Japanese media group operating under a Global Media-Mix philosophy — creating IP with authors, distributing it across platforms, and connecting fans through communities. Major shareholders include Sony, Tencent, and Kakao.
+              </p>
+            </div>
+            <div className="flex gap-4 items-start mb-8">
+              <div className="w-12 h-12 rounded-xl overflow-hidden bg-white flex items-center justify-center border flex-shrink-0" style={{ borderColor: "var(--border)" }}>
+                <img src="/logos/kadoplus.png" alt="Kado+" className="w-9 h-9 object-contain" />
+              </div>
+              <p className="leading-relaxed" style={{ color: "var(--muted)" }}>
+                Kado+ is a subscription service tailored for Japanese light novel enthusiasts, offering unlimited, chapter-based access to officially licensed Japanese titles. The goal: reduce cost and time barriers for Taiwanese readers while building a sustainable content ecosystem that works for readers, the platform, and creators simultaneously.
+              </p>
+            </div>
             <div className="rounded-2xl p-6 border mb-8" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
               <p className="text-xs uppercase tracking-widest mb-4" style={{ color: "var(--muted)" }}>Team</p>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                {["2 Product Designers", "5 Engineers", "2 App Developers", "2 Data Scientists", "2 Marketing", "2 Content Strategy"].map(r => (
+                {["Product Manager", "2 Product Designers", "5 Engineers", "2 App Developers", "2 Data Scientists", "2 Marketing", "2 Content Strategy"].map(r => (
                   <span key={r} className="text-sm" style={{ color: "var(--muted)" }}>{r}</span>
                 ))}
               </div>
@@ -126,10 +136,7 @@ export default function KadoSubscriptionPage() {
           {/* Problem */}
           <section id="problem">
             <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent)" }}>Problem</p>
-            <h2 className="text-2xl font-medium mb-4" style={{ color: "var(--text)" }}>Three barriers blocking readers — and the business</h2>
-            <p className="leading-relaxed mb-8" style={{ color: "var(--muted)" }}>
-              The real challenge wasn't solving any one of these in isolation — it was designing a model where all three stakeholders (Reader, Platform, Creator) could win simultaneously without one group subsidizing another.
-            </p>
+            <h2 className="text-2xl font-medium mb-8" style={{ color: "var(--text)" }}>Three barriers blocking readers — and the business</h2>
             <div className="space-y-6">
               {[
                 {
@@ -189,7 +196,7 @@ export default function KadoSubscriptionPage() {
             <p className="leading-relaxed mb-8" style={{ color: "var(--muted)" }}>
               I ran two parallel workstreams before launch: define the subscription business logic (pricing, revenue share formula, platform rules), and define the user-facing product (flows, copy, states, edge cases). Both had to be ready simultaneously.
             </p>
-            <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
+            <div className="rounded-2xl overflow-hidden border max-w-lg mx-auto" style={{ borderColor: "var(--border)" }}>
               <img src="/case/kado/subscription-architecture.jpg" alt="Subscription architecture — User to IAP to platform auto-renewal flow" className="w-full" />
             </div>
           </section>
@@ -206,26 +213,19 @@ export default function KadoSubscriptionPage() {
                 <div className="flex items-start gap-3 mb-6">
                   <span className="flex-shrink-0 mt-0.5" style={{ color: "var(--accent)" }}>⟡</span>
                   <div>
-                    <p className="text-base font-medium mb-0.5" style={{ color: "var(--text)" }}>01 · Subscription MVP</p>
-                    <p className="text-xs tracking-widest uppercase" style={{ color: "var(--muted)" }}>Shipped 2024 / 11 / 20</p>
+                    <p className="text-base font-medium" style={{ color: "var(--text)" }}>01 · Subscription MVP</p>
                   </div>
                 </div>
                 <div className="pl-6 space-y-4">
                   <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-                    Defined the full user journey from discovery to purchase — subscription-gated chapter logic, subscription page copy in both Traditional and Simplified Chinese, error states, processing states, cancellation flow, and subscription state management across App and Web. This also included working with engineering to define the API call flow.
+                    Defined the full user journey from discovery to purchase — subscription-gated chapter logic, error states, processing states, cancellation flow, and subscription state management across App and Web. This also included working with engineering to define the API call flow.
                   </p>
                   <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
                     One early call: web users can browse but can't subscribe directly. Building a parallel web checkout would have delayed launch by months, and strategically, we wanted to drive app downloads. I designed a clear web-to-app handoff: desktop users see a QR code, mobile users get a deep link that opens the App Store or launches the app directly.
                   </p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                    <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
-                      <img src="/case/kado/mvp-web.jpg" alt="Web subscription page — desktop QR code and mobile deep link variants" className="w-full" />
-                      <p className="px-4 py-3 text-xs" style={{ color: "var(--muted)", background: "var(--bg-card)" }}>Web — desktop QR code · mobile deep link</p>
-                    </div>
-                    <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
-                      <img src="/case/kado/mvp-app.jpg" alt="App subscription page, IAP payment screen, and subscription success screen" className="w-full" />
-                      <p className="px-4 py-3 text-xs" style={{ color: "var(--muted)", background: "var(--bg-card)" }}>App — subscription page · IAP payment · success state</p>
-                    </div>
+                  <div className="rounded-2xl overflow-hidden border mt-6" style={{ borderColor: "var(--border)" }}>
+                    <img src="/case/kado/mvp-overview.jpg" alt="Web and App subscription flow — desktop QR code, mobile deep link, IAP payment, and success screen" className="w-full" />
+                    <p className="px-4 py-3 text-xs" style={{ color: "var(--muted)", background: "var(--bg-card)" }}>Web (QR code · deep link) and App (subscription page · IAP payment · success state)</p>
                   </div>
                 </div>
               </div>
@@ -257,25 +257,9 @@ export default function KadoSubscriptionPage() {
                   <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
                     I also designed the subscription hierarchy: a Subscription Theme (Product ID) contains multiple Subscription Plans (Plan IDs) — a user can only subscribe to one plan per theme (Basic or Premium, not both). This maps to Apple and Google's subscription group logic and required careful coordination between our internal system and both platform back-ends. This structure also left room to expand into other subscription types in the future — such as creator-specific plans — though that direction wasn't pursued in this phase.
                   </p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                    <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
-                      <img src="/case/kado/cms-plan-list.jpg" alt="CMS subscription management page showing KAKUYOMU NEXT Basic and Premium plans" className="w-full" />
-                      <p className="px-4 py-3 text-xs" style={{ color: "var(--muted)", background: "var(--bg-card)" }}>Subscription management — plan list</p>
-                    </div>
-                    <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
-                      <img src="/case/kado/cms-title-list.jpg" alt="CMS plan title page with drag-to-reorder and chapter edit entry" className="w-full" />
-                      <p className="px-4 py-3 text-xs" style={{ color: "var(--muted)", background: "var(--bg-card)" }}>Plan title page — drag-to-reorder</p>
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
-                      <img src="/case/kado/cms-chapter-edit.jpg" alt="CMS chapter subscription page — bulk activation and removal date scheduling" className="w-full" />
-                      <p className="px-4 py-3 text-xs" style={{ color: "var(--muted)", background: "var(--bg-card)" }}>Chapter subscription page — bulk scheduling</p>
-                    </div>
-                    <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
-                      <img src="/case/kado/cms-workflow.jpg" alt="CMS three-column workflow — iOS/Android backend to internal CMS to front-end/App" className="w-full" />
-                      <p className="px-4 py-3 text-xs" style={{ color: "var(--muted)", background: "var(--bg-card)" }}>Workflow — platform backend → CMS → front-end</p>
-                    </div>
+                  <div className="rounded-2xl overflow-hidden border mt-6" style={{ borderColor: "var(--border)" }}>
+                    <img src="/case/kado/cms-overview.jpg" alt="CMS subscription management — plan list, drag-to-reorder title page, chapter scheduling, and platform-to-front-end workflow" className="w-full" />
+                    <p className="px-4 py-3 text-xs" style={{ color: "var(--muted)", background: "var(--bg-card)" }}>CMS — plan list · drag-to-reorder · chapter scheduling · platform workflow</p>
                   </div>
                 </div>
               </div>
@@ -293,11 +277,11 @@ export default function KadoSubscriptionPage() {
                     Co-designed with my manager, the formula distributes revenue proportionally by actual readership — not equally across titles — accounting for subscription fee, platform operating costs, and per-title chapter page views relative to total subscription chapter PVs.
                   </p>
                   <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-                    Getting it right required aligning Finance, Content, and Engineering on shared definitions: what counts as a "valid" read, whether content removed mid-cycle still earns that month, and how to track free, paid, and subscription chapter PVs separately in the data pipeline. The hardest part wasn't the logic itself — it was getting three teams to agree on a shared definition before any pipeline was built.
+                    Getting it right required aligning Finance, Content, and Engineering on shared definitions: what counts as a "valid" read, whether content removed mid-cycle still earns that month, and how to track free, paid, and subscription chapter PVs separately in the data pipeline.
                   </p>
-                  <div className="rounded-2xl overflow-hidden border mt-6" style={{ borderColor: "var(--border)" }}>
-                    <img src="/case/kado/revenue-formula.jpg" alt="Chapter PV calculation tree — free chapter PV, paid chapter PV, subscription chapter PV" className="w-full" />
-                    <p className="px-4 py-3 text-xs" style={{ color: "var(--muted)", background: "var(--bg-card)" }}>Chapter PV calculation — three-way split</p>
+                  <div className="rounded-2xl overflow-hidden border mt-6 max-w-xl mx-auto" style={{ borderColor: "var(--border)" }}>
+                    <img src="/case/kado/revenue-formula.jpg" alt="Four chapter list examples, each showing a different unlock badge — free, points (lock), reading voucher (ticket), and subscription (Kado+ logo)" className="w-full" />
+                    <p className="px-4 py-3 text-xs" style={{ color: "var(--muted)", background: "var(--bg-card)" }}>Chapter unlock types — free, points, reading voucher, subscription</p>
                   </div>
                 </div>
               </div>

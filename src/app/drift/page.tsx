@@ -108,7 +108,7 @@ export default function DriftPage() {
 
             return (
               <Wrapper key={p.title} id={p.id} {...(wrapperProps as any)}
-                className="block rounded-2xl overflow-hidden border transition-all duration-300 scroll-mt-24"
+                className="block rounded-2xl overflow-hidden border transition-all duration-300 scroll-mt-24 relative hover:z-10 hover:rotate-2"
                 style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
                 <div className="aspect-[16/9]" style={{ background: "var(--border)" }} />
                 <div className="p-6">
@@ -138,7 +138,7 @@ export default function DriftPage() {
           <p className="text-sm mb-10" style={{ color: "var(--muted)" }}>Visual work for communities I care about.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {communityWork.map((w) => (
-              <div key={w.title} className="rounded-2xl overflow-hidden border" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
+              <div key={w.title} className="rounded-2xl overflow-hidden border transition-all duration-300 relative hover:z-10 hover:rotate-2" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
                 <div className="aspect-[4/3] overflow-hidden" style={{ background: "var(--border)" }}>
                   <img src={w.cover} alt={w.title} className="w-full h-full object-cover" />
                 </div>
@@ -154,9 +154,9 @@ export default function DriftPage() {
       </section>
 
       <footer className="px-8 py-12 border-t max-w-5xl mx-auto w-full" style={{ borderColor: "var(--border)" }}>
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center">
           <span className="text-xs" style={{ color: "var(--muted)" }}>Jennie Z © 2026</span>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4 sm:gap-6 flex-wrap">
             <a href="https://drive.google.com/YOUR_RESUME_FILE_ID/view" target="_blank"
               className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Resume</a>
             <a href="https://linkedin.com/in/yuting-zeng1127" target="_blank"
