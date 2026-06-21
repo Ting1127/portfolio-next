@@ -1,5 +1,5 @@
-import { ThemeToggle } from "@/components/ThemeToggle";
 import { TableOfContents } from "@/components/TableOfContents";
+import { Nav } from "@/components/Nav";
 
 export default function GeoMonitoringPage() {
   const sections = [
@@ -14,26 +14,11 @@ export default function GeoMonitoringPage() {
   return (
     <main className="min-h-screen" style={{ background: "var(--bg)", color: "var(--text)" }}>
 
-      {/* Nav */}
-      <nav className="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center backdrop-blur-sm border-b"
-        style={{ background: "color-mix(in srgb, var(--bg) 90%, transparent)", borderColor: "var(--border)" }}>
-        <a href="/" className="flex items-center gap-1.5 hover:opacity-80 transition-opacity">
-          <span className="text-sm" style={{ color: "var(--accent-purple)" }}>⟡</span>
-          <span className="text-sm font-medium tracking-tight" style={{ color: "var(--text)" }}>Jennie Z</span>
-        </a>
-        <div className="flex items-center gap-5 text-sm">
-          <a href="/work" className="hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Work</a>
-          <a href="/drift" className="hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Drift</a>
-          <a href="/about" className="hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>About</a>
-          <a href="https://linkedin.com/in/yuting-zeng1127" target="_blank"
-            className="hidden sm:block hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>LinkedIn ↗</a>
-          <ThemeToggle />
-        </div>
-      </nav>
+      <Nav accent="var(--accent-purple)" />
 
       {/* Hero */}
       <section className="pt-48 pb-16 px-8 max-w-5xl mx-auto">
-        <p className="text-xs tracking-widest uppercase mb-4" style={{ color: "var(--accent-purple)" }}>Consulting</p>
+        <p className="text-xs tracking-widest uppercase mb-4" style={{ color: "var(--accent-purple)" }}>Product</p>
         <h1 className="text-4xl md:text-5xl font-medium tracking-tight leading-[1.1] mb-6" style={{ color: "var(--text)" }}>
           GEO Monitoring & Strategy
         </h1>
@@ -96,7 +81,7 @@ export default function GeoMonitoringPage() {
             <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent-purple)" }}>Context</p>
             <h2 className="text-2xl font-medium mb-4" style={{ color: "var(--text)" }}>A new discipline with no established rules</h2>
             <p className="leading-relaxed mb-6" style={{ color: "var(--muted)" }}>
-              As AI-powered search reshapes how brands get discovered, a new question emerged: when someone asks ChatGPT "which DDR5 memory brand is good?" or "what are the key semiconductor investments in Japan?" — what answer do they get, and is the brand in it?
+              As AI-powered search reshapes how brands get discovered, a new question emerged: when someone asks ChatGPT "which DDR6 memory brand is good?" or "what are the key semiconductor investments in Japan?" — what answer do they get, and is the brand in it?
             </p>
             <p className="leading-relaxed mb-6" style={{ color: "var(--muted)" }}>
               GEO (Generative Engine Optimization) is the discipline of ensuring your brand is accurately represented, cited, and contextually positioned in LLM-generated answers. Unlike SEO, there's no established standard, no universal metric, no agreed-upon playbook.
@@ -151,7 +136,7 @@ export default function GeoMonitoringPage() {
               Before I could build anything, I had to answer a harder question: what does "being visible in AI" mean for a semiconductor brand with multiple audiences, products, and regional markets?
             </p>
             <p className="leading-relaxed mb-6" style={{ color: "var(--muted)" }}>
-              The client isn't one brand story. It's a technology company (AI Memory, HBM, DDR5), an employer (hiring across Asia-Pacific), a policy actor (local investments, government engagement), and an ecosystem partner (supply chain). Each surfaces in AI-generated answers through completely different prompts, asked by completely different people.
+              The client isn't one brand story. It's a technology company (AI Memory, HBM, DDR6), an employer (hiring across Asia-Pacific), a policy actor (local investments, government engagement), and an ecosystem partner (supply chain). Each surfaces in AI-generated answers through completely different prompts, asked by completely different people.
             </p>
             <div className="rounded-2xl p-6 border" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
               <p className="text-sm font-medium mb-2" style={{ color: "var(--text)" }}>The problem wasn't just visibility.</p>

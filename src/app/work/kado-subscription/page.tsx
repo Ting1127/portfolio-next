@@ -1,5 +1,5 @@
-import { ThemeToggle } from "@/components/ThemeToggle";
 import { TableOfContents } from "@/components/TableOfContents";
+import { Nav } from "@/components/Nav";
 
 export default function KadoSubscriptionPage() {
   const sections = [
@@ -15,22 +15,7 @@ export default function KadoSubscriptionPage() {
   return (
     <main className="min-h-screen" style={{ background: "var(--bg)", color: "var(--text)" }}>
 
-      {/* Nav */}
-      <nav className="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center backdrop-blur-sm border-b"
-        style={{ background: "color-mix(in srgb, var(--bg) 90%, transparent)", borderColor: "var(--border)" }}>
-        <a href="/" className="flex items-center gap-1.5 hover:opacity-80 transition-opacity">
-          <span className="text-sm" style={{ color: "var(--accent)" }}>⟡</span>
-          <span className="text-sm font-medium tracking-tight" style={{ color: "var(--text)" }}>Jennie Z</span>
-        </a>
-        <div className="flex items-center gap-5 text-sm">
-          <a href="/work" className="hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Work</a>
-          <a href="/drift" className="hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Drift</a>
-          <a href="/about" className="hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>About</a>
-          <a href="https://linkedin.com/in/yuting-zeng1127" target="_blank"
-            className="hidden sm:block hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>LinkedIn ↗</a>
-          <ThemeToggle />
-        </div>
-      </nav>
+      <Nav />
 
       {/* Hero */}
       <section className="pt-48 pb-16 px-8 max-w-5xl mx-auto">
@@ -136,7 +121,7 @@ export default function KadoSubscriptionPage() {
           {/* Problem */}
           <section id="problem">
             <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent)" }}>Problem</p>
-            <h2 className="text-2xl font-medium mb-8" style={{ color: "var(--text)" }}>Three barriers blocking readers — and the business</h2>
+            <h2 className="text-2xl font-medium mb-8" style={{ color: "var(--text)" }}>Three barriers blocking readers and business</h2>
             <div className="space-y-6">
               {[
                 {
