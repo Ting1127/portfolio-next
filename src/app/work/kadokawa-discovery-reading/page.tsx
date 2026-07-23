@@ -1,4 +1,4 @@
-import { TableOfContents } from "@/components/TableOfContents";
+import { CaseSidebar } from "@/components/CaseSidebar";
 import { Nav } from "@/components/Nav";
 
 export default function DiscoveryReadingPage() {
@@ -42,22 +42,16 @@ export default function DiscoveryReadingPage() {
       </section>
 
       {/* Cover image */}
-      <div className="w-full aspect-[16/7] mb-16 flex items-center justify-center"
-        style={{ background: "var(--bg-card)" }}>
-        {/* 📷 Replace with: /case/discovery/cover.png */}
-        <p className="text-xs" style={{ color: "var(--muted)" }}>📷 cover.png</p>
+      <div className="w-full mb-16 px-8 max-w-5xl mx-auto">
+        <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
+          <img src="/case/discovery/cover.png" alt="Discovery & Reading cover" className="w-full" />
+        </div>
       </div>
 
       {/* Content + Sidebar */}
       <div className="px-8 max-w-5xl mx-auto flex gap-16 pb-32">
 
-        {/* Sticky sidebar */}
-        <aside className="hidden lg:block w-48 flex-shrink-0">
-          <div className="sticky top-32">
-            <p className="text-xs uppercase tracking-widest mb-4" style={{ color: "var(--muted)" }}>Contents</p>
-            <TableOfContents sections={sections} />
-          </div>
-        </aside>
+        <CaseSidebar sections={sections} />
 
         {/* Main content */}
         <div className="flex-1 space-y-24">
@@ -96,9 +90,8 @@ export default function DiscoveryReadingPage() {
               These aren't separate projects. Search gets readers to the door. The reading experience determines whether they come back.
             </p>
 
-            {/* 📷 Ecosystem diagram */}
-            <div className="mt-8 rounded-2xl border flex items-center justify-center" style={{ background: "var(--bg-card)", borderColor: "var(--border)", minHeight: "180px" }}>
-              <p className="text-xs" style={{ color: "var(--muted)" }}>📷 ecosystem-diagram.png — Reader ↔ KadoKado ↔ Creator</p>
+            <div className="mt-8 rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
+              <img src="/case/discovery/ecosystem-diagram.png" alt="Reader ↔ KadoKado ↔ Creator ecosystem" className="w-full" />
             </div>
           </section>
 
@@ -110,7 +103,6 @@ export default function DiscoveryReadingPage() {
             </h2>
 
             <div className="space-y-6">
-              {/* Search problem */}
               <div className="rounded-2xl p-6 border" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
                 <p className="text-xs uppercase tracking-widest mb-3" style={{ color: "var(--accent)" }}>Search & Discovery</p>
                 <p className="text-sm font-medium mb-3" style={{ color: "var(--text)" }}>
@@ -131,7 +123,6 @@ export default function DiscoveryReadingPage() {
                 </ul>
               </div>
 
-              {/* Chapter problem */}
               <div className="rounded-2xl p-6 border" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
                 <p className="text-xs uppercase tracking-widest mb-3" style={{ color: "var(--accent)" }}>Chapter Reading</p>
                 <p className="text-sm font-medium mb-3" style={{ color: "var(--text)" }}>
@@ -161,7 +152,7 @@ export default function DiscoveryReadingPage() {
               Building a search system that works for how people actually search
             </h2>
 
-            {/* Step 1: Scenario Analysis */}
+            {/* Step 1 */}
             <div className="mb-16">
               <div className="flex gap-4 items-start mb-6">
                 <span className="text-2xl font-medium flex-shrink-0 w-10" style={{ color: "var(--accent)" }}>01</span>
@@ -185,19 +176,18 @@ export default function DiscoveryReadingPage() {
                 ))}
               </div>
 
-              <div className="pl-14 rounded-2xl p-5 border" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
+              <div className="pl-14 rounded-2xl p-5 border mb-6" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
                 <p className="text-sm" style={{ color: "var(--muted)" }}>
                   The existing system was optimized only for Scenario 1-1. All other cases — which account for the majority of real search behavior — were failing users silently.
                 </p>
               </div>
 
-              {/* 📷 */}
-              <div className="mt-6 pl-14 rounded-2xl border flex items-center justify-center" style={{ background: "var(--bg-card)", borderColor: "var(--border)", minHeight: "120px" }}>
-                <p className="text-xs" style={{ color: "var(--muted)" }}>📷 search-scenario-analysis.png</p>
+              <div className="pl-14 rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
+                <img src="/case/discovery/search-scenario-analysis.png" alt="Search scenario analysis" className="w-full" />
               </div>
             </div>
 
-            {/* Step 2: A/B Test */}
+            {/* Step 2 */}
             <div className="mb-16">
               <div className="flex gap-4 items-start mb-6">
                 <span className="text-2xl font-medium flex-shrink-0 w-10" style={{ color: "var(--accent)" }}>02</span>
@@ -208,7 +198,6 @@ export default function DiscoveryReadingPage() {
                 The root cause of Scenario 1-4 failures was a weighting imbalance — author name weight was lower than novel title weight, so variant author inputs got buried. Hypothesis: equalizing the weights would reduce Zero Results Rate.
               </p>
 
-              {/* Experiment design */}
               <div className="pl-14 mb-6 space-y-3">
                 <div className="rounded-2xl p-5 border" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
                   <p className="text-xs uppercase tracking-widest mb-3" style={{ color: "var(--muted)" }}>Experiment · 27 days · All users</p>
@@ -225,7 +214,6 @@ export default function DiscoveryReadingPage() {
                 </div>
               </div>
 
-              {/* Results table */}
               <div className="pl-14 mb-6">
                 <div className="rounded-2xl border overflow-hidden" style={{ borderColor: "var(--border)" }}>
                   <div className="grid grid-cols-4 gap-0">
@@ -255,8 +243,7 @@ export default function DiscoveryReadingPage() {
                 </div>
               </div>
 
-              {/* Decision rationale */}
-              <div className="pl-14">
+              <div className="pl-14 mb-6">
                 <div className="rounded-2xl p-6 border-l-2" style={{ borderColor: "var(--accent)", background: "var(--bg-card)" }}>
                   <p className="text-xs uppercase tracking-widest mb-3" style={{ color: "var(--accent)" }}>The decision</p>
                   <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
@@ -268,13 +255,12 @@ export default function DiscoveryReadingPage() {
                 </div>
               </div>
 
-              {/* 📷 */}
-              <div className="mt-6 pl-14 rounded-2xl border flex items-center justify-center" style={{ background: "var(--bg-card)", borderColor: "var(--border)", minHeight: "120px" }}>
-                <p className="text-xs" style={{ color: "var(--muted)" }}>📷 ab-test-results.png + scenario-comparison.png</p>
+              <div className="pl-14 rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
+                <img src="/case/discovery/ab-test-results.png" alt="A/B test results and scenario comparison" className="w-full" />
               </div>
             </div>
 
-            {/* Step 3: Tag Search */}
+            {/* Step 3 */}
             <div className="mb-16">
               <div className="flex gap-4 items-start mb-6">
                 <span className="text-2xl font-medium flex-shrink-0 w-10" style={{ color: "var(--accent)" }}>03</span>
@@ -302,17 +288,16 @@ export default function DiscoveryReadingPage() {
                 ))}
               </div>
 
-              <p className="text-sm pl-14 mb-4" style={{ color: "var(--muted)" }}>
+              <p className="text-sm pl-14 mb-6" style={{ color: "var(--muted)" }}>
                 Following Tag Search launch, Search Result CTR increased approximately 10% compared to prior weeks.
               </p>
 
-              {/* 📷 */}
-              <div className="pl-14 rounded-2xl border flex items-center justify-center" style={{ background: "var(--bg-card)", borderColor: "var(--border)", minHeight: "120px" }}>
-                <p className="text-xs" style={{ color: "var(--muted)" }}>📷 tag-search-ui.png + result-segmentation.png + ctr-trend.png</p>
+              <div className="pl-14 rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
+                <img src="/case/discovery/tag-search-ui.png" alt="Tag search UI and CTR trend" className="w-full" />
               </div>
             </div>
 
-            {/* Step 4: Recommendation */}
+            {/* Step 4 */}
             <div className="mb-4">
               <div className="flex gap-4 items-start mb-6">
                 <span className="text-2xl font-medium flex-shrink-0 w-10" style={{ color: "var(--accent)" }}>04</span>
@@ -331,9 +316,8 @@ export default function DiscoveryReadingPage() {
                 ))}
               </div>
 
-              {/* 📷 */}
-              <div className="pl-14 rounded-2xl border flex items-center justify-center" style={{ background: "var(--bg-card)", borderColor: "var(--border)", minHeight: "120px" }}>
-                <p className="text-xs" style={{ color: "var(--muted)" }}>📷 recommendation-ui.png — visitor vs member side by side</p>
+              <div className="pl-14 rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
+                <img src="/case/discovery/recommendation-ui.png" alt="Recommendation UI — visitor vs member" className="w-full" />
               </div>
             </div>
           </section>
@@ -367,9 +351,8 @@ export default function DiscoveryReadingPage() {
                 ))}
               </div>
 
-              {/* 📷 */}
-              <div className="rounded-2xl border flex items-center justify-center" style={{ background: "var(--bg-card)", borderColor: "var(--border)", minHeight: "120px" }}>
-                <p className="text-xs" style={{ color: "var(--muted)" }}>📷 chapter-native-ui.png + permission-matrix.png</p>
+              <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
+                <img src="/case/discovery/chapter-native-ui.png" alt="Chapter native UI and permission matrix" className="w-full" />
               </div>
             </div>
 
@@ -380,7 +363,6 @@ export default function DiscoveryReadingPage() {
                 Added favoriting, comments, and table of contents to the Native page. More importantly, designed behavior nudges to close the gap between reading engagement and retention action.
               </p>
 
-              {/* Competitive research inline */}
               <div className="rounded-2xl p-6 border mb-6" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
                 <p className="text-xs uppercase tracking-widest mb-4" style={{ color: "var(--muted)" }}>Competitive reference</p>
                 <div className="grid grid-cols-3 gap-4 text-xs" style={{ color: "var(--muted)" }}>
@@ -424,16 +406,15 @@ export default function DiscoveryReadingPage() {
                 ))}
               </div>
 
-              {/* 📷 */}
-              <div className="rounded-2xl border flex items-center justify-center" style={{ background: "var(--bg-card)", borderColor: "var(--border)", minHeight: "120px" }}>
-                <p className="text-xs" style={{ color: "var(--muted)" }}>📷 exit-nudge-flow.png + chapter-end-state.png + table-of-contents.png</p>
+              <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
+                <img src="/case/discovery/exit-nudge-flow.png" alt="Exit nudge flow, chapter-end state, and table of contents" className="w-full" />
               </div>
             </div>
 
             {/* Phase 3 */}
             <div>
               <p className="text-xs uppercase tracking-widest mb-4" style={{ color: "var(--muted)" }}>Phase 3 · Monetization & Extended Features</p>
-              <div className="space-y-3">
+              <div className="space-y-3 mb-6">
                 {[
                   { label: "Ad placement flexibility", desc: "Native infrastructure allows dynamic ad slot configuration — not possible with Webview." },
                   { label: "Unlock flow", desc: '"Unlock now" persistent button prevents users from losing context when accidentally closing the payment sheet. Balance display (Kado coins + reading vouchers) links directly to coin store.' },
@@ -446,9 +427,8 @@ export default function DiscoveryReadingPage() {
                 ))}
               </div>
 
-              {/* 📷 */}
-              <div className="mt-6 rounded-2xl border flex items-center justify-center" style={{ background: "var(--bg-card)", borderColor: "var(--border)", minHeight: "120px" }}>
-                <p className="text-xs" style={{ color: "var(--muted)" }}>📷 payment-bottom-sheet.png + reading-settings.png</p>
+              <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
+                <img src="/case/discovery/payment-bottom-sheet.png" alt="Payment bottom sheet and reading settings" className="w-full" />
               </div>
             </div>
           </section>

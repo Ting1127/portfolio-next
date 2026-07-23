@@ -1,4 +1,4 @@
-import { TableOfContents } from "@/components/TableOfContents";
+import { CaseSidebar } from "@/components/CaseSidebar";
 import { Nav } from "@/components/Nav";
 
 export default function CreatorCenterPage() {
@@ -41,23 +41,24 @@ export default function CreatorCenterPage() {
         </div>
       </section>
 
-      {/* Cover image */}
-      <div className="w-full aspect-[16/7] mb-16 flex items-center justify-center"
-        style={{ background: "var(--bg-card)" }}>
-        {/* 📷 Replace with: /case/creator/cover.png */}
-        <p className="text-xs" style={{ color: "var(--muted)" }}>📷 cover.png</p>
+      {/* Cover video */}
+      <div className="w-full mb-16 px-8 max-w-5xl mx-auto">
+        <div className="rounded-2xl overflow-hidden">
+          <video
+            src="/case/creator/cover.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full object-cover"
+          />
+        </div>
       </div>
 
       {/* Content + Sidebar */}
       <div className="px-8 max-w-5xl mx-auto flex gap-16 pb-32">
 
-        {/* Sticky sidebar */}
-        <aside className="hidden lg:block w-48 flex-shrink-0">
-          <div className="sticky top-32">
-            <p className="text-xs uppercase tracking-widest mb-4" style={{ color: "var(--muted)" }}>Contents</p>
-            <TableOfContents sections={sections} />
-          </div>
-        </aside>
+        <CaseSidebar sections={sections} />
 
         {/* Main content */}
         <div className="flex-1 space-y-24">
@@ -93,9 +94,8 @@ export default function CreatorCenterPage() {
               I led this project as the PM, owning the research strategy, feature prioritization, and redesign direction.
             </p>
 
-            {/* 📷 */}
-            <div className="mt-8 rounded-2xl border flex items-center justify-center" style={{ background: "var(--bg-card)", borderColor: "var(--border)", minHeight: "180px" }}>
-              <p className="text-xs" style={{ color: "var(--muted)" }}>📷 creator-center-before.png — 舊版創作中心截圖</p>
+            <div className="mt-8 rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
+              <img src="/case/creator/creator-center-before.png" alt="Creator Center — before redesign" className="w-full" />
             </div>
           </section>
 
@@ -154,7 +154,6 @@ export default function CreatorCenterPage() {
                 258 valid responses collected Oct 26 – Nov 5, 2024, covering six key Creator Center functions.
               </p>
 
-              {/* Demographics */}
               <div className="pl-14 grid grid-cols-2 md:grid-cols-3 gap-3 mb-8">
                 {[
                   { stat: "42.2%", label: "25–34 years old — dominant age group" },
@@ -171,7 +170,6 @@ export default function CreatorCenterPage() {
                 ))}
               </div>
 
-              {/* Creator segmentation */}
               <div className="pl-14 mb-6">
                 <p className="text-sm font-medium mb-4" style={{ color: "var(--text)" }}>
                   Creator segmentation: platform loyalty × usage frequency
@@ -192,9 +190,8 @@ export default function CreatorCenterPage() {
                 </div>
               </div>
 
-              {/* 📷 */}
-              <div className="pl-14 rounded-2xl border flex items-center justify-center" style={{ background: "var(--bg-card)", borderColor: "var(--border)", minHeight: "120px" }}>
-                <p className="text-xs" style={{ color: "var(--muted)" }}>📷 creator-segmentation.png — C1/C2/C3/C4 象限圖（loyalty × usage frequency）</p>
+              <div className="pl-14 rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
+                <img src="/case/creator/creator-segmentation.png" alt="Creator segmentation — C1/C2/C3/C4 quadrant" className="w-full" />
               </div>
             </div>
 
@@ -223,9 +220,8 @@ export default function CreatorCenterPage() {
                 ))}
               </div>
 
-              {/* 📷 */}
-              <div className="pl-14 rounded-2xl border flex items-center justify-center" style={{ background: "var(--bg-card)", borderColor: "var(--border)", minHeight: "120px" }}>
-                <p className="text-xs" style={{ color: "var(--muted)" }}>📷 user-journey-map.png — 四位創作者旅程圖（Pre-creation → During → Post-publication）</p>
+              <div className="pl-14 rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
+                <img src="/case/creator/user-journey-map.png" alt="User journey map — four creators (Pre-creation → During → Post-publication)" className="w-full" />
               </div>
             </div>
 
@@ -271,9 +267,8 @@ export default function CreatorCenterPage() {
                 </div>
               </div>
 
-              {/* 📷 */}
-              <div className="pl-14 rounded-2xl border flex items-center justify-center" style={{ background: "var(--bg-card)", borderColor: "var(--border)", minHeight: "120px" }}>
-                <p className="text-xs" style={{ color: "var(--muted)" }}>📷 ipa-chart.png — 重要性 vs 滿意度象限圖（6 個創作中心功能）</p>
+              <div className="pl-14 rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
+                <img src="/case/creator/ipa-chart.png" alt="IPA chart — importance vs satisfaction across 6 Creator Center functions" className="w-full" />
               </div>
             </div>
 
@@ -298,7 +293,7 @@ export default function CreatorCenterPage() {
                   { stage: "⑥ Advocate", label: "Spreads the word", desc: "Shares work links or uses referral codes. Creator becomes a platform growth channel." },
                 ].map((item) => (
                   <div key={item.stage} className="flex gap-4 p-4 rounded-xl border" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
-                    <span className="text-sm font-medium flex-shrink-0 w-6" style={{ color: "var(--accent)" }}>{item.stage}</span>
+                    <span className="text-sm font-medium flex-shrink-0 w-24" style={{ color: "var(--accent)" }}>{item.stage}</span>
                     <div>
                       <p className="text-sm font-medium mb-0.5" style={{ color: "var(--text)" }}>{item.label}</p>
                       <p className="text-xs leading-relaxed" style={{ color: "var(--muted)" }}>{item.desc}</p>
@@ -313,9 +308,8 @@ export default function CreatorCenterPage() {
                 </p>
               </div>
 
-              {/* 📷 */}
-              <div className="mt-6 pl-14 rounded-2xl border flex items-center justify-center" style={{ background: "var(--bg-card)", borderColor: "var(--border)", minHeight: "120px" }}>
-                <p className="text-xs" style={{ color: "var(--muted)" }}>📷 creator-lifecycle.png — 六階段創作者旅程模型（① Start → ⑥ Advocate）</p>
+              <div className="mt-6 pl-14 rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
+                <img src="/case/creator/creator-lifecycle.png" alt="Creator lifecycle model — six stages from Start to Advocate" className="w-full" />
               </div>
             </div>
 
@@ -336,9 +330,8 @@ export default function CreatorCenterPage() {
                 </p>
               </div>
 
-              {/* 📷 */}
-              <div className="mt-6 pl-14 rounded-2xl border flex items-center justify-center" style={{ background: "var(--bg-card)", borderColor: "var(--border)", minHeight: "120px" }}>
-                <p className="text-xs" style={{ color: "var(--muted)" }}>📷 research-sharing.png — 跨部門研究分享簡報截圖</p>
+              <div className="mt-6 pl-14 rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
+                <img src="/case/creator/research-sharing.png" alt="Cross-departmental research sharing session" className="w-full" />
               </div>
             </div>
           </section>
@@ -382,12 +375,11 @@ export default function CreatorCenterPage() {
               ))}
             </div>
 
-            {/* 📷 */}
-            <div className="rounded-2xl border flex items-center justify-center mb-4" style={{ background: "var(--bg-card)", borderColor: "var(--border)", minHeight: "200px" }}>
-              <p className="text-xs" style={{ color: "var(--muted)" }}>📷 creator-center-before-after.png — 舊版 vs 新版首頁並排</p>
+            <div className="rounded-2xl overflow-hidden border mb-4" style={{ borderColor: "var(--border)" }}>
+              <img src="/case/creator/creator-center-before-after.png" alt="Creator Center — before and after redesign" className="w-full" />
             </div>
-            <div className="rounded-2xl border flex items-center justify-center" style={{ background: "var(--bg-card)", borderColor: "var(--border)", minHeight: "160px" }}>
-              <p className="text-xs" style={{ color: "var(--muted)" }}>📷 creator-center-annotated.png — 新設計標注版（指出四個改動點）</p>
+            <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
+              <img src="/case/creator/creator-center-annotated.png" alt="Creator Center — annotated new design" className="w-full" />
             </div>
           </section>
 

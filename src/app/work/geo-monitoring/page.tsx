@@ -1,4 +1,4 @@
-import { TableOfContents } from "@/components/TableOfContents";
+import { CaseSidebar } from "@/components/CaseSidebar";
 import { Nav } from "@/components/Nav";
 
 export default function GeoMonitoringPage() {
@@ -48,13 +48,7 @@ export default function GeoMonitoringPage() {
       {/* Content + Sidebar */}
       <div className="px-8 max-w-5xl mx-auto flex gap-16 pb-32">
 
-        {/* Sticky sidebar */}
-        <aside className="hidden lg:block w-48 flex-shrink-0">
-          <div className="sticky top-32">
-            <p className="text-xs uppercase tracking-widest mb-4" style={{ color: "var(--muted)" }}>Contents</p>
-            <TableOfContents sections={sections} accentColor="var(--accent-purple)" />
-          </div>
-        </aside>
+        <CaseSidebar sections={sections} accentColor="var(--accent-purple)" />
 
         {/* Main content */}
         <div className="flex-1 space-y-24">
@@ -103,8 +97,6 @@ export default function GeoMonitoringPage() {
                 </div>
               ))}
             </div>
-
-            📷 *[AI trends chart — LLM traffic vs Traditional Search 2024–2030]*
 
             <div className="mt-8 rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
               <div className="p-6" style={{ background: "var(--bg-card)" }}>
@@ -182,7 +174,7 @@ export default function GeoMonitoringPage() {
               </div>
               <div className="space-y-4 pl-10">
                 {[
-                  { label: "Signal", body: "In a new field with no baseline, the instinct is to start building — create content, optimize pages, establish authority. But the first question should be: does the brand even show up? And when it does, is the information accurate?" },
+                  { label: "Signal", body: "In a new field with no baseline, the instinct is to start building — create content, run experiments, ship. But the first question should be: does the brand even show up? And when it does, is the information accurate?" },
                   { label: "Bet", body: "Misinformation and brand absence are more damaging than low ranking. If AI generates a wrong answer about the company's technology or misrepresents its workplace culture, that's actively harmful — not just a missed opportunity." },
                   { label: "Decision", body: "Establish a prioritization rule: Fix misinformation and missing brand presence first → then improve citation coverage → then build differentiation and authority. This sequencing prevented the team from optimizing the wrong things at the wrong time." },
                 ].map((item) => (

@@ -17,7 +17,6 @@ export default function AboutPage() {
     { logo: "/logos/ntue.png", title: "BA in Industrial and Product Design", company: "National Taipei University of Education", period: "Sep 2015 – Jun 2019", note: "" },
   ];
 
-  // Personal interests — link to corresponding Drift sections where one exists
   const interests = [
     { label: "Learning Japanese 🇯🇵", link: "/tools/japanese.html", external: true },
     { label: "Good coffee ☕ & matcha 🍵", link: "/drift#coffee-log", external: false },
@@ -27,7 +26,6 @@ export default function AboutPage() {
     { label: "Miffy 🐰 & Blackpink 🖤🩷", link: null, external: false },
   ];
 
-  // Life photos — shown as an auto-scrolling marquee in "Out of Work"
   const lifePhotos = ["01.JPG", "02.JPG", "03.JPG", "04.png", "05.png", "06.png"];
 
   const community = [
@@ -109,7 +107,7 @@ export default function AboutPage() {
             <div className="space-y-6">
               {experiences.map((e) => (
                 <div key={e.company} className="flex gap-4 items-start">
-                  <div className="w-10 h-10 rounded-xl overflow-hidden bg-white flex-shrink-0 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-xl overflow-hidden bg-white flex-shrink-0 flex items-center justify-center border border-gray-200 dark:border-white/10">
                     <img src={e.logo} alt={e.company} className="w-8 h-8 object-contain" />
                   </div>
                   <div>
@@ -128,7 +126,7 @@ export default function AboutPage() {
             <div className="space-y-6">
               {education.map((e) => (
                 <div key={e.company} className="flex gap-4 items-start">
-                  <div className="w-10 h-10 rounded-xl overflow-hidden bg-white flex-shrink-0 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-xl overflow-hidden bg-white flex-shrink-0 flex items-center justify-center border border-gray-200 dark:border-white/10">
                     <img src={e.logo} alt={e.company} className="w-8 h-8 object-contain" />
                   </div>
                   <div>
@@ -198,7 +196,7 @@ export default function AboutPage() {
           <div className="space-y-6">
             {community.map((e) => (
               <div key={e.company} className="flex gap-4 items-start">
-                <div className="w-10 h-10 rounded-xl overflow-hidden bg-white flex-shrink-0 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl overflow-hidden bg-white flex-shrink-0 flex items-center justify-center border border-gray-200 dark:border-white/10">
                   <img src={e.logo} alt={e.company} className="w-8 h-8 object-contain" />
                 </div>
                 <div>
@@ -260,7 +258,7 @@ export default function AboutPage() {
           <div className="space-y-4">
             {awards.map((a) => (
               <div key={a.award} className="flex items-center gap-4 border-b pb-4" style={{ borderColor: "var(--border)" }}>
-                <div className="w-10 h-10 rounded-xl overflow-hidden bg-white flex-shrink-0 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl overflow-hidden bg-white flex-shrink-0 flex items-center justify-center border border-gray-200 dark:border-white/10">
                   <img src={a.logo} alt={a.award} className="w-8 h-8 object-contain" />
                 </div>
                 <div className="flex-1">
@@ -293,19 +291,19 @@ export default function AboutPage() {
       </section>
 
       <footer className="px-8 py-12 border-t max-w-5xl mx-auto w-full" style={{ borderColor: "var(--border)" }}>
-  <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center">
-    <span className="text-xs" style={{ color: "var(--muted)" }}>Jennie Z © 2026</span>
-    <div className="flex items-center gap-4 sm:gap-6 flex-wrap">
-      <a href="https://drive.google.com/YOUR_RESUME_FILE_ID/view" target="_blank"
-        className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Resume</a>
-      <a href="https://linkedin.com/in/yuting-zeng1127" target="_blank"
-        className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>LinkedIn ↗︎</a>
-      <a href="mailto:zyting.info@gmail.com"
-        className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>zyting.info@gmail.com</a>
-      <span style={{ color: "var(--accent)" }}>⟡</span>
-    </div>
-  </div>
-</footer>
+        <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center">
+          <span className="text-xs" style={{ color: "var(--muted)" }}>Jennie Z © 2026</span>
+          <div className="flex items-center gap-4 sm:gap-6 flex-wrap">
+            <a href="https://drive.google.com/file/d/1sF1Nc4DJH51pFhCwRmBJBhDAHtIR7XmX/view?usp=sharing" target="_blank"
+              className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Resume</a>
+            <a href="https://linkedin.com/in/yuting-zeng1127" target="_blank"
+              className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>LinkedIn ↗︎</a>
+            <a href="mailto:zyting.info@gmail.com"
+              className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>zyting.info@gmail.com</a>
+            <span style={{ color: "var(--accent)" }}>⟡</span>
+          </div>
+        </div>
+      </footer>
 
     </main>
   );

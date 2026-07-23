@@ -1,4 +1,4 @@
-import { TableOfContents } from "@/components/TableOfContents";
+import { CaseSidebar } from "@/components/CaseSidebar";
 import { Nav } from "@/components/Nav";
 
 export default function KadoSubscriptionPage() {
@@ -18,12 +18,12 @@ export default function KadoSubscriptionPage() {
       <Nav />
 
       {/* Hero */}
-      <section className="pt-48 pb-16 px-8 max-w-5xl mx-auto">
+      <section className="pt-48 pb-16 px-8 max-w-6xl mx-auto">
         <p className="text-xs tracking-widest uppercase mb-4" style={{ color: "var(--accent)" }}>Product</p>
         <h1 className="text-4xl md:text-5xl font-medium tracking-tight leading-[1.1] mb-6" style={{ color: "var(--text)" }}>
           Kado+ Subscription
         </h1>
-        <p className="text-xl max-w-2xl" style={{ color: "var(--muted)" }}>
+        <p className="text-2xl max-w-2xl" style={{ color: "var(--muted)" }}>
           Building a 0→1 subscription service for Japanese light novels — from zero revenue to 10% growth.
         </p>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-16 pt-8 border-t" style={{ borderColor: "var(--border)" }}>
@@ -41,7 +41,7 @@ export default function KadoSubscriptionPage() {
       </section>
 
       {/* Cover video */}
-      <div className="w-full mb-16 px-8 max-w-5xl mx-auto">
+      <div className="w-full mb-16 px-8 max-w-6xl mx-auto">
         <div className="rounded-2xl overflow-hidden">
           <video
             src="/case/kado/KadoPlus_project_cover.mp4"
@@ -55,15 +55,9 @@ export default function KadoSubscriptionPage() {
       </div>
 
       {/* Content + Sidebar */}
-      <div className="px-8 max-w-5xl mx-auto flex gap-16 pb-32">
+      <div className="px-8 max-w-6xl mx-auto flex gap-16 pb-32">
 
-        {/* Sticky sidebar */}
-        <aside className="hidden lg:block w-48 flex-shrink-0">
-          <div className="sticky top-32">
-            <p className="text-xs uppercase tracking-widest mb-4" style={{ color: "var(--muted)" }}>Contents</p>
-            <TableOfContents sections={sections} />
-          </div>
-        </aside>
+        <CaseSidebar sections={sections} />
 
         {/* Main content */}
         <div className="flex-1 space-y-24">
@@ -78,8 +72,8 @@ export default function KadoSubscriptionPage() {
                 { number: "3", label: "Payment integrations shipped — Apple IAP, Google Play, web" },
               ].map((stat) => (
                 <div key={stat.label} className="rounded-2xl p-6 border" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
-                  <p className="text-3xl font-medium mb-2" style={{ color: "var(--accent)" }}>{stat.number}</p>
-                  <p className="text-sm" style={{ color: "var(--muted)" }}>{stat.label}</p>
+                  <p className="text-4xl md:text-5xl font-medium mb-2" style={{ color: "var(--accent)" }}>{stat.number}</p>
+                  <p className="text-base" style={{ color: "var(--muted)" }}>{stat.label}</p>
                 </div>
               ))}
             </div>
@@ -88,7 +82,7 @@ export default function KadoSubscriptionPage() {
           {/* Context */}
           <section id="context">
             <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent)" }}>Context</p>
-            <h2 className="text-2xl font-medium mb-4" style={{ color: "var(--text)" }}>About KadoKawa & Kado+</h2>
+            <h2 className="text-3xl md:text-4xl font-medium mb-4" style={{ color: "var(--text)" }}>About KadoKawa & Kado+</h2>
             <div className="flex gap-4 items-start mb-6">
               <div className="w-12 h-12 rounded-xl overflow-hidden bg-white flex items-center justify-center border flex-shrink-0" style={{ borderColor: "var(--border)" }}>
                 <img src="/logos/kadokawa.png" alt="KadoKawa" className="w-9 h-9 object-contain" />
@@ -109,7 +103,7 @@ export default function KadoSubscriptionPage() {
               <p className="text-xs uppercase tracking-widest mb-4" style={{ color: "var(--muted)" }}>Team</p>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 {["Product Manager", "2 Product Designers", "5 Engineers", "2 App Developers", "2 Data Scientists", "2 Marketing", "2 Content Strategy"].map(r => (
-                  <span key={r} className="text-sm" style={{ color: "var(--muted)" }}>{r}</span>
+                  <span key={r} className="text-base" style={{ color: "var(--muted)" }}>{r}</span>
                 ))}
               </div>
             </div>
@@ -121,7 +115,7 @@ export default function KadoSubscriptionPage() {
           {/* Problem */}
           <section id="problem">
             <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent)" }}>Problem</p>
-            <h2 className="text-2xl font-medium mb-8" style={{ color: "var(--text)" }}>Three barriers blocking readers and business</h2>
+            <h2 className="text-3xl md:text-4xl font-medium mb-8" style={{ color: "var(--text)" }}>Three barriers blocking readers — and the business</h2>
             <div className="space-y-6">
               {[
                 {
@@ -145,7 +139,7 @@ export default function KadoSubscriptionPage() {
                   <p className="text-xs uppercase tracking-widest mb-4" style={{ color: "var(--accent)" }}>{block.label}</p>
                   <ul className="space-y-3">
                     {block.points.map(pt => (
-                      <li key={pt} className="text-sm leading-relaxed flex gap-3" style={{ color: "var(--muted)" }}>
+                      <li key={pt} className="text-base leading-relaxed flex gap-3" style={{ color: "var(--muted)" }}>
                         <span className="flex-shrink-0" style={{ color: "var(--accent)" }}>—</span>
                         <span>{pt}</span>
                       </li>
@@ -159,7 +153,7 @@ export default function KadoSubscriptionPage() {
           {/* Approach */}
           <section id="approach">
             <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent)" }}>My Approach</p>
-            <h2 className="text-2xl font-medium mb-4" style={{ color: "var(--text)" }}>Defining the model before building the product</h2>
+            <h2 className="text-3xl md:text-4xl font-medium mb-4" style={{ color: "var(--text)" }}>Defining the model before building the product</h2>
             <p className="leading-relaxed mb-6" style={{ color: "var(--muted)" }}>
               As the lead PM, I was responsible for defining the product model, business logic, and feature requirements before engineering started. This meant working across content, marketing, tech, data, and finance teams to align on development phases and expected outcomes.
             </p>
@@ -189,25 +183,34 @@ export default function KadoSubscriptionPage() {
           {/* What I Shipped */}
           <section id="shipped">
             <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent)" }}>What I Shipped</p>
-            <h2 className="text-2xl font-medium mb-12" style={{ color: "var(--text)" }}>From MVP to a full subscription ecosystem</h2>
+            <h2 className="text-3xl md:text-4xl font-medium mb-12" style={{ color: "var(--text)" }}>From MVP to a full subscription ecosystem</h2>
 
             <div className="space-y-20">
 
-              {/* 01 MVP */}
+              {/* 01 MVP — full depth, kept as-is: this is the core 0→1 narrative */}
               <div>
                 <div className="flex items-start gap-3 mb-6">
                   <span className="flex-shrink-0 mt-0.5" style={{ color: "var(--accent)" }}>⟡</span>
-                  <div>
-                    <p className="text-base font-medium" style={{ color: "var(--text)" }}>01 · Subscription MVP</p>
-                  </div>
+                  <p className="text-base font-medium" style={{ color: "var(--text)" }}>01 · Subscription MVP</p>
                 </div>
                 <div className="pl-6 space-y-4">
-                  <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
+                  <p className="text-base leading-relaxed" style={{ color: "var(--muted)" }}>
                     Defined the full user journey from discovery to purchase — subscription-gated chapter logic, error states, processing states, cancellation flow, and subscription state management across App and Web. This also included working with engineering to define the API call flow.
                   </p>
-                  <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-                    One early call: web users can browse but can't subscribe directly. Building a parallel web checkout would have delayed launch by months, and strategically, we wanted to drive app downloads. I designed a clear web-to-app handoff: desktop users see a QR code, mobile users get a deep link that opens the App Store or launches the app directly.
-                  </p>
+                  <div className="rounded-2xl p-5 border space-y-3" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
+                    <p className="text-base leading-relaxed" style={{ color: "var(--muted)" }}>
+                      <span className="font-medium" style={{ color: "var(--text)" }}>Signal — </span>
+                      Building a parallel web checkout would have delayed launch by months, and platform review cycles made the timeline risk worse.
+                    </p>
+                    <p className="text-base leading-relaxed" style={{ color: "var(--muted)" }}>
+                      <span className="font-medium" style={{ color: "var(--text)" }}>Bet — </span>
+                      Strategically, driving app downloads mattered more than a frictionless web checkout — the app is where retention and push infrastructure live.
+                    </p>
+                    <p className="text-base leading-relaxed" style={{ color: "var(--muted)" }}>
+                      <span className="font-medium" style={{ color: "var(--text)" }}>Decision — </span>
+                      Web users can browse but not subscribe directly. I designed a web-to-app handoff instead: desktop users see a QR code, mobile users get a deep link straight into the App Store or the app itself.
+                    </p>
+                  </div>
                   <div className="rounded-2xl overflow-hidden border mt-6" style={{ borderColor: "var(--border)" }}>
                     <img src="/case/kado/mvp-overview.jpg" alt="Web and App subscription flow — desktop QR code, mobile deep link, IAP payment, and success screen" className="w-full" />
                     <p className="px-4 py-3 text-xs" style={{ color: "var(--muted)", background: "var(--bg-card)" }}>Web (QR code · deep link) and App (subscription page · IAP payment · success state)</p>
@@ -215,32 +218,17 @@ export default function KadoSubscriptionPage() {
                 </div>
               </div>
 
-              {/* 02 CMS */}
+              {/* 02 CMS — compressed to one paragraph. Image kept since it's a low-cost, high-clarity visual;
+                  the three-page rule breakdown and Theme/Plan hierarchy explanation were cut as implementation
+                  detail that doesn't change how a NA big-tech PM reader reads your judgment. */}
               <div>
                 <div className="flex items-start gap-3 mb-6">
                   <span className="flex-shrink-0 mt-0.5" style={{ color: "var(--accent)" }}>⟡</span>
-                  <div>
-                    <p className="text-base font-medium" style={{ color: "var(--text)" }}>02 · CMS Subscription Management</p>
-                  </div>
+                  <p className="text-base font-medium" style={{ color: "var(--text)" }}>02 · CMS Subscription Management</p>
                 </div>
                 <div className="pl-6 space-y-4">
-                  <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-                    The content team needed full operational control over subscription titles — adding chapters, setting activation dates, adjusting display order — without filing an engineering request every time. I designed the complete back-end workflow from scratch and conducted internal training sessions before launch.
-                  </p>
-                  <div className="space-y-3 mt-2">
-                    {[
-                      { title: "Subscription Management Page", desc: "Lists all active plans (e.g., KAKUYOMU NEXT Basic / Premium) with Plan IDs mapped to Apple/Google platform IDs. Content editors navigate from here to each plan's title list." },
-                      { title: "Plan Title Page", desc: "Shows all titles in a plan with drag-to-reorder. This order directly controls front-end display on the plan page and homepage section. Titles with no active subscription chapters are automatically hidden — no manual toggle needed." },
-                      { title: "Chapter Subscription Page", desc: "The core operational tool. Editors set activation and removal dates for individual or bulk chapters. Key rules: chapters entering subscription automatically override existing unlock settings (voucher, paid); scheduling is D+1 minimum; removing all subscription chapters from a title restores each chapter to its original unlock setting and hides the title automatically." },
-                    ].map((item) => (
-                      <div key={item.title} className="rounded-2xl p-5 border" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
-                        <p className="text-sm font-medium mb-2" style={{ color: "var(--text)" }}>{item.title}</p>
-                        <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>{item.desc}</p>
-                      </div>
-                    ))}
-                  </div>
-                  <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-                    I also designed the subscription hierarchy: a Subscription Theme (Product ID) contains multiple Subscription Plans (Plan IDs) — a user can only subscribe to one plan per theme (Basic or Premium, not both). This maps to Apple and Google's subscription group logic and required careful coordination between our internal system and both platform back-ends. This structure also left room to expand into other subscription types in the future — such as creator-specific plans — though that direction wasn't pursued in this phase.
+                  <p className="text-base leading-relaxed" style={{ color: "var(--muted)" }}>
+                    Content editors needed full operational control — adding chapters, setting activation dates, reordering titles — without filing an engineering ticket every time. I designed the back-end workflow from scratch, including the scheduling logic and platform ID mapping to Apple/Google, and ran internal training before launch. This removed a recurring engineering bottleneck for the content team.
                   </p>
                   <div className="rounded-2xl overflow-hidden border mt-6" style={{ borderColor: "var(--border)" }}>
                     <img src="/case/kado/cms-overview.jpg" alt="CMS subscription management — plan list, drag-to-reorder title page, chapter scheduling, and platform-to-front-end workflow" className="w-full" />
@@ -249,20 +237,15 @@ export default function KadoSubscriptionPage() {
                 </div>
               </div>
 
-              {/* 03 Revenue Formula */}
+              {/* 03 Revenue Formula — compressed to one paragraph, image kept */}
               <div>
                 <div className="flex items-start gap-3 mb-6">
                   <span className="flex-shrink-0 mt-0.5" style={{ color: "var(--accent)" }}>⟡</span>
-                  <div>
-                    <p className="text-base font-medium" style={{ color: "var(--text)" }}>03 · Revenue-Sharing Formula</p>
-                  </div>
+                  <p className="text-base font-medium" style={{ color: "var(--text)" }}>03 · Revenue-Sharing Formula</p>
                 </div>
                 <div className="pl-6 space-y-4">
-                  <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-                    Co-designed with my manager, the formula distributes revenue proportionally by actual readership — not equally across titles — accounting for subscription fee, platform operating costs, and per-title chapter page views relative to total subscription chapter PVs.
-                  </p>
-                  <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-                    Getting it right required aligning Finance, Content, and Engineering on shared definitions: what counts as a "valid" read, whether content removed mid-cycle still earns that month, and how to track free, paid, and subscription chapter PVs separately in the data pipeline.
+                  <p className="text-base leading-relaxed" style={{ color: "var(--muted)" }}>
+                    Co-designed with my manager, the formula distributes creator revenue proportionally by actual readership rather than an equal split — factoring in subscription fee, platform operating costs, and per-title chapter views. The hard part wasn't the math: it was getting Finance, Content, and Engineering to agree on shared definitions, like what counts as a valid read and how content removed mid-cycle is treated.
                   </p>
                   <div className="rounded-2xl overflow-hidden border mt-6 max-w-xl mx-auto" style={{ borderColor: "var(--border)" }}>
                     <img src="/case/kado/revenue-formula.jpg" alt="Four chapter list examples, each showing a different unlock badge — free, points (lock), reading voucher (ticket), and subscription (Kado+ logo)" className="w-full" />
@@ -271,27 +254,21 @@ export default function KadoSubscriptionPage() {
                 </div>
               </div>
 
-              {/* 04 Research → Content Discovery */}
+              {/* 04 Research → Retention — full depth, kept as-is: this section carries the strongest
+                  judgment evidence (the Day 4 push test) and should stay as the second deep dive. */}
               <div>
                 <div className="flex items-start gap-3 mb-6">
                   <span className="flex-shrink-0 mt-0.5" style={{ color: "var(--accent)" }}>⟡</span>
-                  <div>
-                    <p className="text-base font-medium" style={{ color: "var(--text)" }}>04 · Research → Content Discovery & Retention</p>
-                  </div>
+                  <p className="text-base font-medium" style={{ color: "var(--text)" }}>04 · Research → Content Discovery & Retention</p>
                 </div>
                 <div className="pl-6 space-y-4">
-                  <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
+                  <p className="text-base leading-relaxed" style={{ color: "var(--muted)" }}>
                     Post-launch, I established a structured feedback framework across five subscriber lifecycle stages to drive iteration:
                   </p>
-                  <div className="flex flex-wrap gap-2 my-2">
-                    {["Potential Audience", "Subscribed Active Readers", "Inactive Subscribers", "Unsubscribed Users", "Returning Users"].map((stage, i) => (
-                      <div key={stage} className="flex items-center gap-2">
-                        <span className="text-xs px-3 py-1.5 rounded-full border text-sm" style={{ color: "var(--text)", borderColor: "var(--border)", background: "var(--bg-card)" }}>{stage}</span>
-                        {i < 4 && <span className="text-xs" style={{ color: "var(--muted)" }}>→</span>}
-                      </div>
-                    ))}
+                  <div className="rounded-2xl overflow-hidden border my-4" style={{ borderColor: "var(--border)" }}>
+                    <img src="/case/kado/user-lifecycle.jpg" alt="Five-stage subscriber lifecycle — Potential Audience, Active Readers, Inactive Subscribers, Unsubscribed, Returning User" className="w-full" />
                   </div>
-                  <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
+                  <p className="text-base leading-relaxed" style={{ color: "var(--muted)" }}>
                     Data was synthesized from four sources: Amplitude behavioral analytics, customer service feedback logs, user satisfaction surveys, and exit surveys from churned subscribers. Key findings from churned subscriber surveys:
                   </p>
                   <div className="rounded-2xl p-5 border space-y-2" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
@@ -307,34 +284,28 @@ export default function KadoSubscriptionPage() {
                       </div>
                     ))}
                   </div>
-                  <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
+                  <p className="text-base leading-relaxed" style={{ color: "var(--muted)" }}>
                     I developed detailed Customer Journey Maps across all five stages and used them in cross-functional workshops to align stakeholders on iteration direction before development started.
                   </p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                    <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
-                      <img src="/case/kado/user-lifecycle.jpg" alt="Five-stage subscriber lifecycle framework" className="w-full" />
-                      <p className="px-4 py-3 text-xs" style={{ color: "var(--muted)", background: "var(--bg-card)" }}>Five-stage subscriber lifecycle framework</p>
-                    </div>
-                    <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
-                      <img src="/case/kado/churn-survey.jpg" alt="Churned subscriber exit survey results" className="w-full" />
-                      <p className="px-4 py-3 text-xs" style={{ color: "var(--muted)", background: "var(--bg-card)" }}>Exit survey — churn reasons and feature requests</p>
-                    </div>
-                  </div>
-                  <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
+                  <div className="rounded-2xl overflow-hidden border mt-6" style={{ borderColor: "var(--border)" }}>
                     <img src="/case/kado/journey-map.jpg" alt="Customer Journey Map across all five subscriber lifecycle stages" className="w-full" />
                     <p className="px-4 py-3 text-xs" style={{ color: "var(--muted)", background: "var(--bg-card)" }}>Customer Journey Map — all five stages</p>
+                  </div>
+                  <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
+                    <img src="/case/kado/churn-survey.jpg" alt="Churned subscriber exit survey results" className="w-full" />
+                    <p className="px-4 py-3 text-xs" style={{ color: "var(--muted)", background: "var(--bg-card)" }}>Exit survey — churn reasons and feature requests</p>
                   </div>
 
                   {/* Hero Banner */}
                   <div className="pt-4">
-                    <p className="text-sm font-medium mb-3" style={{ color: "var(--text)" }}>Hero Banner & Thematic Discovery</p>
-                    <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--muted)" }}>
-                      Pivoted content strategy from "Blockbuster Title Attraction" to "User-Centric Content Discovery." The Hero Banner surfaces thematically curated titles to drive clicks to key content. A layered recommendation system — popular titles combined with thematic suggestions based on reading history — supports the content team's promotion of Taiwan-exclusive and pre-published novels. A limited-time offer near the CTA accelerates subscription decisions.
+                    <p className="text-base font-semibold mb-3" style={{ color: "var(--text)" }}>Hero Banner & Thematic Discovery</p>
+                    <p className="text-base leading-relaxed mb-4" style={{ color: "var(--muted)" }}>
+                      Pivoted content strategy from Blockbuster Title Attraction to User-Centric Content Discovery. The Hero Banner surfaces thematically curated titles to drive clicks to key content. A layered recommendation system — popular titles combined with thematic suggestions based on reading history — supports the content team's promotion of Taiwan-exclusive and pre-published novels. A limited-time offer near the CTA accelerates subscription decisions.
                     </p>
-                    <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--muted)" }}>
+                    <p className="text-base leading-relaxed mb-6" style={{ color: "var(--muted)" }}>
                       Framing this to the content team as an editorial decision — not a retention mechanism — was what got it shipped.
                     </p>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-4">
                       <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
                         <img src="/case/kado/hero-banner-app.jpg" alt="Kado+ App main page — Hero Banner and layered thematic recommendations" className="w-full" />
                         <p className="px-4 py-3 text-xs" style={{ color: "var(--muted)", background: "var(--bg-card)" }}>App — Hero Banner · layered recommendations · limited-time offer</p>
@@ -348,51 +319,38 @@ export default function KadoSubscriptionPage() {
 
                   {/* Push Notifications */}
                   <div className="pt-4">
-                    <p className="text-sm font-medium mb-3" style={{ color: "var(--text)" }}>Targeted Push Notifications</p>
-                    <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--muted)" }}>
+                    <p className="text-base font-semibold mb-3" style={{ color: "var(--text)" }}>Targeted Push Notifications</p>
+                    <p className="text-base leading-relaxed mb-4" style={{ color: "var(--muted)" }}>
                       Built a three-wave automated push system for potential subscribers, each entering a 14-day cycle when they visit a subscription page or gated chapter. Three message angles were tested: content-led (24hrs), price-led (day 4), and social proof (day 7).
                     </p>
-                    <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--muted)" }}>
-                      Day 4's price-led push had significantly lower conversions than Day 1. This told us something useful: price perception wasn't the primary barrier. The problem was content discovery and fit — which directly validated the Hero Banner and genre-based recommendation direction. For existing subscribers, push runs on two tracks timed to each user's last reading completion: genre-based recommendations to encourage a second novel, and weekly update reminders for titles already started.
-                    </p>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
-                        <img src="/case/kado/push-amplitude.jpg" alt="Amplitude dashboard showing three-wave push notification conversion rates" className="w-full" />
-                        <p className="px-4 py-3 text-xs" style={{ color: "var(--muted)", background: "var(--bg-card)" }}>Amplitude — three-wave push conversion rates</p>
-                      </div>
-                      <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
-                        <img src="/case/kado/push-mechanism.jpg" alt="Push notification segmentation table — audience, purpose, content, timing" className="w-full" />
-                        <p className="px-4 py-3 text-xs" style={{ color: "var(--muted)", background: "var(--bg-card)" }}>Push segmentation — audience · content · timing</p>
-                      </div>
+                    <div className="rounded-2xl p-5 border space-y-3 mb-6" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
+                      <p className="text-base leading-relaxed" style={{ color: "var(--muted)" }}>
+                        <span className="font-medium" style={{ color: "var(--text)" }}>Signal — </span>
+                        Churn survey responses pointed to "price too high" as a leading reason subscribers left.
+                      </p>
+                      <p className="text-base leading-relaxed" style={{ color: "var(--muted)" }}>
+                        <span className="font-medium" style={{ color: "var(--text)" }}>Bet — </span>
+                        Self-reported churn reasons are often surface-level. I suspected the deeper issue was content discovery, not price, and designed the push test to check that before committing engineering time to either fix.
+                      </p>
+                      <p className="text-base leading-relaxed" style={{ color: "var(--muted)" }}>
+                        <span className="font-medium" style={{ color: "var(--text)" }}>Decision — </span>
+                        Day 4's price-led push converted significantly worse than Day 1's content-led push — ruling out price as the primary lever. That result directed investment toward the Hero Banner and genre-based recommendation system below, rather than a pricing change. For existing subscribers, push now runs on two tracks timed to each user's last reading completion: genre-based recommendations to encourage a second novel, and weekly update reminders for titles already started.
+                      </p>
+                    </div>
+                    <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
+                      <img src="/case/kado/push-amplitude.jpg" alt="Amplitude dashboard showing three-wave push notification conversion rates" className="w-full" />
+                      <p className="px-4 py-3 text-xs" style={{ color: "var(--muted)", background: "var(--bg-card)" }}>Amplitude — three-wave push conversion rates</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* 05 Subscription Code */}
-              <div>
-                <div className="flex items-start gap-3 mb-6">
-                  <span className="flex-shrink-0 mt-0.5" style={{ color: "var(--accent)" }}>⟡</span>
-                  <div>
-                    <p className="text-base font-medium" style={{ color: "var(--text)" }}>05 · Backend Subscription Code Generation</p>
-                  </div>
-                </div>
-                <div className="pl-6 space-y-4">
-                  <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-                    I extended an existing back-end ticket-generation tool to support batch or individual generation of redeemable codes for the subscription service — primarily used for comic convention promotions, partner campaigns, and internal testing.
-                  </p>
-                  <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-                    This opened up new promotional scenarios: comic convention gift-with-purchase, partnership bundles with external brands, and free trial codes for influencer campaigns.
-                  </p>
-                  <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-                    The system allows ops teams to set code quantity, expiry rules, and redemption limits per batch. Each code grants a defined period of subscription access rather than currency, which also simplifies accounting.
-                  </p>
-                  <div className="rounded-2xl overflow-hidden border mt-6" style={{ borderColor: "var(--border)" }}>
-                    <img src="/case/kado/subscription-code-admin.jpg" alt="Backend subscription code generation interface" className="w-full" />
-                    <p className="px-4 py-3 text-xs" style={{ color: "var(--muted)", background: "var(--bg-card)" }}>Backend — subscription code generation interface</p>
-                  </div>
-                </div>
-              </div>
+              {/* 05 Backend Subscription Code Generation — removed entirely.
+                  Lowest business impact of the five shipped items; not worth equal real estate
+                  next to the MVP and retention work above. If you still want a trace of it,
+                  it can be added as a single trailing line inside section 02 instead:
+                  "I also extended an internal tool to batch-generate redeemable subscription
+                  codes for partner and convention campaigns." — but it's fine to leave out. */}
 
             </div>
           </section>
@@ -400,7 +358,7 @@ export default function KadoSubscriptionPage() {
           {/* Results */}
           <section id="results">
             <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent)" }}>Results & Impact</p>
-            <h2 className="text-2xl font-medium mb-8" style={{ color: "var(--text)" }}>Measurable outcomes across revenue, retention, and insight</h2>
+            <h2 className="text-3xl md:text-4xl font-medium mb-8" style={{ color: "var(--text)" }}>Measurable outcomes across revenue, retention, and insight</h2>
             <div className="space-y-4">
               {[
                 { metric: "10%", desc: "Boost in overall product revenue post-launch" },
@@ -410,7 +368,7 @@ export default function KadoSubscriptionPage() {
               ].map((item) => (
                 <div key={item.metric} className="flex gap-6 p-5 rounded-2xl border items-start" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
                   <p className="text-xl font-medium w-28 flex-shrink-0" style={{ color: "var(--accent)" }}>{item.metric}</p>
-                  <p className="text-sm leading-relaxed pt-1" style={{ color: "var(--muted)" }}>{item.desc}</p>
+                  <p className="text-base leading-relaxed pt-1" style={{ color: "var(--muted)" }}>{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -419,7 +377,7 @@ export default function KadoSubscriptionPage() {
           {/* Learnings */}
           <section id="learnings">
             <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent)" }}>Learnings</p>
-            <h2 className="text-2xl font-medium mb-12" style={{ color: "var(--text)" }}>What building 0→1 taught me</h2>
+            <h2 className="text-3xl md:text-4xl font-medium mb-12" style={{ color: "var(--text)" }}>What building 0→1 taught me</h2>
             <div className="space-y-10">
               {[
                 {
@@ -436,8 +394,8 @@ export default function KadoSubscriptionPage() {
                 },
               ].map((item) => (
                 <div key={item.title} className="border-l-2 pl-6" style={{ borderColor: "var(--accent)" }}>
-                  <p className="text-sm font-medium mb-3" style={{ color: "var(--text)" }}>{item.title}</p>
-                  <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>{item.body}</p>
+                  <p className="text-base font-medium mb-3" style={{ color: "var(--text)" }}>{item.title}</p>
+                  <p className="text-base leading-relaxed" style={{ color: "var(--muted)" }}>{item.body}</p>
                 </div>
               ))}
             </div>
@@ -447,7 +405,7 @@ export default function KadoSubscriptionPage() {
       </div>
 
       {/* Next case */}
-      <div className="px-8 pb-16 max-w-5xl mx-auto">
+      <div className="px-8 pb-16 max-w-6xl mx-auto">
         <div className="border-t pt-12" style={{ borderColor: "var(--border)" }}>
           <p className="text-xs uppercase tracking-widest mb-4" style={{ color: "var(--muted)" }}>Next Case</p>
           <a href="/work/geo-monitoring"
@@ -457,12 +415,12 @@ export default function KadoSubscriptionPage() {
         </div>
       </div>
 
-      <footer className="px-8 py-12 border-t max-w-5xl mx-auto w-full" style={{ borderColor: "var(--border)" }}>
-        <div className="flex justify-between items-center text-xs">
-          <span style={{ color: "var(--muted)" }}>Jennie Z © 2026</span>
-          <div className="flex items-center gap-6">
+      <footer className="px-8 py-12 border-t max-w-6xl mx-auto w-full" style={{ borderColor: "var(--border)" }}>
+        <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center">
+          <span className="text-xs" style={{ color: "var(--muted)" }}>Jennie Z © 2026</span>
+          <div className="flex items-center gap-4 sm:gap-6 flex-wrap">
             <a href="https://linkedin.com/in/yuting-zeng1127" target="_blank"
-              className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>LinkedIn ↗</a>
+              className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>LinkedIn ↗︎</a>
             <a href="mailto:zyting.info@gmail.com"
               className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>zyting.info@gmail.com</a>
             <span style={{ color: "var(--accent)" }}>⟡</span>

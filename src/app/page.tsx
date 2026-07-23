@@ -141,7 +141,7 @@ export default async function Home() {
         <div className="flex justify-between items-center">
           <span className="text-xs" style={{ color: "var(--muted)" }}>Jennie Z © 2026</span>
           <div className="flex items-center gap-6">
-            <a href="https://drive.google.com/YOUR_RESUME_FILE_ID/view" target="_blank"
+            <a href="https://drive.google.com/file/d/1sF1Nc4DJH51pFhCwRmBJBhDAHtIR7XmX/view?usp=sharing" target="_blank"
               className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Resume</a>
             <a href="https://linkedin.com/in/yuting-zeng1127" target="_blank"
               className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>LinkedIn ↗︎</a>

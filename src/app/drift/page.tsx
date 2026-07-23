@@ -80,7 +80,7 @@ export default function DriftPage() {
           <a href="/work" className="hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Work</a>
           <a href="/drift" style={{ color: "var(--accent)" }}>Drift</a>
           <a href="/about" className="hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>About</a>
-          <a href="https://drive.google.com/YOUR_RESUME_FILE_ID/view" target="_blank"
+          <a href="https://drive.google.com/file/d/1sF1Nc4DJH51pFhCwRmBJBhDAHtIR7XmX/view?usp=sharing" target="_blank"
             className="hidden sm:block hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Resume</a>
           <a href="https://linkedin.com/in/yuting-zeng1127" target="_blank"
             className="hidden sm:block hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>LinkedIn ↗︎</a>
@@ -157,7 +157,7 @@ export default function DriftPage() {
         <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center">
           <span className="text-xs" style={{ color: "var(--muted)" }}>Jennie Z © 2026</span>
           <div className="flex items-center gap-4 sm:gap-6 flex-wrap">
-            <a href="https://drive.google.com/YOUR_RESUME_FILE_ID/view" target="_blank"
+            <a href="https://drive.google.com/file/d/1sF1Nc4DJH51pFhCwRmBJBhDAHtIR7XmX/view?usp=sharing" target="_blank"
               className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Resume</a>
             <a href="https://linkedin.com/in/yuting-zeng1127" target="_blank"
               className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>LinkedIn ↗︎</a>
