@@ -22,28 +22,77 @@ const AMBIENT = [
   "/hero/ambient-4.jpg",
 ];
 
+const STICKERS = [
+  "/hero/sticker-1.png",
+  "/hero/sticker-2.png",
+  "/hero/sticker-3.png",
+  "/hero/sticker-4.png",
+];
+
 const AMBIENT_SLOTS = [
-  [50, 74, -12],
-  [92, 78, 10],
-  [66, 90, -6],
-  [88, 52, 13],
+  [7, 84, -6],     // beach photo, far bottom-left
+  [88, 30, 7],     // workshop, upper-right edge
+  [72, 90, -4],    // ladybug, bottom-centre
+  [97, 82, 9],     // cherry-blossom, far bottom-right
 ];
 const WORK_SLOTS = [
-  [58, 34, -5],
-  [82, 40, 6],
-  [60, 66, -4],
-  [86, 26, 4],
+  [70, 30, -4],    // Kado+, top
+  [56, 54, -5],    // GEO, mid-left  (note: order follows Notion; adjust if needed)
+  [74, 60, 3],     // Creator Center, centre
+  [88, 62, 4],     // Discovery, right
+];
+// [leftPct, topPct, rotateDeg] tucked into gaps between polaroids
+const STICKER_SLOTS = [
+  [11, 96, -6],    // camera, bottom-left by the beach photo
+  [63, 42, 6],
+  [97, 24, -5],
+  [36, 24, 4],     // character sticker, next to "Hello! I'm Jennie."
 ];
 
 type DragState = { id: string; startX: number; startY: number; baseX: number; baseY: number; moved: boolean } | null;
 
 export function PolaroidHero({ work }: PolaroidHeroProps) {
   const [active, setActive] = useState<WorkCard | null>(null);
-  // offsets applied on top of the % base position, keyed by card id
   const [offsets, setOffsets] = useState<Record<string, { x: number; y: number }>>({});
   const [zTop, setZTop] = useState(20);
   const [zMap, setZMap] = useState<Record<string, number>>({});
+  const [wiggling, setWiggling] = useState<string | null>(null);
   const drag = useRef<DragState>(null);
+
+  // "Deal out" intro: cards start stacked at centre, then fly to their slots.
+  const [dealt, setDealt] = useState(false);
+  useEffect(() => {
+    const t = setTimeout(() => setDealt(true), 80);
+    return () => clearTimeout(t);
+  }, []);
+  // returns the transform + positional style for a card given its slot + index.
+  // `order` controls the deal sequence (lower slot = comes out first → bottom-to-top).
+  const dealStyle = (slot: number[], off: { x: number; y: number }, order: number, dragged: boolean) => {
+    const delay = 0.13 * order;
+    const dur = 0.9;
+    if (dealt) {
+      return {
+        left: "calc(" + slot[0] + "% + " + off.x + "px)",
+        top: "calc(" + slot[1] + "% + " + off.y + "px)",
+        transform: "translate(-50%, -50%) rotate(" + slot[2] + "deg)",
+        opacity: 1,
+        transition: dragged
+          ? "none"
+          : "left " + dur + "s cubic-bezier(0.22,1,0.36,1) " + delay + "s, top " + dur + "s cubic-bezier(0.22,1,0.36,1) " + delay + "s, transform " + dur + "s cubic-bezier(0.22,1,0.36,1) " + delay + "s, opacity 0.6s ease " + delay + "s",
+      };
+    }
+    // Pre-deal: sitting lower + faded, so it rises upward into place
+    return {
+      left: "calc(" + slot[0] + "% + " + off.x + "px)",
+      top: "calc(" + (slot[1] + 12) + "% + " + off.y + "px)",
+      transform: "translate(-50%, -50%) rotate(0deg)",
+      opacity: 0,
+      transition: "none",
+    };
+  };
+
+  // Deal order: bottom cards first. Higher topPct (further down) = smaller order number.
+  const dealOrder = (slot: number[]) => (100 - slot[1]) / 12;
 
   // Typewriter effect for the desktop headline
   const FIRST = "PM with a designer's eye, researcher's instinct, and AI-first mindset — ";
@@ -77,10 +126,18 @@ export function PolaroidHero({ work }: PolaroidHeroProps) {
     if (Math.abs(dx) > 4 || Math.abs(dy) > 4) d.moved = true;
     setOffsets((o) => ({ ...o, [d.id]: { x: d.baseX + dx, y: d.baseY + dy } }));
   };
-  const onUp = (card: WorkCard | null) => () => {
+  const onUpCard = (card: WorkCard | null) => () => {
     const d = drag.current;
     drag.current = null;
     if (d && !d.moved && card) setActive(card);
+  };
+  const onUpSticker = (id: string) => () => {
+    const d = drag.current;
+    drag.current = null;
+    if (d && !d.moved) {
+      setWiggling(id);
+      setTimeout(() => setWiggling((w) => (w === id ? null : w)), 500);
+    }
   };
 
   return (
@@ -94,18 +151,11 @@ export function PolaroidHero({ work }: PolaroidHeroProps) {
           </feComponentTransfer>
           <feComposite operator="over" in2="SourceGraphic" />
         </filter>
-        <filter id="bgNoise">
-          <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" />
-          <feColorMatrix type="saturate" values="0" />
-          <feComponentTransfer>
-            <feFuncA type="linear" slope="0.025" />
-          </feComponentTransfer>
-        </filter>
       </svg>
 
       {/* ===== DESKTOP ===== */}
       <section className="hidden md:block relative overflow-hidden" style={{ height: "660px" }}>
-        <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 0, filter: "url(#bgNoise)", opacity: 0.5, mixBlendMode: "multiply" }} aria-hidden="true" />
+        <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 0, backgroundImage: "url(/hero/paper-texture.jpg)", backgroundSize: "cover", backgroundPosition: "center", opacity: 0.5, mixBlendMode: "multiply" }} aria-hidden="true" />
         <div className="absolute inset-0 px-8 pt-24 max-w-5xl mx-auto pointer-events-none" style={{ zIndex: 1 }}>
           <div style={{ maxWidth: "46%" }}>
             <p className="text-2xl md:text-3xl font-medium mb-4" style={{ color: "var(--accent)" }}>
@@ -122,25 +172,25 @@ export function PolaroidHero({ work }: PolaroidHeroProps) {
           </div>
         </div>
 
+        {/* Ambient (portrait) */}
         {AMBIENT.map((src, i) => {
           const slot = AMBIENT_SLOTS[i];
           const id = "amb-" + i;
           const off = offsets[id] || { x: 0, y: 0 };
+          const dragged = !!offsets[id];
           return (
             <div
               key={id}
               onPointerDown={onDown(id)}
               onPointerMove={onMove}
-              onPointerUp={onUp(null)}
+              onPointerUp={onUpCard(null)}
               className="polaroid select-none"
               style={{
                 position: "absolute",
-                left: "calc(" + slot[0] + "% + " + off.x + "px)",
-                top: "calc(" + slot[1] + "% + " + off.y + "px)",
-                transform: "translate(-50%, -50%) rotate(" + slot[2] + "deg)",
                 width: "140px",
                 padding: "8px 8px 22px",
                 zIndex: zMap[id] || (2 + i),
+                ...dealStyle(slot, off, dealOrder(slot), dragged),
               }}
             >
               <div className="polaroid-img" style={{ height: "170px", backgroundImage: "url(" + src + ")" }} />
@@ -148,25 +198,55 @@ export function PolaroidHero({ work }: PolaroidHeroProps) {
           );
         })}
 
+        {/* Stickers (die-cut, draggable, tap to wiggle) */}
+        {STICKERS.map((src, i) => {
+          const slot = STICKER_SLOTS[i];
+          const id = "sticker-" + i;
+          const off = offsets[id] || { x: 0, y: 0 };
+          const dragged = !!offsets[id];
+          const ds = dealStyle(slot, off, dealOrder(slot), dragged);
+          return (
+            <img
+              key={id}
+              src={src}
+              alt=""
+              onPointerDown={onDown(id)}
+              onPointerMove={onMove}
+              onPointerUp={onUpSticker(id)}
+              draggable={false}
+              className={"sticker select-none" + (wiggling === id && dealt ? " sticker-wiggle" : "")}
+              style={{
+                position: "absolute",
+                width: "150px",
+                zIndex: zMap[id] || (6 + i),
+                cursor: "grab",
+                touchAction: "none",
+                ["--rot" as any]: slot[2] + "deg",
+                ...ds,
+              }}
+            />
+          );
+        })}
+
+        {/* Work (landscape) */}
         {work.map((card, i) => {
           const slot = WORK_SLOTS[i % WORK_SLOTS.length];
           const id = card.slug || "work-" + i;
           const off = offsets[id] || { x: 0, y: 0 };
+          const dragged = !!offsets[id];
           return (
             <div
               key={id}
               onPointerDown={onDown(id)}
               onPointerMove={onMove}
-              onPointerUp={onUp(card)}
-              className="polaroid select-none"
+              onPointerUp={onUpCard(card)}
+              className="polaroid work-card select-none"
               style={{
                 position: "absolute",
-                left: "calc(" + slot[0] + "% + " + off.x + "px)",
-                top: "calc(" + slot[1] + "% + " + off.y + "px)",
-                transform: "translate(-50%, -50%) rotate(" + slot[2] + "deg)",
                 width: "220px",
                 padding: "10px 10px 30px",
                 zIndex: zMap[id] || (10 + i),
+                ...dealStyle(slot, off, dealOrder(slot), dragged),
               }}
             >
               <div
@@ -174,6 +254,7 @@ export function PolaroidHero({ work }: PolaroidHeroProps) {
                 style={{ height: "150px", backgroundImage: card.coverImage ? "url(" + card.coverImage + ")" : undefined }}
               />
               <div className="polaroid-title" style={{ marginTop: "10px" }}>{card.title}</div>
+              <span className="polaroid-view">View ↗</span>
             </div>
           );
         })}
@@ -209,7 +290,7 @@ export function PolaroidHero({ work }: PolaroidHeroProps) {
               key={card.slug || "m-work-" + i}
               onClick={() => setActive(card)}
               className="polaroid text-left"
-              style={{ padding: "10px 10px 26px", transform: "rotate(-1deg)", width: "100%" }}
+              style={{ padding: "10px 10px 26px", transform: "rotate(" + (i % 2 === 0 ? -1.5 : 1.5) + "deg)", width: "100%" }}
             >
               <div
                 className="polaroid-img"
@@ -287,6 +368,39 @@ export function PolaroidHero({ work }: PolaroidHeroProps) {
           pointer-events: none;
           mix-blend-mode: multiply;
         }
+        .work-card {
+          transition: box-shadow 0.28s ease;
+        }
+        .work-card:hover {
+          box-shadow: 0 14px 34px rgba(0, 0, 0, 0.20), 0 2px 6px rgba(0, 0, 0, 0.10);
+        }
+        .work-card .polaroid-img {
+          transition: transform 0.28s ease;
+        }
+        .work-card:hover .polaroid-img {
+          transform: translateY(-3px);
+        }
+        .polaroid-view {
+          position: absolute;
+          top: 16px;
+          right: 16px;
+          font-family: var(--font-fraunces), serif;
+          font-size: 11px;
+          letter-spacing: 0.08em;
+          color: #fff;
+          background: rgba(20, 24, 32, 0.78);
+          padding: 4px 9px;
+          border-radius: 999px;
+          opacity: 0;
+          transform: translateY(-2px);
+          transition: opacity 0.25s ease, transform 0.25s ease;
+          pointer-events: none;
+          z-index: 2;
+        }
+        .work-card:hover .polaroid-view {
+          opacity: 1;
+          transform: translateY(0);
+        }
         .polaroid-img {
           border-radius: 2px;
           background-color: var(--polaroid-placeholder);
@@ -298,12 +412,27 @@ export function PolaroidHero({ work }: PolaroidHeroProps) {
         .polaroid-title {
           text-align: center;
           font-family: var(--font-fraunces), serif;
-          font-weight: 500;
+          font-weight: 400;
           font-size: 14px;
           color: #2c2c2a;
           letter-spacing: 0.01em;
           position: relative;
           z-index: 1;
+        }
+        .sticker {
+          filter:
+            drop-shadow(3px 0 0 #fff) drop-shadow(-3px 0 0 #fff)
+            drop-shadow(0 3px 0 #fff) drop-shadow(0 -3px 0 #fff)
+            drop-shadow(0 4px 6px rgba(0, 0, 0, 0.12));
+        }
+        .sticker:active { cursor: grabbing; }
+        .sticker-wiggle {
+          animation: sticker-wiggle-kf 0.5s ease-in-out;
+        }
+        @keyframes sticker-wiggle-kf {
+          0%, 100% { transform: translate(-50%, -50%) rotate(var(--rot)); }
+          25% { transform: translate(-50%, -50%) rotate(calc(var(--rot) - 6deg)); }
+          75% { transform: translate(-50%, -50%) rotate(calc(var(--rot) + 6deg)); }
         }
         .type-caret {
           display: inline-block;
@@ -315,17 +444,6 @@ export function PolaroidHero({ work }: PolaroidHeroProps) {
           0%, 100% { opacity: 1; }
           50% { opacity: 0; }
         }
-        .fade-line {
-          opacity: 0;
-          animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        }
-        @keyframes fade-up {
-          from { opacity: 0; transform: translateY(14px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .fade-line { opacity: 1; animation: none; }
-        }
         .polaroid-bounce {
           animation: polaroid-bob 1.8s ease-in-out infinite;
         }
@@ -334,7 +452,7 @@ export function PolaroidHero({ work }: PolaroidHeroProps) {
           50% { transform: translateY(4px); }
         }
         @media (prefers-reduced-motion: reduce) {
-          .polaroid-bounce { animation: none; }
+          .polaroid-bounce, .sticker-wiggle { animation: none; }
         }
       `}</style>
     </>

@@ -42,10 +42,7 @@ export default async function Home() {
       <PolaroidHero work={workCards} />
 
       {/* Featured Cases */}
-      <section className="px-8 pb-32 max-w-5xl mx-auto">
-        <p className="text-xs tracking-widest uppercase mb-8" style={{ color: "var(--muted)" }}>
-          Selected Work
-        </p>
+      <section id="selected-work" className="px-8 pt-8 pb-32 max-w-5xl mx-auto scroll-mt-24">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {featured.map((project: any) => {
             const props = project.properties;
@@ -110,12 +107,13 @@ export default async function Home() {
         <p className="text-xs tracking-widest uppercase mb-8" style={{ color: "var(--muted)" }}>
           What people say
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 pt-4">
           {testimonials.map((t, i) => (
             <div key={i}
-              className="rounded-2xl p-8 border"
-              style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
-              <p className="text-lg mb-6" style={{ color: "var(--accent)" }}>⟡</p>
+              className="note-card p-8"
+              style={{ transform: i % 2 === 0 ? "rotate(-1.2deg)" : "rotate(1deg)" }}>
+              <span className="note-tape" aria-hidden="true" />
+              <p className="text-lg mb-5" style={{ color: "var(--accent)" }}>⟡</p>
               <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--text)" }}>
                 &ldquo;{t.text}&rdquo;
               </p>
@@ -129,6 +127,20 @@ export default async function Home() {
             </div>
           ))}
         </div>
+      </section>
+
+      {/* Continue → first case study */}
+      <section className="px-8 pb-24 max-w-5xl mx-auto flex justify-center">
+        <a
+          href="/work/kado-subscription"
+          className="group flex flex-col items-center gap-3 text-center"
+          style={{ color: "var(--muted)", textDecoration: "none" }}
+        >
+          <span className="text-xs tracking-[0.24em] uppercase" style={{ fontFamily: "var(--font-fraunces), serif" }}>
+            Start with Kado+ Subscription
+          </span>
+          <span className="text-2xl transition-transform group-hover:translate-y-1" style={{ lineHeight: 1 }}>↓</span>
+        </a>
       </section>
 
       {/* Footer */}
