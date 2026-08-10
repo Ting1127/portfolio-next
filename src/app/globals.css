@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #FFFFFF;
+  --bg: #FAF9F6;
   --bg-card: #F4F6FB;
   --border: #DDE3F0;
   --text: #0F1B33;
@@ -11,6 +11,8 @@
   --accent-mint: #6EE7B7;
   --tag-border: #B0BBCE;
   --tag-text: #5A6A8A;
+  --polaroid-paper: #F4F1EA;
+  --polaroid-placeholder: #C9D2E0;
 }
 
 .dark {
@@ -24,6 +26,8 @@
   --accent-mint: #6EE7B7;
   --tag-border: #2E3A50;
   --tag-text: #6B7280;
+  --polaroid-paper: #EDE7DA;
+  --polaroid-placeholder: #2A3340;
 }
 
 @theme inline {

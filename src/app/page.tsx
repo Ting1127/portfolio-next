@@ -1,5 +1,6 @@
 import { getFeaturedProjects } from "@/lib/notion";
 import { Nav } from "@/components/Nav";
+import { PolaroidHero } from "@/components/PolaroidHero";
 
 const testimonials = [
   {
@@ -19,32 +20,26 @@ const testimonials = [
 export default async function Home() {
   const featured = await getFeaturedProjects();
 
+  // Shape Notion data into the props PolaroidHero expects.
+  const workCards = featured.map((project: any) => {
+    const props = project.properties;
+    return {
+      title: props.Name?.title?.[0]?.plain_text || "",
+      slug: props.Slug?.rich_text?.[0]?.plain_text || "",
+      summary: props.Summary?.rich_text?.[0]?.plain_text || "",
+      tags: props.Tags?.multi_select?.map((t: any) => t.name) || [],
+      coverImage: props["Cover Image"]?.rich_text?.[0]?.plain_text || "",
+      meta: props.Company?.rich_text?.[0]?.plain_text || "",
+    };
+  });
+
   return (
     <main className="min-h-screen" style={{ background: "var(--bg)", color: "var(--text)" }}>
 
       <Nav />
 
-      {/* Hero */}
-      <section className="pt-24 pb-20 px-8 max-w-5xl mx-auto">
-        <p className="text-2xl md:text-3xl font-medium mb-4" style={{ color: "var(--accent)" }}>
-          Hello! I&apos;m Jennie. ⟡
-        </p>
-        <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent)" }}>
-          Product Manager
-        </p>
-        <h1 className="text-2xl md:text-4xl font-medium leading-[1.15] tracking-tight mb-8" style={{ color: "var(--text)" }}>
-          PM with a designer&apos;s eye,<br />
-          researcher&apos;s instinct,<br />
-          and AI-first mindset —<br />
-          <span style={{ color: "var(--muted)" }}>
-            turning unfamiliar problems<br />into shipped products. ⟡
-          </span>
-        </h1>
-        <div className="flex gap-6 mt-12">
-          <a href="/work" className="btn-primary">View Work</a>
-          <a href="/about" className="btn-secondary">About Me</a>
-        </div>
-      </section>
+      {/* Hero — draggable polaroid cards */}
+      <PolaroidHero work={workCards} />
 
       {/* Featured Cases */}
       <section className="px-8 pb-32 max-w-5xl mx-auto">
