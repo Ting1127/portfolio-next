@@ -13,6 +13,7 @@
   --tag-text: #5A6A8A;
   --polaroid-paper: #F4F1EA;
   --polaroid-placeholder: #C9D2E0;
+  --polaroid-ink: #2c2c2a;
 }
 
 .dark {
@@ -26,8 +27,9 @@
   --accent-mint: #6EE7B7;
   --tag-border: #2E3A50;
   --tag-text: #6B7280;
-  --polaroid-paper: #EDE7DA;
+  --polaroid-paper: #3A3F47;
   --polaroid-placeholder: #2A3340;
+  --polaroid-ink: #E6E3DA;
 }
 
 @theme inline {

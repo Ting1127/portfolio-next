@@ -155,7 +155,6 @@ export function PolaroidHero({ work }: PolaroidHeroProps) {
 
       {/* ===== DESKTOP ===== */}
       <section className="hidden md:block relative overflow-hidden" style={{ height: "660px" }}>
-        <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 0, backgroundImage: "url(/hero/paper-texture.jpg)", backgroundSize: "cover", backgroundPosition: "center", opacity: 0.5, mixBlendMode: "multiply" }} aria-hidden="true" />
         <div className="absolute inset-0 px-8 pt-24 max-w-5xl mx-auto pointer-events-none" style={{ zIndex: 1 }}>
           <div style={{ maxWidth: "46%" }}>
             <p className="text-2xl md:text-3xl font-medium mb-4" style={{ color: "var(--accent)" }}>
@@ -384,13 +383,16 @@ export function PolaroidHero({ work }: PolaroidHeroProps) {
           position: absolute;
           top: 16px;
           right: 16px;
-          font-family: var(--font-fraunces), serif;
-          font-size: 11px;
-          letter-spacing: 0.08em;
-          color: #fff;
-          background: rgba(20, 24, 32, 0.78);
-          padding: 4px 9px;
+          font-family: var(--font-sans);
+          font-size: 12px;
+          font-weight: 500;
+          letter-spacing: 0.01em;
+          color: #20242c;
+          background: #ffffff;
+          border: 1px solid rgba(0, 0, 0, 0.05);
+          padding: 6px 13px;
           border-radius: 999px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
           opacity: 0;
           transform: translateY(-2px);
           transition: opacity 0.25s ease, transform 0.25s ease;
@@ -414,7 +416,7 @@ export function PolaroidHero({ work }: PolaroidHeroProps) {
           font-family: var(--font-fraunces), serif;
           font-weight: 400;
           font-size: 14px;
-          color: #2c2c2a;
+          color: var(--polaroid-ink);
           letter-spacing: 0.01em;
           position: relative;
           z-index: 1;
