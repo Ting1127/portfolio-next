@@ -12,7 +12,7 @@ export default function AboutPage() {
   ];
 
   const education = [
-    { logo: "/logos/uwmadison.png", title: "MS in Information", company: "University of Wisconsin–Madison", period: "Sep 2026 - Present", note: "Focus: Information Systems, Product Strategy, Data Analytics" },
+    { logo: "/logos/uwmadison.png", title: "MS in Information", company: "University of Wisconsin–Madison", period: "Sep 2026 (Incoming)", note: "Focus: Information Systems, Product Strategy, Data Analytics" },
     { logo: "/logos/ntust.png", title: "MA in Design", company: "National Taiwan University of Science and Technology", period: "Mar 2020 – Jan 2023", note: "Focus: UIUX, Service Design, Customer Experience" },
     { logo: "/logos/ntue.png", title: "BA in Industrial and Product Design", company: "National Taipei University of Education", period: "Sep 2015 – Jun 2019", note: "" },
   ];
@@ -64,6 +64,14 @@ export default function AboutPage() {
     {
       q: "Is Jennie authorized to work in the US?",
       a: "I'll be on an F-1 student visa starting September 2026, eligible for on-campus employment and CPT/OPT for internships and full-time roles.",
+    },
+    {
+      q: "Is Jennie more of a designer or a PM?",
+      a: "PM — with a designer's instinct. I've shipped real products with measurable outcomes, led cross-functional teams, and owned roadmaps. The design background means I think about experience quality differently than most PMs.",
+    },
+    {
+      q: "What is GEO?",
+      a: "Generative Engine Optimization — optimizing brand visibility within AI-powered search engines like ChatGPT, Perplexity, and Google AI Overviews. It's where SEO meets LLMs.",
     },
   ];
 
@@ -272,7 +280,7 @@ export default function AboutPage() {
         <div className="rounded-2xl p-8 text-center border" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
           <p className="text-lg mb-4" style={{ color: "var(--accent)" }}>⟡</p>
           <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--text)" }}>
-            Starting September 2026 at UW–Madison, I&apos;m open to Internships, student assistant, and project roles — especially anything at the intersection of AI, data, and product.
+            Starting September 2026 at UW–Madison, I&apos;m open to student assistant, RA, and project roles — especially anything at the intersection of AI, data, and product.
           </p>
           <a href="mailto:zyting.info@gmail.com" className="btn-primary inline-block">
             Get in touch ↗︎
@@ -285,7 +293,7 @@ export default function AboutPage() {
         <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center">
           <span className="text-xs" style={{ color: "var(--muted)" }}>Jennie Z © 2026</span>
           <div className="flex items-center gap-4 sm:gap-6 flex-wrap">
-            <a href="https://drive.google.com/file/d/1sF1Nc4DJH51pFhCwRmBJBhDAHtIR7XmX/view?usp=sharing" target="_blank"
+            <a href="https://drive.google.com/file/d/1OZjLhBHC7gBe1Uqitkb7wNmviDnytwlu/view?usp=sharing" target="_blank"
               className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Resume</a>
             <a href="https://linkedin.com/in/yuting-zeng1127" target="_blank"
               className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>LinkedIn ↗︎</a>
