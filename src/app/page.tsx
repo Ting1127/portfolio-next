@@ -48,7 +48,14 @@ export default async function Home() {
 
         
       {/* Featured Cases */}
-      <section id="selected-work" className="relative z-10 px-8 pt-8 pb-32 max-w-5xl mx-auto scroll-mt-24">
+      <section id="selected-work" className="relative z-10 px-6 md:px-8 pt-0 md:pt-8 pb-20 md:pb-32 max-w-5xl mx-auto scroll-mt-24">
+        {/* Mobile-only label — on desktop the hero's scroll cue does this job */}
+        <p
+          className="md:hidden text-xs tracking-[0.24em] uppercase mb-5"
+          style={{ color: "var(--muted)", fontFamily: "var(--font-fraunces), serif" }}
+        >
+          Selected Work
+        </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {featured.map((project: any) => {
             const props = project.properties;
@@ -93,7 +100,7 @@ export default async function Home() {
                 </div>
 
                 {/* Card body */}
-                <div className="p-6">
+                <div className="p-5 md:p-6">
                   <h2 className="text-xl font-medium mb-2" style={{ color: "var(--text)" }}>{title}</h2>
                   <p className="text-sm" style={{ color: "var(--muted)" }}>{summary}</p>
                 </div>
@@ -109,14 +116,14 @@ export default async function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="px-8 pb-32 max-w-5xl mx-auto">
+      <section className="px-6 md:px-8 pb-20 md:pb-32 max-w-5xl mx-auto">
         <p className="text-xs tracking-widest uppercase mb-8" style={{ color: "var(--muted)" }}>
           What people say
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 pt-4">
           {testimonials.map((t, i) => (
             <div key={i}
-              className="note-card p-8"
+              className="note-card p-6 md:p-8"
               style={{ transform: i % 2 === 0 ? "rotate(-1.2deg)" : "rotate(1deg)" }}>
               <span className="note-tape" aria-hidden="true" />
               <p className="text-lg mb-5" style={{ color: "var(--accent)" }}>⟡</p>
@@ -136,7 +143,7 @@ export default async function Home() {
       </section>
 
       {/* Continue → first case study */}
-      <section className="px-8 pb-24 max-w-5xl mx-auto flex justify-center">
+      <section className="px-6 md:px-8 pb-16 md:pb-24 max-w-5xl mx-auto flex justify-center">
         <a
           href="/work/kado-subscription"
           className="group flex flex-col items-center gap-3 text-center"
@@ -152,10 +159,10 @@ export default async function Home() {
       </div>{/* end tinted section */}
 
       {/* Footer */}
-      <footer className="px-8 py-12 border-t max-w-5xl mx-auto w-full" style={{ borderColor: "var(--border)" }}>
-        <div className="flex justify-between items-center">
+      <footer className="px-6 md:px-8 py-10 md:py-12 border-t max-w-5xl mx-auto w-full" style={{ borderColor: "var(--border)" }}>
+        <div className="flex flex-col-reverse gap-4 md:flex-row md:justify-between md:items-center">
           <span className="text-xs" style={{ color: "var(--muted)" }}>Jennie Z © 2026</span>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <a href="https://drive.google.com/file/d/1sF1Nc4DJH51pFhCwRmBJBhDAHtIR7XmX/view?usp=sharing" target="_blank"
               className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Resume</a>
             <a href="https://linkedin.com/in/yuting-zeng1127" target="_blank"

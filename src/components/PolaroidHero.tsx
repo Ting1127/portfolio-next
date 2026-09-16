@@ -250,35 +250,20 @@ export function PolaroidHero({ work }: PolaroidHeroProps) {
         </a>
       </section>
 
-      {/* ===== MOBILE ===== */}
-      <section className="md:hidden px-6 pt-20 pb-8">
+      {/* ===== MOBILE =====
+          Text-only intro. No polaroids here: on a single column they would
+          repeat the Selected Work cards directly below. */}
+      <section className="md:hidden px-6 pt-24 pb-10">
         <p className="text-2xl font-medium mb-3" style={{ color: "var(--accent)" }}>
           Hello! I&apos;m Jennie. ⟡
         </p>
         <p className="text-xs tracking-widest uppercase mb-5" style={{ color: "var(--accent)" }}>
           Product Manager
         </p>
-        <h1 className="text-2xl font-medium leading-[1.2] tracking-tight mb-8" style={{ color: "var(--text)" }}>
+        <h1 className="text-[1.75rem] font-medium leading-[1.2] tracking-tight" style={{ color: "var(--text)" }}>
           I learn unfamiliar industries fast and ship.{" "}
           <span style={{ color: "var(--muted)" }}>Digital content, finance, now semiconductors and AI search.</span>
         </h1>
-
-        <div className="grid grid-cols-1 gap-5">
-          {work.map((card, i) => (
-            <button
-              key={card.slug || "m-work-" + i}
-              onClick={() => setActive(card)}
-              className="polaroid text-left"
-              style={{ padding: "10px 10px 26px", transform: "rotate(" + (i % 2 === 0 ? -1.5 : 1.5) + "deg)", width: "100%" }}
-            >
-              <div
-                className="polaroid-img"
-                style={{ aspectRatio: "3 / 2", backgroundImage: card.coverImage ? "url(" + card.coverImage + ")" : undefined }}
-              />
-              <div className="polaroid-title" style={{ marginTop: "10px" }}>{card.title}</div>
-            </button>
-          ))}
-        </div>
       </section>
 
       {/* ===== ENLARGED ===== */}
