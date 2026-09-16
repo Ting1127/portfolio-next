@@ -1,5 +1,7 @@
 import { Nav } from "@/components/Nav";
 import { FAQAccordion } from "@/components/FAQAccordion";
+import { PhotoStack } from "@/components/PhotoStack";
+import { LifePolaroids, type LifePile } from "@/components/LifePolaroids";
 
 export default function AboutPage() {
   const experiences = [
@@ -17,16 +19,25 @@ export default function AboutPage() {
     { logo: "/logos/ntue.png", title: "BA in Industrial and Product Design", company: "National Taipei University of Education", period: "Sep 2015 – Jun 2019", note: "" },
   ];
 
-  const interests = [
-    { label: "Learning Japanese 🇯🇵", link: "/tools/japanese.html", external: true },
-    { label: "Good coffee ☕ & matcha 🍵", link: "/drift#coffee-log", external: false },
-    { label: "Travelling for food 🍜", link: "https://sites.google.com/view/ourjourneytinguan/our-journey", external: true },
-    { label: "Exhibitions & art history 🖼️", link: "/drift#exhibitions-films", external: false },
-    { label: "Illustration 🎨 & photography 📷", link: null, external: false },
-    { label: "Miffy 🐰 & Blackpink 🖤🩷", link: null, external: false },
+  // What I love — 三堆拍立得，每堆最多 3 張；lines 是碰到時泡泡裡的文字
+  const lovePiles: LifePile[] = [
+    {
+      id: "food",
+      photos: [{ src: "/life/02.JPG" }, { src: "/life/06.png" }],
+      lines: ["Good coffee ☕ & matcha 🍵", "Travelling for food 🍜", "Learning Japanese 🇯🇵"],
+    },
+    {
+      id: "art",
+      photos: [{ src: "/life/04.png" }, { src: "/life/05.JPG" }, { src: "/life/07.png" }],
+      lines: ["Exhibitions & art history 🖼️", "Illustration 🎨 & photography 📷"],
+    },
+    {
+      id: "fandom",
+      photos: [{ src: "/life/01.JPG" }, { src: "/life/03.JPG" }],
+      lines: ["Miffy 🐰 & Blackpink 🖤🩷"],
+    },
   ];
 
-  const lifePhotos = ["01.JPG", "02.JPG", "03.JPG", "04.png", "05.png", "06.png"];
 
   const community = [
     { logo: "/logos/twds.png", title: "Content Manager", company: "Taiwan Data Science Association", period: "Dec 2022 – Present", link: "https://www.facebook.com/share/g/14hU21YtanM/" },
@@ -40,6 +51,7 @@ export default function AboutPage() {
       citation: "Hsu, Y., Zeng, Y., and Tang, H. (2026)",
       accent: true,
       link: "https://dl.designresearchsociety.org/drs-conference-papers/drs2026/researchpapers/69/",
+      cta: "View Paper",
     },
     {
       title: "Weighting key driving forces of consumers choosing coffee chains in different scenarios",
@@ -47,6 +59,14 @@ export default function AboutPage() {
       citation: "Zeng, Y., Tang, H., and Chen, S. (2023)",
       accent: false,
       link: "https://dl.designresearchsociety.org/iasdr/iasdr2023/shortpapers/46/",
+      cta: "View Paper",
+    },
+    {
+      title: "Designing a happier service experience: An innovation proposal for Louisa Coffee",
+      venue: "Service Design Case Study · DITL on Medium (in Chinese)",
+      accent: false,
+      link: "https://medium.com/ditl/創新服務體驗提案-路易莎咖啡如何能創造有幸福感的服務體驗-975d2e590d59",
+      cta: "Read on Medium",
     },
   ];
 
@@ -59,19 +79,11 @@ export default function AboutPage() {
   const faqs = [
     {
       q: "When is Jennie available?",
-      a: "I'm currently consulting full-time at Teleworker. Starting September 2026, I'll be a graduate student at UW–Madison and actively looking for part-time or RA/project assistant roles on campus.",
+      a: "Starting September 2026 at UW–Madison, I'm open to internships, student assistant, and project roles — especially anything at the intersection of AI, data, and product.",
     },
     {
       q: "Is Jennie authorized to work in the US?",
       a: "I'll be on an F-1 student visa starting September 2026, eligible for on-campus employment and CPT/OPT for internships and full-time roles.",
-    },
-    {
-      q: "Is Jennie more of a designer or a PM?",
-      a: "PM — with a designer's instinct. I've shipped real products with measurable outcomes, led cross-functional teams, and owned roadmaps. The design background means I think about experience quality differently than most PMs.",
-    },
-    {
-      q: "What is GEO?",
-      a: "Generative Engine Optimization — optimizing brand visibility within AI-powered search engines like ChatGPT, Perplexity, and Google AI Overviews. It's where SEO meets LLMs.",
     },
   ];
 
@@ -94,15 +106,13 @@ export default function AboutPage() {
               <p>Before grad school, I worked as a Product Manager across content platforms, SaaS, B2B, and hardware-software products, spanning publishing, finance, and semiconductors. With a background in UX design and research, I approach product work by understanding people first, then the systems behind their experiences.</p>
             </div>
           </div>
-          <div className="flex-shrink-0 w-40 md:w-48 rounded-2xl overflow-hidden" style={{ aspectRatio: "3/4" }}>
-            <img src="/about-photo.jpg" alt="Jennie" className="w-full h-full object-cover" />
-          </div>
+          <PhotoStack className="w-40 md:w-48" />
         </div>
 
         {/* Experience + Education side by side */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
           <div>
-            <p className="text-xs tracking-widest uppercase mb-8" style={{ color: "var(--muted)" }}>Professional Experience</p>
+            <p className="text-xs tracking-widest uppercase mb-8" style={{ color: "var(--accent)" }}>Professional Experience</p>
             <div className="space-y-6">
               {experiences.map((e) => (
                 <div key={e.company} className="flex gap-4 items-start">
@@ -121,7 +131,7 @@ export default function AboutPage() {
           </div>
 
           <div>
-            <p className="text-xs tracking-widest uppercase mb-8" style={{ color: "var(--muted)" }}>Education</p>
+            <p className="text-xs tracking-widest uppercase mb-8" style={{ color: "var(--accent)" }}>Education</p>
             <div className="space-y-6">
               {education.map((e) => (
                 <div key={e.company} className="flex gap-4 items-start">
@@ -141,57 +151,18 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Out of Work / Community */}
+        {/* What I love / Community */}
         <div className="mb-16">
-          <p className="text-xs tracking-widest uppercase mb-8" style={{ color: "var(--muted)" }}>Out of Work</p>
+          <h2 className="text-2xl md:text-3xl font-medium mb-4" style={{ color: "var(--accent)" }}>
+            What I love
+          </h2>
 
-          <div className="flex flex-wrap gap-3 mb-10">
-            {interests.map((item) => (
-              item.link ? (
-                <a key={item.label} href={item.link} target={item.external ? "_blank" : undefined}
-                  className="text-sm px-4 py-2 rounded-full border hover:opacity-80 transition-opacity"
-                  style={{ borderColor: "var(--border)", color: "var(--text)" }}>
-                  {item.label} ↗︎
-                </a>
-              ) : (
-                <span key={item.label}
-                  className="text-sm px-4 py-2 rounded-full border"
-                  style={{ borderColor: "var(--border)", color: "var(--muted)" }}>
-                  {item.label}
-                </span>
-              )
-            ))}
-          </div>
-
-          {/* Life photos — auto-scrolling marquee */}
-          <div
-            className="marquee-wrapper mb-10"
-            style={{
-              overflow: "hidden",
-              position: "relative",
-              WebkitMaskImage: "linear-gradient(to right, rgba(0,0,0,0.25) 0%, black 16%, black 84%, rgba(0,0,0,0.25) 100%)",
-              maskImage: "linear-gradient(to right, rgba(0,0,0,0.25) 0%, black 16%, black 84%, rgba(0,0,0,0.25) 100%)",
-            }}
-          >
-            <div
-              className="marquee-track"
-              style={{
-                display: "flex",
-                gap: "12px",
-                width: "max-content",
-                animationDuration: `${lifePhotos.length * 6}s`,
-              }}
-            >
-              {[...lifePhotos, ...lifePhotos].map((f, i) => (
-                <div key={i} className="flex-shrink-0 w-44 h-56 rounded-2xl overflow-hidden">
-                  <img src={`/life/${f}`} alt="" className="w-full h-full object-cover" />
-                </div>
-              ))}
-            </div>
+          <div className="mb-16">
+            <LifePolaroids piles={lovePiles} />
           </div>
 
           {/* Community */}
-          <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--muted)" }}>Community</p>
+          <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent)" }}>Community</p>
           <div className="space-y-6">
             {community.map((e) => (
               <div key={e.company} className="flex gap-4 items-start">
@@ -225,35 +196,33 @@ export default function AboutPage() {
 
         {/* Publications */}
         <div className="mb-16">
-          <p className="text-xs tracking-widest uppercase mb-8" style={{ color: "var(--muted)" }}>Publications</p>
+          <p className="text-xs tracking-widest uppercase mb-8" style={{ color: "var(--accent)" }}>Publications</p>
           <div className="space-y-6">
             {publications.map((p) => (
               <div key={p.title} className="pl-5 border-l-2"
                 style={{ borderColor: p.accent ? "var(--accent)" : "var(--border)" }}>
                 <p className="text-sm font-medium mb-1" style={{ color: "var(--text)" }}>{p.title}</p>
                 <p className="text-xs mb-2" style={{ color: "var(--accent)" }}>{p.venue}</p>
-                <p className="text-xs mb-3" style={{ color: "var(--muted)" }}>{p.citation}</p>
+                {p.citation ? (
+                  <p className="text-xs mb-3" style={{ color: "var(--muted)" }}>{p.citation}</p>
+                ) : (
+                  <div className="mb-3" />
+                )}
                 {p.link && (
-                  <a href={p.link} target="_blank"
+                  <a href={p.link} target="_blank" rel="noopener noreferrer"
                     className="text-xs px-3 py-1 rounded-full border inline-block hover:opacity-80 transition-opacity"
                     style={{ borderColor: "var(--accent)", color: "var(--accent)" }}>
-                    View Paper ↗︎
+                    {p.cta} ↗︎
                   </a>
                 )}
               </div>
             ))}
           </div>
-          <p className="text-xs mt-6" style={{ color: "var(--muted)" }}>
-            Both papers grew out of an early service-design study on coffee brand experience —{" "}
-            <a href="/drift#coffee-log" className="underline hover:opacity-80 transition-opacity" style={{ color: "var(--accent)" }}>
-              see the Coffee Log on Drift ↗︎
-            </a>
-          </p>
         </div>
 
         {/* Awards */}
         <div className="mb-16">
-          <p className="text-xs tracking-widest uppercase mb-8" style={{ color: "var(--muted)" }}>Awards</p>
+          <p className="text-xs tracking-widest uppercase mb-8" style={{ color: "var(--accent)" }}>Awards</p>
           <div className="space-y-4">
             {awards.map((a) => (
               <div key={a.award} className="flex items-center gap-4 border-b pb-4" style={{ borderColor: "var(--border)" }}>
@@ -272,7 +241,7 @@ export default function AboutPage() {
 
         {/* FAQ — click to expand */}
         <div className="mb-16">
-          <p className="text-xs tracking-widest uppercase mb-8" style={{ color: "var(--muted)" }}>FAQ</p>
+          <p className="text-xs tracking-widest uppercase mb-8" style={{ color: "var(--accent)" }}>FAQ</p>
           <FAQAccordion faqs={faqs} />
         </div>
 
@@ -280,7 +249,7 @@ export default function AboutPage() {
         <div className="rounded-2xl p-8 text-center border" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
           <p className="text-lg mb-4" style={{ color: "var(--accent)" }}>⟡</p>
           <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--text)" }}>
-            Starting September 2026 at UW–Madison, I&apos;m open to student assistant, RA, and project roles — especially anything at the intersection of AI, data, and product.
+            Starting September 2026 at UW–Madison, I&apos;m open to internships, student assistan, and project roles — especially anything at the intersection of AI, data, and product.
           </p>
           <a href="mailto:zyting.info@gmail.com" className="btn-primary inline-block">
             Get in touch ↗︎

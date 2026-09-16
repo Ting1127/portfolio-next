@@ -1,4 +1,13 @@
+import fs from "fs";
+import path from "path";
 import { ThemeToggle } from "@/components/ThemeToggle";
+
+// 圖片放在 public/drift/，檔名 = 卡片 id（例如 public/drift/coffee-log.jpg）
+// 檔案不存在時自動顯示灰色佔位，不會出現破圖
+const coverFor = (id: string) => {
+  const src = `/drift/${id}.jpg`;
+  return fs.existsSync(path.join(process.cwd(), "public", src)) ? src : null;
+};
 
 export default function DriftPage() {
   const projects = [
@@ -8,7 +17,7 @@ export default function DriftPage() {
       description: "An interactive phonetics tool I built to learn hiragana, katakana, and pitch accent — because existing apps didn't work for me.",
       tag: "Tool",
       status: "live",
-      link: "/tools/japanese.html",
+      link: null as string | null, // 先不放連結（之後填回網址即可）
     },
     {
       id: "travel",
@@ -16,12 +25,12 @@ export default function DriftPage() {
       description: "971 days of travels mapped and documented together. A collaborative record built on Google Sites.",
       tag: "Log",
       status: "live",
-      link: "https://sites.google.com/view/ourjourneytinguan/our-journey",
+      link: null as string | null, // 先不放連結（之後填回網址即可）
     },
     {
       id: "coffee-log",
       title: "Coffee Log",
-      description: "Tracking every café and coffee brand I've visited — photos, notes, and the story behind each cup.",
+      description: "Researching coffee brand experience since 2021. Tracking every café and coffee brand I've visited — photos, notes, and the story behind each cup.",
       tag: "Log",
       status: "in progress",
       link: null,
@@ -50,12 +59,14 @@ export default function DriftPage() {
       org: "UXTW",
       desc: "Led visual design for the annual UX industry report — data visualization, infographics, and survey analysis.",
       cover: "/case/community/uxtw.jpg",
+      link: "https://drive.google.com/file/d/1Iv4QPX-FaPmPtG3pGEe8216bxHdY0RlS/view" as string | null,
     },
     {
       title: "Event Branding & Communications",
       org: "Taiwan Data Science",
       desc: "Designed event banners, managed LinkedIn and FB channels, and handled speaker communications since 2022.",
       cover: "/case/community/twds.jpg",
+      link: null as string | null,
     },
   ];
 
@@ -93,9 +104,17 @@ export default function DriftPage() {
         <h1 className="text-3xl md:text-4xl font-medium tracking-tight mb-4" style={{ color: "var(--text)" }}>
           Things I drift into
         </h1>
-        <p className="text-sm mb-16 max-w-xl" style={{ color: "var(--muted)" }}>
+        <p className="text-sm mb-6 max-w-xl" style={{ color: "var(--muted)" }}>
           Tools I build, logs I keep, and rabbit holes I fall into — outside of work.
         </p>
+
+        {/* Work-in-progress notice */}
+        <div role="status"
+          className="inline-flex items-center gap-2 text-xs px-3 py-1.5 rounded-full border border-dashed mb-16"
+          style={{ borderColor: "var(--border)", color: "var(--muted)" }}>
+          <span style={{ color: "var(--accent)" }}>⟡</span>
+          This page is still being built. More covers and stories coming soon.
+        </div>
 
         {/* Playground projects */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-24">
@@ -110,7 +129,11 @@ export default function DriftPage() {
               <Wrapper key={p.title} id={p.id} {...(wrapperProps as any)}
                 className="block rounded-2xl overflow-hidden border transition-all duration-300 scroll-mt-24 relative hover:z-10 hover:rotate-2"
                 style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
-                <div className="aspect-[16/9]" style={{ background: "var(--border)" }} />
+                <div className="aspect-[16/9] overflow-hidden" style={{ background: "var(--border)" }}>
+                  {coverFor(p.id) && (
+                    <img src={coverFor(p.id)!} alt={p.title} className="w-full h-full object-cover" />
+                  )}
+                </div>
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-xs px-2.5 py-1 rounded-full border"
@@ -121,7 +144,7 @@ export default function DriftPage() {
                       <span className="text-xs" style={{ color: "var(--muted)" }}>In progress</span>
                     )}
                     {p.status === "live" && (
-                      <span className="text-xs" style={{ color: "#1D9E75" }}>↗︎ Live</span>
+                      <span className="text-xs" style={{ color: "#1D9E75" }}>{p.link ? "↗︎ Live" : "Live"}</span>
                     )}
                   </div>
                   <h2 className="text-lg font-medium mb-2" style={{ color: "var(--text)" }}>{p.title}</h2>
@@ -137,18 +160,27 @@ export default function DriftPage() {
           <p className="text-xs tracking-widest uppercase mb-2" style={{ color: "var(--muted)" }}>Community Design</p>
           <p className="text-sm mb-10" style={{ color: "var(--muted)" }}>Visual work for communities I care about.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {communityWork.map((w) => (
-              <div key={w.title} className="rounded-2xl overflow-hidden border transition-all duration-300 relative hover:z-10 hover:rotate-2" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
+            {communityWork.map((w) => {
+              const CardTag = w.link ? "a" : "div";
+              const linkProps = w.link ? { href: w.link, target: "_blank", rel: "noopener noreferrer" } : {};
+              return (
+              <CardTag key={w.title} {...(linkProps as any)} className="block rounded-2xl overflow-hidden border transition-all duration-300 relative hover:z-10 hover:rotate-2" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
                 <div className="aspect-[4/3] overflow-hidden" style={{ background: "var(--border)" }}>
                   <img src={w.cover} alt={w.title} className="w-full h-full object-cover" />
                 </div>
                 <div className="p-5">
-                  <p className="text-xs uppercase tracking-widest mb-2" style={{ color: "var(--muted)" }}>{w.org}</p>
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="text-xs uppercase tracking-widest" style={{ color: "var(--muted)" }}>{w.org}</p>
+                    {w.link && (
+                      <span className="text-xs" style={{ color: "var(--accent)" }}>View report ↗︎</span>
+                    )}
+                  </div>
                   <h3 className="text-base font-medium mb-1" style={{ color: "var(--text)" }}>{w.title}</h3>
                   <p className="text-xs leading-relaxed" style={{ color: "var(--muted)" }}>{w.desc}</p>
                 </div>
-              </div>
-            ))}
+              </CardTag>
+              );
+            })}
           </div>
         </div>
       </section>

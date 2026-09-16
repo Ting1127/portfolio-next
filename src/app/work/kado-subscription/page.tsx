@@ -1,3 +1,4 @@
+import { CaseHero } from "@/components/CaseHero";
 import { CaseSidebar } from "@/components/CaseSidebar";
 import { Nav } from "@/components/Nav";
 
@@ -17,42 +18,17 @@ export default function KadoSubscriptionPage() {
 
       <Nav />
 
-      {/* Hero */}
-      <section className="pt-48 pb-16 px-8 max-w-6xl mx-auto">
-        <p className="text-xs tracking-widest uppercase mb-4" style={{ color: "var(--accent)" }}>Product</p>
-        <h1 className="text-4xl md:text-5xl font-medium tracking-tight leading-[1.1] mb-6" style={{ color: "var(--text)" }}>
-          Kado+ Subscription
-        </h1>
-        <p className="text-2xl max-w-2xl" style={{ color: "var(--muted)" }}>
-          Building a 0→1 subscription service for Japanese light novels — from zero revenue to 10% growth.
-        </p>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-16 pt-8 border-t" style={{ borderColor: "var(--border)" }}>
-          {[
-            { label: "Role", value: "Product Manager" },
-            { label: "Timeline", value: "Jun 2023 – Jul 2025" },
-            { label: "Company", value: "KadoKawa Corp." },
-          ].map((item) => (
-            <div key={item.label}>
-              <p className="text-xs uppercase tracking-widest mb-1" style={{ color: "var(--muted)" }}>{item.label}</p>
-              <p className="text-sm" style={{ color: "var(--text)" }}>{item.value}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Cover video */}
-      <div className="w-full mb-16 px-8 max-w-6xl mx-auto">
-        <div className="rounded-2xl overflow-hidden">
-          <video
-            src="/case/kado/KadoPlus_project_cover.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full object-cover"
-          />
-        </div>
-      </div>
+      <CaseHero
+        eyebrow="Product"
+        title="Kado+ Subscription"
+        subtitle="Building a 0→1 subscription service for Japanese light novels — from zero revenue to 10% growth."
+        meta={[
+          { label: "Role", value: "Product Manager" },
+          { label: "Timeline", value: "Jun 2023 – Jul 2025" },
+          { label: "Company", value: "KadoKawa Corp." },
+        ]}
+        cover={{ type: "video", src: "/case/kado/KadoPlus_project_cover.mp4" }}
+      />
 
       {/* Content + Sidebar */}
       <div className="px-8 max-w-6xl mx-auto flex gap-16 pb-32">
@@ -72,7 +48,7 @@ export default function KadoSubscriptionPage() {
                 { number: "3", label: "Payment integrations shipped — Apple IAP, Google Play, web" },
               ].map((stat) => (
                 <div key={stat.label} className="rounded-2xl p-6 border" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
-                  <p className="text-4xl md:text-5xl font-medium mb-2" style={{ color: "var(--accent)" }}>{stat.number}</p>
+                  <p className="text-3xl md:text-4xl font-medium mb-2" style={{ color: "var(--accent)" }}>{stat.number}</p>
                   <p className="text-base" style={{ color: "var(--muted)" }}>{stat.label}</p>
                 </div>
               ))}
@@ -82,7 +58,7 @@ export default function KadoSubscriptionPage() {
           {/* Context */}
           <section id="context">
             <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent)" }}>Context</p>
-            <h2 className="text-3xl md:text-4xl font-medium mb-4" style={{ color: "var(--text)" }}>About KadoKawa & Kado+</h2>
+            <h2 className="text-2xl md:text-3xl font-medium mb-4" style={{ color: "var(--text)" }}>About KadoKawa & Kado+</h2>
             <div className="flex gap-4 items-start mb-6">
               <div className="w-12 h-12 rounded-xl overflow-hidden bg-white flex items-center justify-center border flex-shrink-0" style={{ borderColor: "var(--border)" }}>
                 <img src="/logos/kadokawa.png" alt="KadoKawa" className="w-9 h-9 object-contain" />
@@ -115,7 +91,7 @@ export default function KadoSubscriptionPage() {
           {/* Problem */}
           <section id="problem">
             <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent)" }}>Problem</p>
-            <h2 className="text-3xl md:text-4xl font-medium mb-8" style={{ color: "var(--text)" }}>Three barriers blocking readers — and the business</h2>
+            <h2 className="text-2xl md:text-3xl font-medium mb-8" style={{ color: "var(--text)" }}>Three barriers blocking readers — and the business</h2>
             <div className="space-y-6">
               {[
                 {
@@ -153,7 +129,7 @@ export default function KadoSubscriptionPage() {
           {/* Approach */}
           <section id="approach">
             <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent)" }}>My Approach</p>
-            <h2 className="text-3xl md:text-4xl font-medium mb-4" style={{ color: "var(--text)" }}>Defining the model before building the product</h2>
+            <h2 className="text-2xl md:text-3xl font-medium mb-4" style={{ color: "var(--text)" }}>Defining the model before building the product</h2>
             <p className="leading-relaxed mb-6" style={{ color: "var(--muted)" }}>
               As the lead PM, I was responsible for defining the product model, business logic, and feature requirements before engineering started. This meant working across content, marketing, tech, data, and finance teams to align on development phases and expected outcomes.
             </p>
@@ -183,7 +159,7 @@ export default function KadoSubscriptionPage() {
           {/* What I Shipped */}
           <section id="shipped">
             <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent)" }}>What I Shipped</p>
-            <h2 className="text-3xl md:text-4xl font-medium mb-12" style={{ color: "var(--text)" }}>From MVP to a full subscription ecosystem</h2>
+            <h2 className="text-2xl md:text-3xl font-medium mb-12" style={{ color: "var(--text)" }}>From MVP to a full subscription ecosystem</h2>
 
             <div className="space-y-20">
 
@@ -333,7 +309,7 @@ export default function KadoSubscriptionPage() {
           {/* Results */}
           <section id="results">
             <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent)" }}>Results & Impact</p>
-            <h2 className="text-3xl md:text-4xl font-medium mb-8" style={{ color: "var(--text)" }}>Measurable outcomes across revenue, retention, and insight</h2>
+            <h2 className="text-2xl md:text-3xl font-medium mb-8" style={{ color: "var(--text)" }}>Measurable outcomes across revenue, retention, and insight</h2>
             <div className="space-y-4">
               {[
                 { metric: "10%", desc: "Boost in overall product revenue post-launch" },
@@ -352,7 +328,7 @@ export default function KadoSubscriptionPage() {
           {/* Learnings */}
           <section id="learnings">
             <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent)" }}>Learnings</p>
-            <h2 className="text-3xl md:text-4xl font-medium mb-12" style={{ color: "var(--text)" }}>What building 0→1 taught me</h2>
+            <h2 className="text-2xl md:text-3xl font-medium mb-12" style={{ color: "var(--text)" }}>What building 0→1 taught me</h2>
             <div className="space-y-10">
               {[
                 {

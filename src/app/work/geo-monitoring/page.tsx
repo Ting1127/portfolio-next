@@ -1,3 +1,4 @@
+import { CaseHero } from "@/components/CaseHero";
 import { CaseSidebar } from "@/components/CaseSidebar";
 import { Nav } from "@/components/Nav";
 
@@ -16,34 +17,20 @@ export default function GeoMonitoringPage() {
 
       <Nav accent="var(--accent-purple)" />
 
-      {/* Hero */}
-      <section className="pt-48 pb-16 px-8 max-w-5xl mx-auto">
-        <p className="text-xs tracking-widest uppercase mb-4" style={{ color: "var(--accent-purple)" }}>Product</p>
-        <h1 className="text-4xl md:text-5xl font-medium tracking-tight leading-[1.1] mb-6" style={{ color: "var(--text)" }}>
-          GEO Monitoring & Strategy
-        </h1>
-        <p className="text-xl max-w-2xl" style={{ color: "var(--muted)" }}>
-          Building a Fortune 500 semiconductor brand's first generative engine optimization system — from zero to a full monitoring and strategy framework.
-        </p>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 pt-8 border-t" style={{ borderColor: "var(--border)" }}>
-          {[
-            { label: "Role", value: "GEO Consultant" },
-            { label: "Timeline", value: "Feb 2026 – Present" },
-            { label: "Company", value: "Fortune 500 Semiconductor · via Teleworker" },
-            { label: "Platforms", value: "ChatGPT · Perplexity · Google AIO" },
-          ].map((item) => (
-            <div key={item.label}>
-              <p className="text-xs uppercase tracking-widest mb-1" style={{ color: "var(--muted)" }}>{item.label}</p>
-              <p className="text-sm" style={{ color: "var(--text)" }}>{item.value}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Cover image */}
-      <div className="w-full mb-16" style={{ background: "var(--bg-card)" }}>
-        <div className="aspect-[16/7]" style={{ background: "var(--border)" }} />
-      </div>
+      <CaseHero
+        eyebrow="Product"
+        title="GEO Monitoring & Strategy"
+        subtitle="Building a Fortune 500 semiconductor brand's first generative engine optimization system — from zero to a full monitoring and strategy framework."
+        meta={[
+          { label: "Role", value: "GEO Consultant" },
+          { label: "Timeline", value: "Feb 2026 – Present" },
+          { label: "Company", value: "Fortune 500 Semiconductor · via Teleworker" },
+          { label: "Platforms", value: "ChatGPT · Perplexity · Google AIO" },
+        ]}
+        cover={{ type: "placeholder" }}
+        accentColor="var(--accent-purple)"
+        containerClassName="max-w-5xl"
+      />
 
       {/* Content + Sidebar */}
       <div className="px-8 max-w-5xl mx-auto flex gap-16 pb-32">
@@ -63,7 +50,7 @@ export default function GeoMonitoringPage() {
                 { number: "New", label: "No established playbook. Every framework, metric, and prioritization rule had to be invented." },
               ].map((stat) => (
                 <div key={stat.label} className="rounded-2xl p-6 border" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
-                  <p className="text-3xl font-medium mb-2" style={{ color: "var(--accent-purple)" }}>{stat.number}</p>
+                  <p className="text-3xl md:text-4xl font-medium mb-2" style={{ color: "var(--accent-purple)" }}>{stat.number}</p>
                   <p className="text-sm" style={{ color: "var(--muted)" }}>{stat.label}</p>
                 </div>
               ))}
@@ -73,7 +60,7 @@ export default function GeoMonitoringPage() {
           {/* Context */}
           <section id="context">
             <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent-purple)" }}>Context</p>
-            <h2 className="text-2xl font-medium mb-4" style={{ color: "var(--text)" }}>A new discipline with no established rules</h2>
+            <h2 className="text-2xl md:text-3xl font-medium mb-4" style={{ color: "var(--text)" }}>A new discipline with no established rules</h2>
             <p className="leading-relaxed mb-6" style={{ color: "var(--muted)" }}>
               As AI-powered search reshapes how brands get discovered, a new question emerged: when someone asks ChatGPT "which DDR6 memory brand is good?" or "what are the key semiconductor investments in Japan?" — what answer do they get, and is the brand in it?
             </p>
@@ -123,7 +110,7 @@ export default function GeoMonitoringPage() {
           {/* Core Problem */}
           <section id="problem">
             <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent-purple)" }}>The Core Problem</p>
-            <h2 className="text-2xl font-medium mb-4" style={{ color: "var(--text)" }}>What does "being visible in AI" even mean?</h2>
+            <h2 className="text-2xl md:text-3xl font-medium mb-4" style={{ color: "var(--text)" }}>What does "being visible in AI" even mean?</h2>
             <p className="leading-relaxed mb-6" style={{ color: "var(--muted)" }}>
               Before I could build anything, I had to answer a harder question: what does "being visible in AI" mean for a semiconductor brand with multiple audiences, products, and regional markets?
             </p>
@@ -141,7 +128,7 @@ export default function GeoMonitoringPage() {
           {/* Approach */}
           <section id="approach">
             <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent-purple)" }}>My Approach</p>
-            <h2 className="text-2xl font-medium mb-10" style={{ color: "var(--text)" }}>Three decisions that shaped the work</h2>
+            <h2 className="text-2xl md:text-3xl font-medium mb-10" style={{ color: "var(--text)" }}>Three decisions that shaped the work</h2>
 
             {/* Decision 1 */}
             <div className="mb-16">
@@ -234,7 +221,7 @@ export default function GeoMonitoringPage() {
           {/* What I Delivered */}
           <section id="delivered">
             <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent-purple)" }}>What I Delivered</p>
-            <h2 className="text-2xl font-medium mb-8" style={{ color: "var(--text)" }}>From strategy to execution infrastructure</h2>
+            <h2 className="text-2xl md:text-3xl font-medium mb-8" style={{ color: "var(--text)" }}>From strategy to execution infrastructure</h2>
             <div className="space-y-4 mb-8">
               {[
                 { title: "GEO Strategy Roadmap", desc: "Full strategy framework covering AI search landscape, GEO vs SEO positioning, prompt taxonomy, measurement system, and 3-month execution plan" },
@@ -260,7 +247,7 @@ export default function GeoMonitoringPage() {
           {/* Learnings */}
           <section id="learnings">
             <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent-purple)" }}>Learnings</p>
-            <h2 className="text-2xl font-medium mb-8" style={{ color: "var(--text)" }}>What building in a nascent field taught me</h2>
+            <h2 className="text-2xl md:text-3xl font-medium mb-8" style={{ color: "var(--text)" }}>What building in a nascent field taught me</h2>
             <div className="space-y-6">
               {[
                 { title: "GEO is a strategy problem before it's a content problem", body: "The temptation in a new field is to start doing — create content, run experiments, ship. But without a clear framework for what you're optimizing and for whom, execution becomes noise. The most valuable thing I did wasn't any single deliverable. It was defining the prompt taxonomy and measurement structure that made all subsequent decisions coherent." },

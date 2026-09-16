@@ -20,9 +20,27 @@ const fraunces = Fraunces({
   weight: ["400", "500"],
 });
 
+const title = "Jennie Zeng — PM, AI & Data Products";
+const description =
+  "Product manager across digital content, finance, and semiconductors — currently building measurement for brand visibility in AI search.";
+
 export const metadata: Metadata = {
-  title: "Jennie Zeng — PM × Designer × AI",
-  description: "PM with a designer's eye, researcher's instinct, and AI-first mindset.",
+  metadataBase: new URL("https://jenniezeng.com"),
+  title,
+  description,
+  openGraph: {
+    title,
+    description,
+    url: "https://jenniezeng.com",
+    siteName: "Jennie Zeng",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title,
+    description,
+  },
 };
 
 export default function RootLayout({
