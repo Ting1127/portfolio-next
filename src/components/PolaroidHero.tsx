@@ -15,38 +15,25 @@ type PolaroidHeroProps = {
   work: WorkCard[];
 };
 
-const AMBIENT = [
-  "/hero/ambient-1.jpg",
-  "/hero/ambient-2.jpg",
-  "/hero/ambient-3.jpg",
-  "/hero/ambient-4.jpg",
-];
-
 const STICKERS = [
-  "/hero/sticker-1.png",
   "/hero/sticker-2.png",
   "/hero/sticker-3.png",
-  "/hero/sticker-4.png",
+  "/hero/sticker-4.png",   // character — sits beside the right-hand cards
 ];
 
-const AMBIENT_SLOTS = [
-  [7, 84, -6],     // beach photo, far bottom-left
-  [88, 30, 7],     // workshop, upper-right edge
-  [72, 90, -4],    // ladybug, bottom-centre
-  [97, 82, 9],     // cherry-blossom, far bottom-right
-];
+// [leftPct, topPct, rotateDeg, zIndex] — orbiting a centred text block
 const WORK_SLOTS = [
-  [70, 30, -4],    // Kado+, top
-  [56, 54, -5],    // GEO, mid-left  (note: order follows Notion; adjust if needed)
-  [74, 60, 3],     // Creator Center, centre
-  [88, 62, 4],     // Discovery, right
+  [15, 36, -4, 11],   // Kado+, upper-left
+  [13, 70, 3, 12],    // GEO, lower-left, overlapping Kado+
+  [88, 74, -3, 14],   // Creator Center, lower-right, front-most
+  [86, 38, 5, 13],    // Discovery, upper-right
 ];
-// [leftPct, topPct, rotateDeg] tucked into gaps between polaroids
+// [leftPct, topPct, rotateDeg] — repositioned now that the ambient photos are gone
+// Stickers keep their scattered positions; z-index (below) keeps them on top
 const STICKER_SLOTS = [
-  [11, 96, -6],    // camera, bottom-left by the beach photo
-  [63, 42, 6],
-  [97, 24, -5],
-  [36, 24, 4],     // character sticker, next to "Hello! I'm Jennie."
+  [5, 10, 4],      // green tag, tucked top-left
+  [96, 92, -5],    // spare tag, tucked bottom-right
+  [76, 53, 4],     // character, between the two right-hand cards
 ];
 
 type DragState = { id: string; startX: number; startY: number; baseX: number; baseY: number; moved: boolean } | null;
@@ -95,8 +82,8 @@ export function PolaroidHero({ work }: PolaroidHeroProps) {
   const dealOrder = (slot: number[]) => (100 - slot[1]) / 12;
 
   // Typewriter effect for the desktop headline
-  const FIRST = "PM with a designer's eye, researcher's instinct, and AI-first mindset — ";
-  const SECOND = "turning unfamiliar problems into shipped products. \u27e1";
+  const FIRST = "I learn unfamiliar industries fast and ship. ";
+  const SECOND = "Digital content, finance, now semiconductors and AI search.";
   const FULL = FIRST + SECOND;
   const [typedLen, setTypedLen] = useState(0);
   useEffect(() => {
@@ -131,6 +118,15 @@ export function PolaroidHero({ work }: PolaroidHeroProps) {
     drag.current = null;
     if (d && !d.moved && card) setActive(card);
   };
+  // Smooth scroll to Selected Work, honouring reduced-motion preferences
+  const scrollToWork = (e: React.MouseEvent) => {
+    const target = document.getElementById("selected-work");
+    if (!target) return;
+    e.preventDefault();
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    target.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
+  };
+
   const onUpSticker = (id: string) => () => {
     const d = drag.current;
     drag.current = null;
@@ -154,48 +150,28 @@ export function PolaroidHero({ work }: PolaroidHeroProps) {
       </svg>
 
       {/* ===== DESKTOP ===== */}
-      <section className="hidden md:block relative overflow-hidden" style={{ height: "660px" }}>
-        <div className="absolute inset-0 px-8 pt-24 max-w-5xl mx-auto pointer-events-none" style={{ zIndex: 1 }}>
-          <div style={{ maxWidth: "46%" }}>
+      <section className="hidden md:block relative overflow-hidden" style={{ height: "620px" }}>
+        <div className="absolute inset-0 px-8 flex items-center justify-center pointer-events-none" style={{ zIndex: 1 }}>
+          <div className="text-center" style={{ width: "44%" }}>
             <p className="text-2xl md:text-3xl font-medium mb-4" style={{ color: "var(--accent)" }}>
               Hello! I&apos;m Jennie. ⟡
             </p>
             <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent)" }}>
               Product Manager
             </p>
-            <h1 className="text-2xl md:text-4xl font-medium leading-[1.15] tracking-tight mb-8" style={{ color: "var(--text)", minHeight: "5em" }}>
-              <span>{typed.first}</span>
-              <span style={{ color: "var(--muted)" }}>{typed.second}</span>
-              <span className="type-caret" style={{ opacity: typed.done ? 0 : 1 }}>|</span>
-            </h1>
+            {/* Spacer reserves the final wrapped layout so typing never reflows the lines */}
+            <div className="relative mb-8">
+              <div className="text-xl md:text-3xl font-medium leading-[1.2] tracking-tight" aria-hidden="true" style={{ visibility: "hidden" }}>
+                {FULL}
+              </div>
+              <h1 className="text-xl md:text-3xl font-medium leading-[1.2] tracking-tight absolute inset-0" style={{ color: "var(--text)" }}>
+                <span>{typed.first}</span>
+                <span style={{ color: "var(--muted)" }}>{typed.second}</span>
+                <span className="type-caret" style={{ opacity: typed.done ? 0 : 1 }}>|</span>
+              </h1>
+            </div>
           </div>
         </div>
-
-        {/* Ambient (portrait) */}
-        {AMBIENT.map((src, i) => {
-          const slot = AMBIENT_SLOTS[i];
-          const id = "amb-" + i;
-          const off = offsets[id] || { x: 0, y: 0 };
-          const dragged = !!offsets[id];
-          return (
-            <div
-              key={id}
-              onPointerDown={onDown(id)}
-              onPointerMove={onMove}
-              onPointerUp={onUpCard(null)}
-              className="polaroid select-none"
-              style={{
-                position: "absolute",
-                width: "140px",
-                padding: "8px 8px 22px",
-                zIndex: zMap[id] || (2 + i),
-                ...dealStyle(slot, off, dealOrder(slot), dragged),
-              }}
-            >
-              <div className="polaroid-img" style={{ height: "170px", backgroundImage: "url(" + src + ")" }} />
-            </div>
-          );
-        })}
 
         {/* Stickers (die-cut, draggable, tap to wiggle) */}
         {STICKERS.map((src, i) => {
@@ -216,8 +192,8 @@ export function PolaroidHero({ work }: PolaroidHeroProps) {
               className={"sticker select-none" + (wiggling === id && dealt ? " sticker-wiggle" : "")}
               style={{
                 position: "absolute",
-                width: "150px",
-                zIndex: zMap[id] || (6 + i),
+                width: i === 2 ? "150px" : "130px",
+                zIndex: zMap[id] || (20 + i),
                 cursor: "grab",
                 touchAction: "none",
                 ["--rot" as any]: slot[2] + "deg",
@@ -244,7 +220,7 @@ export function PolaroidHero({ work }: PolaroidHeroProps) {
                 position: "absolute",
                 width: "220px",
                 padding: "10px 10px 30px",
-                zIndex: zMap[id] || (10 + i),
+                zIndex: zMap[id] || slot[3] || (10 + i),
                 ...dealStyle(slot, off, dealOrder(slot), dragged),
               }}
             >
@@ -260,13 +236,17 @@ export function PolaroidHero({ work }: PolaroidHeroProps) {
 
         <a
           href="#selected-work"
-          className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-          style={{ bottom: "18px", zIndex: 3, color: "var(--muted)", textDecoration: "none" }}
+          onClick={scrollToWork}
+          aria-label="Scroll to selected work"
+          className="scroll-cue absolute left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
+          style={{ top: "79%", zIndex: 3, textDecoration: "none" }}
         >
-          <span className="text-xs tracking-[0.24em] uppercase" style={{ fontFamily: "var(--font-fraunces), serif" }}>
+          <span className="scroll-cue-label text-xs tracking-[0.24em] uppercase">
             Selected Work
           </span>
-          <span className="polaroid-bounce" style={{ fontSize: "16px", lineHeight: 1 }}>↓</span>
+          <span className="scroll-cue-ring" aria-hidden="true">
+            <span className="scroll-cue-arrow">↓</span>
+          </span>
         </a>
       </section>
 
@@ -279,8 +259,8 @@ export function PolaroidHero({ work }: PolaroidHeroProps) {
           Product Manager
         </p>
         <h1 className="text-2xl font-medium leading-[1.2] tracking-tight mb-8" style={{ color: "var(--text)" }}>
-          PM with a designer&apos;s eye, researcher&apos;s instinct, and AI-first mindset —{" "}
-          <span style={{ color: "var(--muted)" }}>turning unfamiliar problems into shipped products. ⟡</span>
+          I learn unfamiliar industries fast and ship.{" "}
+          <span style={{ color: "var(--muted)" }}>Digital content, finance, now semiconductors and AI search.</span>
         </h1>
 
         <div className="grid grid-cols-1 gap-5">
@@ -446,15 +426,68 @@ export function PolaroidHero({ work }: PolaroidHeroProps) {
           0%, 100% { opacity: 1; }
           50% { opacity: 0; }
         }
-        .polaroid-bounce {
-          animation: polaroid-bob 1.8s ease-in-out infinite;
+        /* Scroll cue — reads as a control, not just a label */
+        .scroll-cue {
+          color: var(--muted);
+          transition: color 0.25s ease;
+          cursor: pointer;
         }
-        @keyframes polaroid-bob {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(4px); }
+        .scroll-cue:hover,
+        .scroll-cue:focus-visible {
+          color: var(--text);
+        }
+        .scroll-cue-label {
+          font-family: var(--font-fraunces), serif;
+          position: relative;
+          padding-bottom: 5px;
+        }
+        .scroll-cue-label::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          height: 1px;
+          background: currentColor;
+          transform: scaleX(0);
+          transform-origin: center;
+          transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .scroll-cue:hover .scroll-cue-label::after,
+        .scroll-cue:focus-visible .scroll-cue-label::after {
+          transform: scaleX(1);
+        }
+        .scroll-cue-ring {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 34px;
+          height: 34px;
+          border: 1px solid currentColor;
+          border-radius: 999px;
+          opacity: 0.5;
+          transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+        .scroll-cue:hover .scroll-cue-ring,
+        .scroll-cue:focus-visible .scroll-cue-ring {
+          opacity: 1;
+          transform: translateY(3px);
+        }
+        .scroll-cue-arrow {
+          font-size: 14px;
+          line-height: 1;
+          animation: cue-bob 1.9s ease-in-out infinite;
+        }
+        .scroll-cue:hover .scroll-cue-arrow {
+          animation-duration: 0.9s;
+        }
+        @keyframes cue-bob {
+          0%, 100% { transform: translateY(-1px); }
+          50% { transform: translateY(3px); }
         }
         @media (prefers-reduced-motion: reduce) {
-          .polaroid-bounce, .sticker-wiggle { animation: none; }
+          .scroll-cue-arrow, .sticker-wiggle { animation: none; }
+          .scroll-cue-label::after, .scroll-cue-ring { transition: none; }
         }
       `}</style>
     </>

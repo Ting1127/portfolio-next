@@ -317,31 +317,6 @@ export default function KadoSubscriptionPage() {
                     </div>
                   </div>
 
-                  {/* Push Notifications */}
-                  <div className="pt-4">
-                    <p className="text-base font-semibold mb-3" style={{ color: "var(--text)" }}>Targeted Push Notifications</p>
-                    <p className="text-base leading-relaxed mb-4" style={{ color: "var(--muted)" }}>
-                      Built a three-wave automated push system for potential subscribers, each entering a 14-day cycle when they visit a subscription page or gated chapter. Three message angles were tested: content-led (24hrs), price-led (day 4), and social proof (day 7).
-                    </p>
-                    <div className="rounded-2xl p-5 border space-y-3 mb-6" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
-                      <p className="text-base leading-relaxed" style={{ color: "var(--muted)" }}>
-                        <span className="font-medium" style={{ color: "var(--text)" }}>Signal — </span>
-                        Churn survey responses pointed to "price too high" as a leading reason subscribers left.
-                      </p>
-                      <p className="text-base leading-relaxed" style={{ color: "var(--muted)" }}>
-                        <span className="font-medium" style={{ color: "var(--text)" }}>Bet — </span>
-                        Self-reported churn reasons are often surface-level. I suspected the deeper issue was content discovery, not price, and designed the push test to check that before committing engineering time to either fix.
-                      </p>
-                      <p className="text-base leading-relaxed" style={{ color: "var(--muted)" }}>
-                        <span className="font-medium" style={{ color: "var(--text)" }}>Decision — </span>
-                        Day 4's price-led push converted significantly worse than Day 1's content-led push — ruling out price as the primary lever. That result directed investment toward the Hero Banner and genre-based recommendation system below, rather than a pricing change. For existing subscribers, push now runs on two tracks timed to each user's last reading completion: genre-based recommendations to encourage a second novel, and weekly update reminders for titles already started.
-                      </p>
-                    </div>
-                    <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
-                      <img src="/case/kado/push-amplitude.jpg" alt="Amplitude dashboard showing three-wave push notification conversion rates" className="w-full" />
-                      <p className="px-4 py-3 text-xs" style={{ color: "var(--muted)", background: "var(--bg-card)" }}>Amplitude — three-wave push conversion rates</p>
-                    </div>
-                  </div>
                 </div>
               </div>
 

@@ -3,16 +3,16 @@ import { FAQAccordion } from "@/components/FAQAccordion";
 
 export default function AboutPage() {
   const experiences = [
-    { logo: "/logos/teleworker.png", title: "Product Manager", company: "Teleworker", period: "Feb 2026 – Present", location: "Remote" },
-    { logo: "/logos/kadokawa.png", title: "Product Manager", company: "KadoKawa Corp.", period: "Jun 2023 – Jul 2025", location: "Taiwan" },
-    { logo: "/logos/synology.png", title: "Product Management Intern", company: "Synology", period: "Mar 2022 – Oct 2022", location: "Taiwan" },
-    { logo: "/logos/snapask.png", title: "UIUX Designer", company: "Snapask", period: "Jan 2021 – May 2021", location: "Remote" },
-    { logo: "/logos/nextbank.png", title: "Product Design Intern", company: "NEXT BANK", period: "Jul 2020 – Dec 2020", location: "Taiwan" },
-    { logo: "/logos/benq.png", title: "UX Design Intern", company: "BenQ", period: "Jun 2019 – Jun 2020", location: "Taiwan" },
+    { logo: "/logos/micron.png", title: "Product Manager", company: "Micron Technology (via MarTech Agency)", period: "Feb 2026 – Present" },
+    { logo: "/logos/kadokawa.png", title: "Product Manager", company: "KadoKawa Corp.", period: "Jun 2023 – Jul 2025" },
+    { logo: "/logos/synology.png", title: "Product Management Intern", company: "Synology", period: "Mar 2022 – Oct 2022" },
+    { logo: "/logos/snapask.png", title: "UIUX Designer", company: "Snapask", period: "Jan 2021 – May 2021" },
+    { logo: "/logos/nextbank.png", title: "Product Design Intern", company: "NEXT BANK", period: "Jul 2020 – Dec 2020" },
+    { logo: "/logos/benq.png", title: "UX Design Intern", company: "BenQ", period: "Jun 2019 – Jun 2020" },
   ];
 
   const education = [
-    { logo: "/logos/uwmadison.png", title: "MS in Information", company: "University of Wisconsin–Madison", period: "Sep 2026 (Incoming)", note: "Focus: Information Systems, Product Strategy, Data Analytics" },
+    { logo: "/logos/uwmadison.png", title: "MS in Information", company: "University of Wisconsin–Madison", period: "Sep 2026 - Present", note: "Focus: Information Systems, Product Strategy, Data Analytics" },
     { logo: "/logos/ntust.png", title: "MA in Design", company: "National Taiwan University of Science and Technology", period: "Mar 2020 – Jan 2023", note: "Focus: UIUX, Service Design, Customer Experience" },
     { logo: "/logos/ntue.png", title: "BA in Industrial and Product Design", company: "National Taipei University of Education", period: "Sep 2015 – Jun 2019", note: "" },
   ];
@@ -65,14 +65,6 @@ export default function AboutPage() {
       q: "Is Jennie authorized to work in the US?",
       a: "I'll be on an F-1 student visa starting September 2026, eligible for on-campus employment and CPT/OPT for internships and full-time roles.",
     },
-    {
-      q: "Is Jennie more of a designer or a PM?",
-      a: "PM — with a designer's instinct. I've shipped real products with measurable outcomes, led cross-functional teams, and owned roadmaps. The design background means I think about experience quality differently than most PMs.",
-    },
-    {
-      q: "What is GEO?",
-      a: "Generative Engine Optimization — optimizing brand visibility within AI-powered search engines like ChatGPT, Perplexity, and Google AI Overviews. It's where SEO meets LLMs.",
-    },
   ];
 
   return (
@@ -90,9 +82,8 @@ export default function AboutPage() {
               Hi, I&apos;m Jennie Zeng (曾鈺婷) ⟡
             </h1>
             <div className="text-base leading-relaxed space-y-5" style={{ color: "var(--text)" }}>
-              <p>I&apos;m an incoming MSI student at UW–Madison, starting this September — which means Wisconsin is home from here on out. Before grad school, I worked as a Product Manager across content platforms, SaaS, B2B, and hardware-software products — spanning industries from publishing to finance to semiconductors.</p>
-              <p>My background started in UX design and research, and that&apos;s still how I approach product work: understand how people experience something first, then figure out the system behind it. What I&apos;m drawn to is unfamiliar territory — industries I haven&apos;t worked in yet, technology that doesn&apos;t have a playbook yet.</p>
-              <p>Right now that&apos;s generative AI and how it&apos;s reshaping the way people find and trust information. Figuring out what &quot;good&quot; looks like before anyone&apos;s written the rules is, honestly, my favorite part of the job.</p>
+              <p>I&apos;m an MS Information student at UW–Madison, focusing on data analysis and AI-powered search.</p>
+              <p>Before grad school, I worked as a Product Manager across content platforms, SaaS, B2B, and hardware-software products, spanning publishing, finance, and semiconductors. With a background in UX design and research, I approach product work by understanding people first, then the systems behind their experiences.</p>
             </div>
           </div>
           <div className="flex-shrink-0 w-40 md:w-48 rounded-2xl overflow-hidden" style={{ aspectRatio: "3/4" }}>
@@ -114,7 +105,7 @@ export default function AboutPage() {
                     <p className="text-sm font-medium" style={{ color: "var(--text)" }}>
                       {e.title} — <span className="italic" style={{ color: "var(--muted)" }}>{e.company}</span>
                     </p>
-                    <p className="text-xs mt-0.5" style={{ color: "var(--muted)" }}>{e.period} · {e.location}</p>
+                    <p className="text-xs mt-0.5" style={{ color: "var(--muted)" }}>{e.period}</p>
                   </div>
                 </div>
               ))}
@@ -281,7 +272,7 @@ export default function AboutPage() {
         <div className="rounded-2xl p-8 text-center border" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
           <p className="text-lg mb-4" style={{ color: "var(--accent)" }}>⟡</p>
           <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--text)" }}>
-            Starting September 2026 at UW–Madison, I&apos;m open to student assistant, RA, and project roles — especially anything at the intersection of AI, data, and product.
+            Starting September 2026 at UW–Madison, I&apos;m open to Internships, student assistant, and project roles — especially anything at the intersection of AI, data, and product.
           </p>
           <a href="mailto:zyting.info@gmail.com" className="btn-primary inline-block">
             Get in touch ↗︎

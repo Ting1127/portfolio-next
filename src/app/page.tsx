@@ -41,8 +41,14 @@ export default async function Home() {
       {/* Hero — draggable polaroid cards */}
       <PolaroidHero work={workCards} />
 
+      {/* Work + testimonials, with a soft ambient glow instead of a hard divider */}
+      <div style={{ position: "relative" }}>
+
+
+
+        
       {/* Featured Cases */}
-      <section id="selected-work" className="px-8 pt-8 pb-32 max-w-5xl mx-auto scroll-mt-24">
+      <section id="selected-work" className="relative z-10 px-8 pt-8 pb-32 max-w-5xl mx-auto scroll-mt-24">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {featured.map((project: any) => {
             const props = project.properties;
@@ -142,6 +148,8 @@ export default async function Home() {
           <span className="text-2xl transition-transform group-hover:translate-y-1" style={{ lineHeight: 1 }}>↓</span>
         </a>
       </section>
+
+      </div>{/* end tinted section */}
 
       {/* Footer */}
       <footer className="px-8 py-12 border-t max-w-5xl mx-auto w-full" style={{ borderColor: "var(--border)" }}>
