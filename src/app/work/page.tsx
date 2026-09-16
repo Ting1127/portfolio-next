@@ -1,6 +1,15 @@
 import { getProjects } from "@/lib/notion";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
+// 涵蓋的產業：直接改這個陣列即可（順序 = 顯示順序）
+const industries = [
+  "Semiconductor",
+  "Digital Publishing",
+  "Consumer Electronics",
+  "EdTech",
+  "Fintech",
+];
+
 const earlyWork = [
   {
     title: "Synology Photos Home User Research",
@@ -62,13 +71,28 @@ export default async function WorkPage() {
       </nav>
 
       <section className="pt-48 pb-32 px-8 max-w-5xl mx-auto">
+        {/* Header — same sizes and spacing as the Drift page */}
         <p className="text-xs tracking-widest uppercase mb-4" style={{ color: "var(--accent)" }}>Work</p>
-        <h1 className="text-4xl md:text-5xl font-medium tracking-tight mb-4" style={{ color: "var(--text)" }}>
-          All Projects
+        <h1 className="text-3xl md:text-4xl font-medium tracking-tight mb-4" style={{ color: "var(--text)" }}>
+          Projects
         </h1>
-        <p className="text-sm mb-16" style={{ color: "var(--muted)" }}>
-          {projects.length} cases across product, consulting, and research
+        <p className="text-sm mb-6 max-w-xl" style={{ color: "var(--muted)" }}>
+          {projects.length} cases across product, consulting, and research, in these industries:
         </p>
+
+        {/* Industries — same dashed pill as the Drift notice */}
+        <ul className="flex flex-wrap gap-2 mb-16" aria-label="Industries covered">
+          {industries.map((industry) => (
+            <li
+              key={industry}
+              className="inline-flex items-center gap-2 text-xs px-3 py-1.5 rounded-full border border-dashed"
+              style={{ borderColor: "var(--border)", color: "var(--muted)" }}
+            >
+              <span style={{ color: "var(--accent)" }}>⟡</span>
+              {industry}
+            </li>
+          ))}
+        </ul>
 
         {/* Main cases */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-24">
@@ -152,10 +176,11 @@ export default async function WorkPage() {
         </div>
       </section>
 
+      {/* Footer — same mobile stacking as the Drift page */}
       <footer className="px-8 py-12 border-t max-w-5xl mx-auto w-full" style={{ borderColor: "var(--border)" }}>
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center">
           <span className="text-xs" style={{ color: "var(--muted)" }}>Jennie Z © 2026</span>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4 sm:gap-6 flex-wrap">
             <a href="https://drive.google.com/file/d/1sF1Nc4DJH51pFhCwRmBJBhDAHtIR7XmX/view?usp=sharing" target="_blank"
               className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Resume</a>
             <a href="https://linkedin.com/in/yuting-zeng1127" target="_blank"

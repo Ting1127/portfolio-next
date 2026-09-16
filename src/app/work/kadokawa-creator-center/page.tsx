@@ -1,6 +1,75 @@
 import { CaseSidebar } from "@/components/CaseSidebar";
 import { Nav } from "@/components/Nav";
 
+const journey = [
+  {
+    stage: "Before writing",
+    onPlatform: false,
+    goals: ["Find inspiration; set writing goals and themes"],
+    context: [],
+    interviews: [
+      "Study other works and topics, then sketch an outline",
+      "Set a goal — enter a contest, grow readership",
+      "Plan word count and overall length",
+    ],
+  },
+  {
+    stage: "While writing",
+    onPlatform: false,
+    goals: [
+      "Write in a familiar tool that syncs across devices",
+      "Some write directly on the novel platform",
+    ],
+    context: [
+      "Want a stable, familiar, novel-specific tool — so no work is ever lost",
+    ],
+    interviews: [
+      "Use Pages, Google Docs, and Chinese writing apps to manage chapters, tags, outlines, and publishing details",
+    ],
+  },
+  {
+    stage: "Moving to the platform",
+    onPlatform: true,
+    goals: [
+      "Finish the whole work, then schedule every update at once",
+      "Or serialize while writing, adjusting direction based on reader feedback",
+    ],
+    context: [
+      "Copy and paste large blocks of text into the platform, proofread, and finalize the cover",
+      "Split work across a primary and secondary platform to maximize exposure — publish more often on the primary, use the secondary to drive traffic",
+    ],
+    interviews: [
+      "Finish the full novel, upload it all at once, and set a release schedule",
+      "Use AI tools to help finalize the cover",
+    ],
+  },
+  {
+    stage: "After publishing",
+    onPlatform: true,
+    goals: [
+      "Promote: run a fan community, rely on platform traffic",
+      "Interact with readers and other creators",
+      "Check performance data",
+    ],
+    context: [
+      "Draw readers over from high-traffic novel sites",
+      "Compare results across platforms to decide where to invest next",
+      "Meet fellow writers through the platform",
+    ],
+    interviews: [
+      "Social traffic is scattered, so readers were previously funneled in from a high-traffic novel site",
+      "Track clicks with short links",
+      "Rely mainly on the platform's own traffic for promotion",
+    ],
+  },
+];
+
+const journeyRows: { key: "goals" | "context" | "interviews"; label: string }[] = [
+  { key: "goals", label: "Goals" },
+  { key: "context", label: "Context" },
+  { key: "interviews", label: "From interviews" },
+];
+
 export default function CreatorCenterPage() {
   const sections = [
     { id: "tldr", label: "TL;DR" },
@@ -20,10 +89,10 @@ export default function CreatorCenterPage() {
       {/* Hero */}
       <section className="pt-48 pb-16 px-8 max-w-5xl mx-auto">
         <p className="text-xs tracking-widest uppercase mb-4" style={{ color: "var(--accent)" }}>Product · KadoKawa Corp.</p>
-        <h1 className="text-4xl md:text-5xl font-medium tracking-tight leading-[1.1] mb-6" style={{ color: "var(--text)" }}>
+        <h1 className="text-4xl font-medium tracking-tight leading-[1.1] mb-6" style={{ color: "var(--text)" }}>
           Creator Center Redesign
         </h1>
-        <p className="text-xl max-w-2xl" style={{ color: "var(--muted)" }}>
+        <p className="text-xl leading-relaxed max-w-2xl" style={{ color: "var(--muted)" }}>
           Using mixed-methods research to cut through competing team priorities — and redesign a creator dashboard that actually reflects what creators need.
         </p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 pt-8 border-t" style={{ borderColor: "var(--border)" }}>
@@ -170,7 +239,7 @@ export default function CreatorCenterPage() {
                 ))}
               </div>
 
-              <div className="pl-14 mb-6">
+              <div className="pl-14">
                 <p className="text-sm font-medium mb-4" style={{ color: "var(--text)" }}>
                   Creator segmentation: platform loyalty × usage frequency
                 </p>
@@ -188,10 +257,6 @@ export default function CreatorCenterPage() {
                     </div>
                   ))}
                 </div>
-              </div>
-
-              <div className="pl-14 rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
-                <img src="/case/creator/creator-segmentation.png" alt="Creator segmentation — C1/C2/C3/C4 quadrant" className="w-full" />
               </div>
             </div>
 
@@ -220,8 +285,62 @@ export default function CreatorCenterPage() {
                 ))}
               </div>
 
-              <div className="pl-14 rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
-                <img src="/case/creator/user-journey-map.png" alt="User journey map — four creators (Pre-creation → During → Post-publication)" className="w-full" />
+              <div className="pl-14">
+                <p className="text-sm font-medium mb-4" style={{ color: "var(--text)" }}>
+                  Creator journey: from first idea to post-publication
+                </p>
+                <div className="rounded-2xl border overflow-x-auto" style={{ borderColor: "var(--border)", background: "var(--bg-card)" }}>
+                  <div className="min-w-[760px] p-5">
+                    {/* Stage headers */}
+                    <div className="grid grid-cols-[96px_repeat(4,minmax(0,1fr))] gap-3 mb-4">
+                      <div />
+                      {journey.map((col) => (
+                        <div
+                          key={col.stage}
+                          className="rounded-lg px-3 py-2 text-xs font-medium text-center"
+                          style={
+                            col.onPlatform
+                              ? { background: "var(--accent)", color: "var(--bg)" }
+                              : { border: "1px solid var(--border)", color: "var(--text)" }
+                          }
+                        >
+                          {col.stage}
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Rows */}
+                    {journeyRows.map((row, i) => (
+                      <div
+                        key={row.key}
+                        className={`grid grid-cols-[96px_repeat(4,minmax(0,1fr))] gap-3 py-4 ${i > 0 ? "border-t" : ""}`}
+                        style={{ borderColor: "var(--border)" }}
+                      >
+                        <p className="text-xs font-medium pt-0.5" style={{ color: "var(--accent)" }}>{row.label}</p>
+                        {journey.map((col) => {
+                          const items = col[row.key];
+                          return (
+                            <div key={col.stage} className="space-y-2">
+                              {items.length === 0 ? (
+                                <p className="text-xs" style={{ color: "var(--border)" }}>—</p>
+                              ) : (
+                                items.map((text) => (
+                                  <p
+                                    key={text}
+                                    className="text-xs leading-relaxed"
+                                    style={{ color: row.key === "interviews" ? "var(--muted)" : "var(--text)" }}
+                                  >
+                                    {text}
+                                  </p>
+                                ))
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -267,8 +386,10 @@ export default function CreatorCenterPage() {
                 </div>
               </div>
 
-              <div className="pl-14 rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
-                <img src="/case/creator/ipa-chart.png" alt="IPA chart — importance vs satisfaction across 6 Creator Center functions" className="w-full" />
+              <div className="pl-14">
+                <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
+                  <img src="/case/creator/ipa-chart.png" alt="IPA chart — importance vs satisfaction across 6 Creator Center functions" className="w-full" />
+                </div>
               </div>
             </div>
 
@@ -302,14 +423,12 @@ export default function CreatorCenterPage() {
                 ))}
               </div>
 
-              <div className="pl-14 rounded-2xl p-5 border-l-2" style={{ borderColor: "var(--accent)", background: "var(--bg-card)" }}>
-                <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-                  The Creator Center redesign targeted stages ① and ② — the highest-dropout moments. A creator who registers but never publishes, or publishes once but gets no traction, is the most at-risk. Every design decision in the redesign was anchored to moving creators through these two transitions.
-                </p>
-              </div>
-
-              <div className="mt-6 pl-14 rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
-                <img src="/case/creator/creator-lifecycle.png" alt="Creator lifecycle model — six stages from Start to Advocate" className="w-full" />
+              <div className="pl-14">
+                <div className="rounded-2xl p-5 border-l-2" style={{ borderColor: "var(--accent)", background: "var(--bg-card)" }}>
+                  <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
+                    The Creator Center redesign targeted stages ① and ② — the highest-dropout moments. A creator who registers but never publishes, or publishes once but gets no traction, is the most at-risk. Every design decision in the redesign was anchored to moving creators through these two transitions.
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -324,14 +443,18 @@ export default function CreatorCenterPage() {
                 Research findings were shared in a cross-departmental session. When the IPA data showed creators cared most about exposure and publishing workflow, it stopped being anyone's opinion — it became the users speaking. That reframe changed the conversation from competing priorities to shared evidence.
               </p>
 
-              <div className="pl-14 rounded-2xl p-6 border-l-2" style={{ borderColor: "var(--accent)", background: "var(--bg-card)" }}>
-                <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-                  Cross-departmental consensus achieved on redesign priorities. The research didn't just inform the design — it resolved the organizational deadlock that had been blocking it.
-                </p>
+              <div className="pl-14">
+                <div className="rounded-2xl p-6 border-l-2" style={{ borderColor: "var(--accent)", background: "var(--bg-card)" }}>
+                  <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
+                    Cross-departmental consensus achieved on redesign priorities. The research didn't just inform the design — it resolved the organizational deadlock that had been blocking it.
+                  </p>
+                </div>
               </div>
 
-              <div className="mt-6 pl-14 rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
-                <img src="/case/creator/research-sharing.png" alt="Cross-departmental research sharing session" className="w-full" />
+              <div className="mt-6 pl-14">
+                <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
+                  <img src="/case/creator/research-sharing.png" alt="Cross-departmental research sharing session" className="w-full" />
+                </div>
               </div>
             </div>
           </section>
@@ -346,7 +469,7 @@ export default function CreatorCenterPage() {
               Every redesign decision traced back to a specific research finding. IPA identified exposure and publishing workflow as the highest-priority gaps. The lifecycle model confirmed that stages ① and ② — first draft to first publish — were the highest-dropout moments. Both pointed to the same answer: streamline publishing, surface promotion, make revenue visible. Those became the dominant elements on the redesigned homepage, not widgets or announcements.
             </p>
 
-            <div className="space-y-4 mb-8">
+            <div className="space-y-4">
               {[
                 {
                   label: "Prioritized data visibility",
@@ -373,13 +496,6 @@ export default function CreatorCenterPage() {
                   </div>
                 </div>
               ))}
-            </div>
-
-            <div className="rounded-2xl overflow-hidden border mb-4" style={{ borderColor: "var(--border)" }}>
-              <img src="/case/creator/creator-center-before-after.png" alt="Creator Center — before and after redesign" className="w-full" />
-            </div>
-            <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
-              <img src="/case/creator/creator-center-annotated.png" alt="Creator Center — annotated new design" className="w-full" />
             </div>
           </section>
 
@@ -441,9 +557,9 @@ export default function CreatorCenterPage() {
       <div className="px-8 pb-16 max-w-5xl mx-auto">
         <div className="border-t pt-12" style={{ borderColor: "var(--border)" }}>
           <p className="text-xs uppercase tracking-widest mb-4" style={{ color: "var(--muted)" }}>Next Case</p>
-          <a href="/work/kado-subscription"
+          <a href="/work/kadokawa-discovery-reading"
             className="group flex justify-between items-center hover:opacity-70 transition-opacity">
-            <p className="text-2xl font-medium" style={{ color: "var(--text)" }}>Kado+ Subscription →</p>
+            <p className="text-2xl font-medium" style={{ color: "var(--text)" }}>KadoKawa Discovery &amp; Reading →</p>
           </a>
         </div>
       </div>

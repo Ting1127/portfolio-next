@@ -2,6 +2,8 @@ import { CaseHero } from "@/components/CaseHero";
 import { CaseSidebar } from "@/components/CaseSidebar";
 import { Nav } from "@/components/Nav";
 
+const ACCENT = "var(--accent)";
+
 export default function GeoMonitoringPage() {
   const sections = [
     { id: "tldr", label: "TL;DR" },
@@ -15,34 +17,33 @@ export default function GeoMonitoringPage() {
   return (
     <main className="min-h-screen" style={{ background: "var(--bg)", color: "var(--text)" }}>
 
-      <Nav accent="var(--accent-purple)" />
+      <Nav accent={ACCENT} />
 
       <CaseHero
         eyebrow="Product"
         title="GEO Monitoring & Strategy"
-        subtitle="Building a Fortune 500 semiconductor brand's first generative engine optimization system — from zero to a full monitoring and strategy framework."
+        subtitle="Building GEO tracking from zero to a full monitoring and strategy framework."
         meta={[
-          { label: "Role", value: "GEO Consultant" },
+          { label: "Role", value: "Product Manager" },
           { label: "Timeline", value: "Feb 2026 – Present" },
-          { label: "Company", value: "Fortune 500 Semiconductor · via Teleworker" },
-          { label: "Platforms", value: "ChatGPT · Perplexity · Google AIO" },
+          { label: "Company", value: "Micron (via marketing agency)" },
+          { label: "Platforms", value: "ChatGPT · Google AIO · and more" },
         ]}
-        cover={{ type: "placeholder" }}
-        accentColor="var(--accent-purple)"
+        accentColor={ACCENT}
         containerClassName="max-w-5xl"
       />
 
       {/* Content + Sidebar */}
       <div className="px-8 max-w-5xl mx-auto flex gap-16 pb-32">
 
-        <CaseSidebar sections={sections} accentColor="var(--accent-purple)" />
+        <CaseSidebar sections={sections} accentColor={ACCENT} />
 
         {/* Main content */}
         <div className="flex-1 space-y-24">
 
           {/* TL;DR */}
           <section id="tldr">
-            <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent-purple)" }}>TL;DR</p>
+            <p className="text-xs tracking-widest uppercase mb-6" style={{ color: ACCENT }}>TL;DR</p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
                 { number: "0→1", label: "Defined what GEO means for a Fortune 500 semiconductor brand and built the measurement system from scratch" },
@@ -50,7 +51,7 @@ export default function GeoMonitoringPage() {
                 { number: "New", label: "No established playbook. Every framework, metric, and prioritization rule had to be invented." },
               ].map((stat) => (
                 <div key={stat.label} className="rounded-2xl p-6 border" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
-                  <p className="text-3xl md:text-4xl font-medium mb-2" style={{ color: "var(--accent-purple)" }}>{stat.number}</p>
+                  <p className="text-3xl md:text-4xl font-medium mb-2" style={{ color: ACCENT }}>{stat.number}</p>
                   <p className="text-sm" style={{ color: "var(--muted)" }}>{stat.label}</p>
                 </div>
               ))}
@@ -59,7 +60,7 @@ export default function GeoMonitoringPage() {
 
           {/* Context */}
           <section id="context">
-            <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent-purple)" }}>Context</p>
+            <p className="text-xs tracking-widest uppercase mb-6" style={{ color: ACCENT }}>Context</p>
             <h2 className="text-2xl md:text-3xl font-medium mb-4" style={{ color: "var(--text)" }}>A new discipline with no established rules</h2>
             <p className="leading-relaxed mb-6" style={{ color: "var(--muted)" }}>
               As AI-powered search reshapes how brands get discovered, a new question emerged: when someone asks ChatGPT "which DDR6 memory brand is good?" or "what are the key semiconductor investments in Japan?" — what answer do they get, and is the brand in it?
@@ -68,7 +69,7 @@ export default function GeoMonitoringPage() {
               GEO (Generative Engine Optimization) is the discipline of ensuring your brand is accurately represented, cited, and contextually positioned in LLM-generated answers. Unlike SEO, there's no established standard, no universal metric, no agreed-upon playbook.
             </p>
             <p className="leading-relaxed mb-10" style={{ color: "var(--muted)" }}>
-              I joined as a GEO consultant at Teleworker, embedded within a Fortune 500 semiconductor company's communications team to build their GEO strategy from the ground up.
+              I joined through a marketing agency as the product manager, embedded within Micron's communications team to build their GEO strategy from the ground up.
             </p>
 
             {/* Why now */}
@@ -79,7 +80,7 @@ export default function GeoMonitoringPage() {
                 { stat: "60%", label: "Of search behaviors have evolved into Zero-Click journeys" },
               ].map((item) => (
                 <div key={item.stat} className="rounded-2xl p-5 border" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
-                  <p className="text-2xl font-medium mb-1" style={{ color: "var(--accent-purple)" }}>{item.stat}</p>
+                  <p className="text-2xl font-medium mb-1" style={{ color: ACCENT }}>{item.stat}</p>
                   <p className="text-xs leading-relaxed" style={{ color: "var(--muted)" }}>{item.label}</p>
                 </div>
               ))}
@@ -94,7 +95,7 @@ export default function GeoMonitoringPage() {
                     { label: "New GEO", items: ["Entities & Intent", "Citations & Mentions", "Share of Voice", "Info Gain & E-E-A-T"] },
                   ].map((col) => (
                     <div key={col.label}>
-                      <p className="text-xs font-medium mb-3" style={{ color: col.label === "New GEO" ? "var(--accent-purple)" : "var(--muted)" }}>{col.label}</p>
+                      <p className="text-xs font-medium mb-3" style={{ color: col.label === "New GEO" ? ACCENT : "var(--muted)" }}>{col.label}</p>
                       <ul className="space-y-2">
                         {col.items.map(item => (
                           <li key={item} className="text-sm" style={{ color: "var(--text)" }}>{item}</li>
@@ -109,7 +110,7 @@ export default function GeoMonitoringPage() {
 
           {/* Core Problem */}
           <section id="problem">
-            <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent-purple)" }}>The Core Problem</p>
+            <p className="text-xs tracking-widest uppercase mb-6" style={{ color: ACCENT }}>The Core Problem</p>
             <h2 className="text-2xl md:text-3xl font-medium mb-4" style={{ color: "var(--text)" }}>What does "being visible in AI" even mean?</h2>
             <p className="leading-relaxed mb-6" style={{ color: "var(--muted)" }}>
               Before I could build anything, I had to answer a harder question: what does "being visible in AI" mean for a semiconductor brand with multiple audiences, products, and regional markets?
@@ -127,13 +128,13 @@ export default function GeoMonitoringPage() {
 
           {/* Approach */}
           <section id="approach">
-            <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent-purple)" }}>My Approach</p>
+            <p className="text-xs tracking-widest uppercase mb-6" style={{ color: ACCENT }}>My Approach</p>
             <h2 className="text-2xl md:text-3xl font-medium mb-10" style={{ color: "var(--text)" }}>Three decisions that shaped the work</h2>
 
             {/* Decision 1 */}
             <div className="mb-16">
               <div className="flex gap-4 items-start mb-6">
-                <span className="text-2xl font-medium flex-shrink-0" style={{ color: "var(--accent-purple)" }}>01</span>
+                <span className="text-2xl font-medium flex-shrink-0" style={{ color: ACCENT }}>01</span>
                 <h3 className="text-xl font-medium" style={{ color: "var(--text)" }}>Structure the prompt landscape before optimizing anything</h3>
               </div>
               <div className="space-y-4 pl-10">
@@ -142,21 +143,18 @@ export default function GeoMonitoringPage() {
                   { label: "Bet", body: "Treating all prompts the same would be a mistake. A globally consistent message about the company's technology is right. A globally consistent message about it as an employer is wrong — what a hiring candidate in Taiwan cares about is fundamentally different from what a policy audience in Japan cares about." },
                   { label: "Decision", body: "Build a two-tier prompt taxonomy: Technology (Global) for product and competitive prompts requiring consistent, authoritative responses — and Brand Perception (Localized by Region) for workplace, policy, and brand awareness prompts requiring market-specific narratives." },
                 ].map((item) => (
-                  <div key={item.label} className="border-l-2 pl-5" style={{ borderColor: "var(--accent-purple)" }}>
-                    <p className="text-xs uppercase tracking-widest mb-2" style={{ color: "var(--accent-purple)" }}>{item.label}</p>
+                  <div key={item.label} className="border-l-2 pl-5" style={{ borderColor: ACCENT }}>
+                    <p className="text-xs uppercase tracking-widest mb-2" style={{ color: ACCENT }}>{item.label}</p>
                     <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>{item.body}</p>
                   </div>
                 ))}
-              </div>
-              <div className="mt-8 rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
-                <img src="/case/geo/prompt-framework.png" alt="Prompt Framework" className="w-full" />
               </div>
             </div>
 
             {/* Decision 2 */}
             <div className="mb-16">
               <div className="flex gap-4 items-start mb-6">
-                <span className="text-2xl font-medium flex-shrink-0" style={{ color: "var(--accent-purple)" }}>02</span>
+                <span className="text-2xl font-medium flex-shrink-0" style={{ color: ACCENT }}>02</span>
                 <h3 className="text-xl font-medium" style={{ color: "var(--text)" }}>Fix absence before optimizing presence</h3>
               </div>
               <div className="space-y-4 pl-10">
@@ -165,8 +163,8 @@ export default function GeoMonitoringPage() {
                   { label: "Bet", body: "Misinformation and brand absence are more damaging than low ranking. If AI generates a wrong answer about the company's technology or misrepresents its workplace culture, that's actively harmful — not just a missed opportunity." },
                   { label: "Decision", body: "Establish a prioritization rule: Fix misinformation and missing brand presence first → then improve citation coverage → then build differentiation and authority. This sequencing prevented the team from optimizing the wrong things at the wrong time." },
                 ].map((item) => (
-                  <div key={item.label} className="border-l-2 pl-5" style={{ borderColor: "var(--accent-purple)" }}>
-                    <p className="text-xs uppercase tracking-widest mb-2" style={{ color: "var(--accent-purple)" }}>{item.label}</p>
+                  <div key={item.label} className="border-l-2 pl-5" style={{ borderColor: ACCENT }}>
+                    <p className="text-xs uppercase tracking-widest mb-2" style={{ color: ACCENT }}>{item.label}</p>
                     <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>{item.body}</p>
                   </div>
                 ))}
@@ -176,7 +174,7 @@ export default function GeoMonitoringPage() {
             {/* Decision 3 */}
             <div className="mb-8">
               <div className="flex gap-4 items-start mb-6">
-                <span className="text-2xl font-medium flex-shrink-0" style={{ color: "var(--accent-purple)" }}>03</span>
+                <span className="text-2xl font-medium flex-shrink-0" style={{ color: ACCENT }}>03</span>
                 <h3 className="text-xl font-medium" style={{ color: "var(--text)" }}>Design the measurement system before picking the tools</h3>
               </div>
               <div className="space-y-4 pl-10">
@@ -185,8 +183,8 @@ export default function GeoMonitoringPage() {
                   { label: "Bet", body: "If you design your measurement system around tool capabilities, you end up measuring what's easy to track, not what actually matters. The measurement framework should come from the strategy, not from the dashboard." },
                   { label: "Decision", body: "Define a two-tier metric structure — Primary metrics (Brand Mentions, Citations, Cited Pages, LLM Traffic) tracked consistently every month, and Secondary metrics (Share of Voice, Answer Rank, Sentiment, Distribution by LLMs) used diagnostically to explain primary metric changes." },
                 ].map((item) => (
-                  <div key={item.label} className="border-l-2 pl-5" style={{ borderColor: "var(--accent-purple)" }}>
-                    <p className="text-xs uppercase tracking-widest mb-2" style={{ color: "var(--accent-purple)" }}>{item.label}</p>
+                  <div key={item.label} className="border-l-2 pl-5" style={{ borderColor: ACCENT }}>
+                    <p className="text-xs uppercase tracking-widest mb-2" style={{ color: ACCENT }}>{item.label}</p>
                     <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>{item.body}</p>
                   </div>
                 ))}
@@ -195,11 +193,11 @@ export default function GeoMonitoringPage() {
               {/* Metrics grid */}
               <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="rounded-2xl p-6 border" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
-                  <p className="text-xs uppercase tracking-widest mb-4" style={{ color: "var(--accent-purple)" }}>Primary Metrics</p>
+                  <p className="text-xs uppercase tracking-widest mb-4" style={{ color: ACCENT }}>Primary Metrics</p>
                   <ul className="space-y-2">
                     {["Brand Mentions", "Citations", "Cited Pages", "LLM Traffic"].map(m => (
                       <li key={m} className="text-sm flex gap-2" style={{ color: "var(--text)" }}>
-                        <span style={{ color: "var(--accent-purple)" }}>—</span>{m}
+                        <span style={{ color: ACCENT }}>—</span>{m}
                       </li>
                     ))}
                   </ul>
@@ -220,7 +218,7 @@ export default function GeoMonitoringPage() {
 
           {/* What I Delivered */}
           <section id="delivered">
-            <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent-purple)" }}>What I Delivered</p>
+            <p className="text-xs tracking-widest uppercase mb-6" style={{ color: ACCENT }}>What I Delivered</p>
             <h2 className="text-2xl md:text-3xl font-medium mb-8" style={{ color: "var(--text)" }}>From strategy to execution infrastructure</h2>
             <div className="space-y-4 mb-8">
               {[
@@ -231,7 +229,7 @@ export default function GeoMonitoringPage() {
                 { title: "Monthly Reporting Framework", desc: "Standardized report structure enabling Before / Action / After comparison across platforms" },
               ].map((item) => (
                 <div key={item.title} className="flex gap-4 p-5 rounded-2xl border" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
-                  <span style={{ color: "var(--accent-purple)" }}>⟡</span>
+                  <span style={{ color: ACCENT }}>⟡</span>
                   <div>
                     <p className="text-sm font-medium mb-1" style={{ color: "var(--text)" }}>{item.title}</p>
                     <p className="text-sm" style={{ color: "var(--muted)" }}>{item.desc}</p>
@@ -246,7 +244,7 @@ export default function GeoMonitoringPage() {
 
           {/* Learnings */}
           <section id="learnings">
-            <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent-purple)" }}>Learnings</p>
+            <p className="text-xs tracking-widest uppercase mb-6" style={{ color: ACCENT }}>Learnings</p>
             <h2 className="text-2xl md:text-3xl font-medium mb-8" style={{ color: "var(--text)" }}>What building in a nascent field taught me</h2>
             <div className="space-y-6">
               {[
@@ -254,7 +252,7 @@ export default function GeoMonitoringPage() {
                 { title: "'Localize' means more than translate", body: "A globally consistent brand message breaks down at the prompt level. The questions a hiring candidate in Taiwan asks are structurally different from the questions a policy audience in Japan asks. Localization in GEO isn't about language — it's about understanding what each audience is actually trying to find out, and making sure the right answer exists where AI will find it." },
                 { title: "In nascent fields, the measurement framework is the strategy", body: "Unlike SEO, GEO metrics aren't standardized. There's no Google Analytics for LLM citations. Building a meaningful monitoring system required deciding what matters before knowing what's measurable — and being comfortable operating on judgment when dashboards don't yet exist. That discomfort is the job." },
               ].map((item) => (
-                <div key={item.title} className="border-l-2 pl-6" style={{ borderColor: "var(--accent-purple)" }}>
+                <div key={item.title} className="border-l-2 pl-6" style={{ borderColor: ACCENT }}>
                   <p className="text-sm font-medium mb-2" style={{ color: "var(--text)" }}>{item.title}</p>
                   <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>{item.body}</p>
                 </div>
@@ -269,9 +267,9 @@ export default function GeoMonitoringPage() {
       <div className="px-8 pb-16 max-w-5xl mx-auto">
         <div className="border-t pt-12" style={{ borderColor: "var(--border)" }}>
           <p className="text-xs uppercase tracking-widest mb-4" style={{ color: "var(--muted)" }}>Next Case</p>
-          <a href="/work/kado-subscription"
+          <a href="/work/kadokawa-creator-center"
             className="group flex justify-between items-center hover:opacity-70 transition-opacity">
-            <p className="text-2xl font-medium" style={{ color: "var(--text)" }}>Kado+ Subscription →</p>
+            <p className="text-2xl font-medium" style={{ color: "var(--text)" }}>Creator Center Redesign →</p>
           </a>
         </div>
       </div>
@@ -284,7 +282,7 @@ export default function GeoMonitoringPage() {
               className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>LinkedIn ↗</a>
             <a href="mailto:zyting.info@gmail.com"
               className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>zyting.info@gmail.com</a>
-            <span style={{ color: "var(--accent-purple)" }}>⟡</span>
+            <span style={{ color: ACCENT }}>⟡</span>
           </div>
         </div>
       </footer>
