@@ -14,7 +14,7 @@ export default function AboutPage() {
   ];
 
   const education = [
-    { logo: "/logos/uwmadison.png", title: "MS in Information", company: "University of Wisconsin–Madison", period: "Sep 2026 (Incoming)", note: "Focus: Information Systems, Product Strategy, Data Analytics" },
+    { logo: "/logos/uwmadison.png", title: "MS in Information", company: "University of Wisconsin–Madison", period: "Sep 2026 - Present", note: "Focus: Information Systems, Product Strategy, Data Analytics" },
     { logo: "/logos/ntust.png", title: "MA in Design", company: "National Taiwan University of Science and Technology", period: "Mar 2020 – Jan 2023", note: "Focus: UIUX, Service Design, Customer Experience" },
     { logo: "/logos/ntue.png", title: "BA in Industrial and Product Design", company: "National Taipei University of Education", period: "Sep 2015 – Jun 2019", note: "" },
   ];
