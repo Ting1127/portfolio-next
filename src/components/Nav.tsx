@@ -21,7 +21,7 @@ export function Nav({ accent = "var(--accent)" }: NavProps) {
         <a href="/drift" className="hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Drift</a>
         <a href="/about" className="hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>About</a>
         <a
-          href="https://drive.google.com/file/d/1OZjLhBHC7gBe1Uqitkb7wNmviDnytwlu/view?usp=sharing"
+          href="https://drive.google.com/file/d/1Veedrz5855G7Sj98f4ErAEjPii3ISQwp/view?usp=sharing"
           target="_blank"
           className="hidden sm:block hover:opacity-80 transition-opacity"
           style={{ color: "var(--muted)" }}
