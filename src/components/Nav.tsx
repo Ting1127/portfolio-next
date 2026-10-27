@@ -1,21 +1,21 @@
 "use client";
 
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { HomeLink } from "@/components/HomeLink";
+import type { SiteMode } from "@/lib/siteMode";
 
 interface NavProps {
   accent?: string; // e.g. "var(--accent)" or "var(--accent-purple)"
+  mode?: SiteMode; // set on the two homepages; inner pages read the visitor's entry point
 }
 
-export function Nav({ accent = "var(--accent)" }: NavProps) {
+export function Nav({ accent = "var(--accent)", mode }: NavProps) {
   return (
     <nav
       className="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center backdrop-blur-sm border-b"
       style={{ background: "color-mix(in srgb, var(--bg) 90%, transparent)", borderColor: "var(--border)" }}
     >
-      <a href="/" className="flex items-center gap-1.5 hover:opacity-80 transition-opacity">
-        <span className="text-sm" style={{ color: accent }}>⟡</span>
-        <span className="text-sm font-medium tracking-tight" style={{ color: "var(--text)" }}>Jennie Z</span>
-      </a>
+      <HomeLink mode={mode} accent={accent} />
       <div className="flex items-center gap-5 text-sm">
         <a href="/work" className="hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Work</a>
         <a href="/drift" className="hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Drift</a>

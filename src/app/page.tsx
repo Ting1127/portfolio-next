@@ -1,63 +1,100 @@
-import { getFeaturedProjects } from "@/lib/notion";
-import { Nav } from "@/components/Nav";
-import { PolaroidHero } from "@/components/PolaroidHero";
+import { getProjects } from "@/lib/notion";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { HomeLink } from "@/components/HomeLink";
 
-const testimonials = [
+// 涵蓋的產業：直接改這個陣列即可（順序 = 顯示順序）
+const industries = [
+  "Semiconductor",
+  "Digital Publishing",
+  "Consumer Electronics",
+  "EdTech",
+  "Fintech",
+];
+
+const earlyWork = [
   {
-    name: "PinChen Wu",
-    role: "Web & UI Designer, KadoKawa",
-    avatar: "/avatars/pinpin.jpeg",
-    text: "Ting is a proactive and detail-oriented Product Owner who consistently drove product development forward with clarity and focus. She's quick to identify challenges, propose solutions, and facilitate team discussions to keep momentum going. She excels at aligning cross-functional teams around shared goals, and led user research initiatives and data tracking strategies to evaluate product impact — always seeking ways to iterate and improve based on real insights.",
+    title: "Synology Photos Home User Research",
+    company: "Synology",
+    role: "PM Intern",
+    year: "2022",
+    desc: "Led user research on home photo management — interviews and surveys across user types, synthesized into personas and an optimization roadmap.",
+    cover: "/case/early/synology.jpg",
   },
   {
-    name: "Cloudia Shen",
-    role: "UIUX / Product Designer, AI-integrated Design",
-    avatar: "/avatars/cloudia.jpeg",
-    text: "One thing I really appreciate about Ting is how she often shares new insights about the industry, especially around user experience and business trends. Every time we chat, I walk away with a new idea or perspective. If you're looking for someone who's smart, curious, and always eager to learn and share, Ting's the kind of person you want on your team.",
+    title: "Cross-Device Multilingual Keyboard",
+    company: "BenQ",
+    role: "UX Design Intern",
+    year: "2020",
+    desc: "Designed a multilingual keyboard app for smart displays across device sizes.",
+    cover: "/case/early/benq.jpg",
+  },
+  {
+    title: "Singapore Brand Website UI",
+    company: "Snapask",
+    role: "UIUX Designer",
+    year: "2021",
+    desc: "Redesigned the Singapore learning platform with a self-directed learning visual identity.",
+    cover: "/case/early/snapask.jpg",
+  },
+  {
+    title: "OCR in Open Account Journey",
+    company: "NEXT BANK",
+    role: "Product Design Intern",
+    year: "2020",
+    desc: "Designed the OCR-assisted onboarding flow for Taiwan's first pure digital bank.",
+    cover: "/case/early/nextbank.jpg",
   },
 ];
 
-export default async function Home() {
-  const featured = await getFeaturedProjects();
-
-  // Shape Notion data into the props PolaroidHero expects.
-  const workCards = featured.map((project: any) => {
-    const props = project.properties;
-    return {
-      title: props.Name?.title?.[0]?.plain_text || "",
-      slug: props.Slug?.rich_text?.[0]?.plain_text || "",
-      summary: props.Summary?.rich_text?.[0]?.plain_text || "",
-      tags: props.Tags?.multi_select?.map((t: any) => t.name) || [],
-      coverImage: props["Cover Image"]?.rich_text?.[0]?.plain_text || "",
-      meta: props.Company?.rich_text?.[0]?.plain_text || "",
-    };
-  });
+export default async function WorkPage() {
+  const projects = await getProjects();
 
   return (
     <main className="min-h-screen" style={{ background: "var(--bg)", color: "var(--text)" }}>
 
-      <Nav />
+      {/* Nav */}
+      <nav className="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center backdrop-blur-sm border-b"
+        style={{ background: "color-mix(in srgb, var(--bg) 90%, transparent)", borderColor: "var(--border)" }}>
+        <HomeLink />
+        <div className="flex items-center gap-5 text-sm">
+          <a href="/work" style={{ color: "var(--accent)" }}>Work</a>
+          <a href="/drift" className="hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Drift</a>
+          <a href="/about" className="hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>About</a>
+          <a href="https://drive.google.com/file/d/1sF1Nc4DJH51pFhCwRmBJBhDAHtIR7XmX/view?usp=sharing" target="_blank"
+            className="hidden sm:block hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Resume</a>
+          <a href="https://linkedin.com/in/yuting-zeng1127" target="_blank"
+            className="hidden sm:block hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>LinkedIn ↗︎</a>
+          <ThemeToggle />
+        </div>
+      </nav>
 
-      {/* Hero — draggable polaroid cards */}
-      <PolaroidHero work={workCards} />
-
-      {/* Work + testimonials, with a soft ambient glow instead of a hard divider */}
-      <div style={{ position: "relative" }}>
-
-
-
-        
-      {/* Featured Cases */}
-      <section id="selected-work" className="relative z-10 px-6 md:px-8 pt-0 md:pt-8 pb-20 md:pb-32 max-w-5xl mx-auto scroll-mt-24">
-        {/* Mobile-only label — on desktop the hero's scroll cue does this job */}
-        <p
-          className="md:hidden text-xs tracking-[0.24em] uppercase mb-5"
-          style={{ color: "var(--muted)", fontFamily: "var(--font-fraunces), serif" }}
-        >
-          Selected Work
+      <section className="pt-48 pb-32 px-8 max-w-5xl mx-auto">
+        {/* Header — same sizes and spacing as the Drift page */}
+        <p className="text-xs tracking-widest uppercase mb-4" style={{ color: "var(--accent)" }}>Work</p>
+        <h1 className="text-3xl md:text-4xl font-medium tracking-tight mb-4" style={{ color: "var(--text)" }}>
+          Projects
+        </h1>
+        <p className="text-sm mb-6 max-w-xl" style={{ color: "var(--muted)" }}>
+          {projects.length} cases across product, consulting, and research, in these industries:
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {featured.map((project: any) => {
+
+        {/* Industries — same dashed pill as the Drift notice */}
+        <ul className="flex flex-wrap gap-2 mb-16" aria-label="Industries covered">
+          {industries.map((industry) => (
+            <li
+              key={industry}
+              className="inline-flex items-center gap-2 text-xs px-3 py-1.5 rounded-full border border-dashed"
+              style={{ borderColor: "var(--border)", color: "var(--muted)" }}
+            >
+              <span style={{ color: "var(--accent)" }}>⟡</span>
+              {industry}
+            </li>
+          ))}
+        </ul>
+
+        {/* Main cases */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-24">
+          {projects.map((project: any) => {
             const props = project.properties;
             const title = props.Name?.title?.[0]?.plain_text || "";
             const slug = props.Slug?.rich_text?.[0]?.plain_text || "";
@@ -100,7 +137,7 @@ export default async function Home() {
                 </div>
 
                 {/* Card body */}
-                <div className="p-5 md:p-6">
+                <div className="p-6">
                   <h2 className="text-xl font-medium mb-2" style={{ color: "var(--text)" }}>{title}</h2>
                   <p className="text-sm" style={{ color: "var(--muted)" }}>{summary}</p>
                 </div>
@@ -109,60 +146,39 @@ export default async function Home() {
           })}
         </div>
 
-        {/* Explore more */}
-        <div className="flex justify-center mt-12">
-          <a href="/work" className="btn-secondary">Explore more</a>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="px-6 md:px-8 pb-20 md:pb-32 max-w-5xl mx-auto">
-        <p className="text-xs tracking-widest uppercase mb-8" style={{ color: "var(--muted)" }}>
-          What people say
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 pt-4">
-          {testimonials.map((t, i) => (
-            <div key={i}
-              className="note-card p-6 md:p-8"
-              style={{ transform: i % 2 === 0 ? "rotate(-1.2deg)" : "rotate(1deg)" }}>
-              <span className="note-tape" aria-hidden="true" />
-              <p className="text-lg mb-5" style={{ color: "var(--accent)" }}>⟡</p>
-              <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--text)" }}>
-                &ldquo;{t.text}&rdquo;
-              </p>
-              <div className="flex items-center gap-3">
-                <img src={t.avatar} alt={t.name} className="w-10 h-10 rounded-full object-cover" />
-                <div>
-                  <p className="text-sm font-medium" style={{ color: "var(--text)" }}>{t.name}</p>
-                  <p className="text-xs mt-0.5" style={{ color: "var(--muted)" }}>{t.role}</p>
+        {/* Early work */}
+        <div className="border-t pt-16" style={{ borderColor: "var(--border)" }}>
+          <p className="text-xs tracking-widest uppercase mb-2" style={{ color: "var(--muted)" }}>Earlier Work</p>
+          <p className="text-sm mb-10" style={{ color: "var(--muted)" }}>Design & UX internships before moving into product.</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {earlyWork.map((w) => (
+              <div key={w.title} className="case-card">
+                <div className="card-cover-wrap aspect-[4/3]" style={{ background: "var(--border)" }}>
+                  <img
+                    src={w.cover}
+                    alt={w.title}
+                    className="w-full h-full object-cover card-cover-img"
+                  />
+                </div>
+                <div className="p-5">
+                  <div className="flex justify-between items-center mb-2">
+                    <p className="text-xs uppercase tracking-widest" style={{ color: "var(--muted)" }}>{w.company}</p>
+                    <p className="text-xs" style={{ color: "var(--muted)" }}>{w.year}</p>
+                  </div>
+                  <h3 className="text-base font-medium mb-1" style={{ color: "var(--text)" }}>{w.title}</h3>
+                  <p className="text-xs leading-relaxed" style={{ color: "var(--muted)" }}>{w.desc}</p>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Continue → first case study */}
-      <section className="px-6 md:px-8 pb-16 md:pb-24 max-w-5xl mx-auto flex justify-center">
-        <a
-          href="/work/kado-subscription"
-          className="group flex flex-col items-center gap-3 text-center"
-          style={{ color: "var(--muted)", textDecoration: "none" }}
-        >
-          <span className="text-xs tracking-[0.24em] uppercase" style={{ fontFamily: "var(--font-fraunces), serif" }}>
-            Start with Kado+ Subscription
-          </span>
-          <span className="text-2xl transition-transform group-hover:translate-y-1" style={{ lineHeight: 1 }}>↓</span>
-        </a>
-      </section>
-
-      </div>{/* end tinted section */}
-
-      {/* Footer */}
-      <footer className="px-6 md:px-8 py-10 md:py-12 border-t max-w-5xl mx-auto w-full" style={{ borderColor: "var(--border)" }}>
-        <div className="flex flex-col-reverse gap-4 md:flex-row md:justify-between md:items-center">
+      {/* Footer — same mobile stacking as the Drift page */}
+      <footer className="px-8 py-12 border-t max-w-5xl mx-auto w-full" style={{ borderColor: "var(--border)" }}>
+        <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center">
           <span className="text-xs" style={{ color: "var(--muted)" }}>Jennie Z © 2026</span>
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+          <div className="flex items-center gap-4 sm:gap-6 flex-wrap">
             <a href="https://drive.google.com/file/d/1sF1Nc4DJH51pFhCwRmBJBhDAHtIR7XmX/view?usp=sharing" target="_blank"
               className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Resume</a>
             <a href="https://linkedin.com/in/yuting-zeng1127" target="_blank"

@@ -13,6 +13,7 @@ type WorkCard = {
 
 type PolaroidHeroProps = {
   work: WorkCard[];
+  role: string; // label under the greeting — see ROLE_LABEL in lib/siteMode.ts
 };
 
 const STICKERS = [
@@ -38,7 +39,7 @@ const STICKER_SLOTS = [
 
 type DragState = { id: string; startX: number; startY: number; baseX: number; baseY: number; moved: boolean } | null;
 
-export function PolaroidHero({ work }: PolaroidHeroProps) {
+export function PolaroidHero({ work, role }: PolaroidHeroProps) {
   const [active, setActive] = useState<WorkCard | null>(null);
   const [offsets, setOffsets] = useState<Record<string, { x: number; y: number }>>({});
   const [zTop, setZTop] = useState(20);
@@ -157,7 +158,7 @@ export function PolaroidHero({ work }: PolaroidHeroProps) {
               Hello! I&apos;m Jennie. ⟡
             </p>
             <p className="text-xs tracking-widest uppercase mb-6" style={{ color: "var(--accent)" }}>
-              Product Manager
+              {role}
             </p>
             {/* Spacer reserves the final wrapped layout so typing never reflows the lines */}
             <div className="relative mb-8">
@@ -258,7 +259,7 @@ export function PolaroidHero({ work }: PolaroidHeroProps) {
           Hello! I&apos;m Jennie. ⟡
         </p>
         <p className="text-xs tracking-widest uppercase mb-5" style={{ color: "var(--accent)" }}>
-          Product Manager
+          {role}
         </p>
         <h1 className="text-[1.75rem] font-medium leading-[1.2] tracking-tight" style={{ color: "var(--text)" }}>
           I learn unfamiliar industries fast and ship.{" "}

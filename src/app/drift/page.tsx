@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { HomeLink } from "@/components/HomeLink";
 
 // 圖片放在 public/drift/，檔名 = 卡片 id（例如 public/drift/coffee-log.jpg）
 // 檔案不存在時自動顯示灰色佔位，不會出現破圖
@@ -83,10 +84,7 @@ export default function DriftPage() {
       {/* Nav */}
       <nav className="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center backdrop-blur-sm border-b"
         style={{ background: "color-mix(in srgb, var(--bg) 90%, transparent)", borderColor: "var(--border)" }}>
-        <a href="/" className="flex items-center gap-1.5 hover:opacity-80 transition-opacity">
-          <span className="text-sm" style={{ color: "var(--accent)" }}>⟡</span>
-          <span className="text-sm font-medium tracking-tight" style={{ color: "var(--text)" }}>Jennie Z</span>
-        </a>
+        <HomeLink />
         <div className="flex items-center gap-5 text-sm">
           <a href="/work" className="hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Work</a>
           <a href="/drift" style={{ color: "var(--accent)" }}>Drift</a>

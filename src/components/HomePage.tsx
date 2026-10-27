@@ -1,0 +1,184 @@
+import { getFeaturedProjects } from "@/lib/notion";
+import { Nav } from "@/components/Nav";
+import { PolaroidHero } from "@/components/PolaroidHero";
+import { ModeMarker } from "@/components/HomeLink";
+import { ROLE_LABEL, orderForMode, type SiteMode } from "@/lib/siteMode";
+
+const testimonials = [
+  {
+    name: "PinChen Wu",
+    role: "Web & UI Designer, KadoKawa",
+    avatar: "/avatars/pinpin.jpeg",
+    text: "Ting is a proactive and detail-oriented Product Owner who consistently drove product development forward with clarity and focus. She's quick to identify challenges, propose solutions, and facilitate team discussions to keep momentum going. She excels at aligning cross-functional teams around shared goals, and led user research initiatives and data tracking strategies to evaluate product impact — always seeking ways to iterate and improve based on real insights.",
+  },
+  {
+    name: "Cloudia Shen",
+    role: "UIUX / Product Designer, AI-integrated Design",
+    avatar: "/avatars/cloudia.jpeg",
+    text: "One thing I really appreciate about Ting is how she often shares new insights about the industry, especially around user experience and business trends. Every time we chat, I walk away with a new idea or perspective. If you're looking for someone who's smart, curious, and always eager to learn and share, Ting's the kind of person you want on your team.",
+  },
+];
+
+// Shared by "/" (mode="pm") and "/design" (mode="design").
+export async function HomePage({ mode }: { mode: SiteMode }) {
+  const featured = orderForMode(
+    await getFeaturedProjects(),
+    mode,
+    (project: any) => project.properties.Slug?.rich_text?.[0]?.plain_text || "",
+  );
+
+  // Shape Notion data into the props PolaroidHero expects.
+  const workCards = featured.map((project: any) => {
+    const props = project.properties;
+    return {
+      title: props.Name?.title?.[0]?.plain_text || "",
+      slug: props.Slug?.rich_text?.[0]?.plain_text || "",
+      summary: props.Summary?.rich_text?.[0]?.plain_text || "",
+      tags: props.Tags?.multi_select?.map((t: any) => t.name) || [],
+      coverImage: props["Cover Image"]?.rich_text?.[0]?.plain_text || "",
+      meta: props.Company?.rich_text?.[0]?.plain_text || "",
+    };
+  });
+
+  return (
+    <main className="min-h-screen" style={{ background: "var(--bg)", color: "var(--text)" }}>
+
+      <ModeMarker mode={mode} />
+      <Nav mode={mode} />
+
+      {/* Hero — draggable polaroid cards */}
+      <PolaroidHero work={workCards} role={ROLE_LABEL[mode]} />
+
+      {/* Work + testimonials, with a soft ambient glow instead of a hard divider */}
+      <div style={{ position: "relative" }}>
+
+      {/* Featured Cases */}
+      <section id="selected-work" className="relative z-10 px-6 md:px-8 pt-0 md:pt-8 pb-20 md:pb-32 max-w-5xl mx-auto scroll-mt-24">
+        {/* Mobile-only label — on desktop the hero's scroll cue does this job */}
+        <p
+          className="md:hidden text-xs tracking-[0.24em] uppercase mb-5"
+          style={{ color: "var(--muted)", fontFamily: "var(--font-fraunces), serif" }}
+        >
+          Selected Work
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {featured.map((project: any) => {
+            const props = project.properties;
+            const title = props.Name?.title?.[0]?.plain_text || "";
+            const slug = props.Slug?.rich_text?.[0]?.plain_text || "";
+            const summary = props.Summary?.rich_text?.[0]?.plain_text || "";
+            const tags = props.Tags?.multi_select?.map((t: any) => t.name) || [];
+            const coverImage = props["Cover Image"]?.rich_text?.[0]?.plain_text || "";
+
+            return (
+              <a key={project.id} href={`/work/${slug}`} className="case-card">
+                {/* Cover wrap */}
+                <div className="card-cover-wrap aspect-[4/3]" style={{ background: "var(--border)" }}>
+                  {coverImage ? (
+                    <img
+                      src={coverImage}
+                      alt={title}
+                      className="w-full h-full object-cover card-cover-img"
+                    />
+                  ) : (
+                    <div className="w-full h-full" style={{ background: "var(--border)" }} />
+                  )}
+                  {/* Tag overlay on cover */}
+                  {tags.length > 0 && (
+                    <div className="card-tag-overlay">
+                      {tags.map((tag: string) => (
+                        <span
+                          key={tag}
+                          className="text-xs px-3 py-1 rounded-full"
+                          style={{
+                            background: "rgba(255,255,255,0.9)",
+                            backdropFilter: "blur(4px)",
+                            color: "#0F1B33",
+                            border: "1px solid rgba(255,255,255,0.5)",
+                          }}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Card body */}
+                <div className="p-5 md:p-6">
+                  <h2 className="text-xl font-medium mb-2" style={{ color: "var(--text)" }}>{title}</h2>
+                  <p className="text-sm" style={{ color: "var(--muted)" }}>{summary}</p>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+
+        {/* Explore more */}
+        <div className="flex justify-center mt-12">
+          <a href="/work" className="btn-secondary">Explore more</a>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="px-6 md:px-8 pb-20 md:pb-32 max-w-5xl mx-auto">
+        <p className="text-xs tracking-widest uppercase mb-8" style={{ color: "var(--muted)" }}>
+          What people say
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 pt-4">
+          {testimonials.map((t, i) => (
+            <div key={i}
+              className="note-card p-6 md:p-8"
+              style={{ transform: i % 2 === 0 ? "rotate(-1.2deg)" : "rotate(1deg)" }}>
+              <span className="note-tape" aria-hidden="true" />
+              <p className="text-lg mb-5" style={{ color: "var(--accent)" }}>⟡</p>
+              <p className="text-sm leading-relaxed mb-6" style={{ color: "var(--text)" }}>
+                &ldquo;{t.text}&rdquo;
+              </p>
+              <div className="flex items-center gap-3">
+                <img src={t.avatar} alt={t.name} className="w-10 h-10 rounded-full object-cover" />
+                <div>
+                  <p className="text-sm font-medium" style={{ color: "var(--text)" }}>{t.name}</p>
+                  <p className="text-xs mt-0.5" style={{ color: "var(--muted)" }}>{t.role}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Continue → first case study */}
+      <section className="px-6 md:px-8 pb-16 md:pb-24 max-w-5xl mx-auto flex justify-center">
+        <a
+          href="/work/kado-subscription"
+          className="group flex flex-col items-center gap-3 text-center"
+          style={{ color: "var(--muted)", textDecoration: "none" }}
+        >
+          <span className="text-xs tracking-[0.24em] uppercase" style={{ fontFamily: "var(--font-fraunces), serif" }}>
+            Start with Kado+ Subscription
+          </span>
+          <span className="text-2xl transition-transform group-hover:translate-y-1" style={{ lineHeight: 1 }}>↓</span>
+        </a>
+      </section>
+
+      </div>{/* end tinted section */}
+
+      {/* Footer */}
+      <footer className="px-6 md:px-8 py-10 md:py-12 border-t max-w-5xl mx-auto w-full" style={{ borderColor: "var(--border)" }}>
+        <div className="flex flex-col-reverse gap-4 md:flex-row md:justify-between md:items-center">
+          <span className="text-xs" style={{ color: "var(--muted)" }}>Jennie Z © 2026</span>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            <a href="https://drive.google.com/file/d/1sF1Nc4DJH51pFhCwRmBJBhDAHtIR7XmX/view?usp=sharing" target="_blank"
+              className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>Resume</a>
+            <a href="https://linkedin.com/in/yuting-zeng1127" target="_blank"
+              className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>LinkedIn ↗︎</a>
+            <a href="mailto:zyting.info@gmail.com"
+              className="text-xs hover:opacity-80 transition-opacity" style={{ color: "var(--muted)" }}>zyting.info@gmail.com</a>
+            <span style={{ color: "var(--accent)" }}>⟡</span>
+          </div>
+        </div>
+      </footer>
+
+    </main>
+  );
+}
