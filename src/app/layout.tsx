@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Fraunces } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
+import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { CursorTrail } from "@/components/CursorTrail";
+import { TrackClicks } from "@/components/TrackClicks";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,6 +47,10 @@ export const metadata: Metadata = {
   },
 };
 
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID;
+const isProd = process.env.NODE_ENV === "production";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -53,7 +61,26 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <CursorTrail />
         <Providers>{children}</Providers>
+
+        {/* Vercel Web Analytics */}
+        <Analytics />
+
+        {/* GA4 click events (auto-detects Resume / LinkedIn / Email / case study links) */}
+        {isProd && GA_ID && <TrackClicks />}
+
+        {/* Microsoft Clarity — production only */}
+        {isProd && CLARITY_ID && (
+          <Script id="clarity" strategy="afterInteractive">
+            {`(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window,document,"clarity","script","${CLARITY_ID}");`}
+          </Script>
+        )}
       </body>
+
+      {/* Google Analytics 4 — production only */}
+      {isProd && GA_ID && <GoogleAnalytics gaId={GA_ID} />}
     </html>
   );
 }
