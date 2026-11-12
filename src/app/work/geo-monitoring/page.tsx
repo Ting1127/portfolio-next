@@ -11,6 +11,7 @@ export default function GeoMonitoringPage() {
     { id: "problem", label: "The Core Problem" },
     { id: "approach", label: "My Approach" },
     { id: "delivered", label: "What I Delivered" },
+    { id: "shipped", label: "What Shipped" },
     { id: "learnings", label: "Learnings" },
   ];
 
@@ -239,6 +240,64 @@ export default function GeoMonitoringPage() {
             </div>
             <div className="rounded-2xl p-5 border text-sm" style={{ background: "var(--bg-card)", borderColor: "var(--border)", color: "var(--muted)" }}>
               Due to NDA, specific performance metrics and client data are not disclosed.
+            </div>
+          </section>
+
+          {/* What Shipped */}
+          <section id="shipped">
+            <p className="text-xs tracking-widest uppercase mb-6" style={{ color: ACCENT }}>What Shipped</p>
+            <h2 className="text-2xl md:text-3xl font-medium mb-4" style={{ color: "var(--text)" }}>From audit to live pages</h2>
+            <p className="leading-relaxed mb-6" style={{ color: "var(--muted)" }}>
+              The audit showed that AI answers to workplace questions, like shift work, pay structure, and whether Micron Taiwan is hiring, rarely cited Micron&apos;s own careers site. I recommended building a set of careers pages around those questions, including a new English page for international candidates.
+            </p>
+            <p className="leading-relaxed mb-10" style={{ color: "var(--muted)" }}>
+              We then refined the pages for AI retrieval: FAQ-first sections that each answer one question, consistent names for departments and programs, descriptive image alt text, and an llms.txt file that points AI crawlers to the pages. Nine pages are now live.
+            </p>
+
+            {/* Screenshot */}
+            {/* TODO: replace with the cropped, annotated version (question-led intro / hub linking / FAQ-first) */}
+            <figure className="mb-10">
+              <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
+                <img
+                  src="/case/geo/foreign-talent-hub.png"
+                  alt="Micron Taiwan's International talent page: an English hero, three cards linking to the job map, team stories and benefits, then a FAQ section"
+                  className="w-full"
+                />
+              </div>
+              <figcaption className="text-xs leading-relaxed mt-3" style={{ color: "var(--muted)" }}>
+                The English hub page for international candidates. It opens with the questions they ask most, then links out to the job map, team stories and benefits pages.{" "}
+                <a href="https://tw.micron.com/about/careers/foreign-talent" target="_blank" rel="noopener noreferrer"
+                  className="hover:opacity-70 transition-opacity" style={{ color: ACCENT }}>See it live ↗</a>
+              </figcaption>
+            </figure>
+
+            {/* Prompt → answer mapping */}
+            {/* TODO: swap in the exact prompt wording from the 92-prompt dataset */}
+            <div className="rounded-2xl border overflow-hidden mb-8" style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}>
+              <div className="grid grid-cols-2 gap-6 px-6 py-4 border-b" style={{ borderColor: "var(--border)" }}>
+                <p className="text-xs uppercase tracking-widest" style={{ color: ACCENT }}>What people ask AI</p>
+                <p className="text-xs uppercase tracking-widest" style={{ color: "var(--muted)" }}>Where it&apos;s answered now</p>
+              </div>
+              {[
+                { zh: "美光要輪班嗎？", en: "Does Micron require shift work?", answer: "Job map FAQ: compressed work week with day and night shifts" },
+                { zh: "台灣美光現在有在徵才嗎？", en: "Is Micron Taiwan hiring?", answer: "Careers FAQ: openings updated on a rolling basis" },
+                { zh: "NTP 培育多少人？", en: "How many people has NTP trained?", answer: "NTP FAQ: 125+ hires since 2024" },
+              ].map((row, i, rows) => (
+                <div key={row.en} className={`grid grid-cols-2 gap-6 px-6 py-4 ${i < rows.length - 1 ? "border-b" : ""}`} style={{ borderColor: "var(--border)" }}>
+                  <div>
+                    <p className="text-sm" style={{ color: "var(--text)" }}>{row.zh}</p>
+                    <p className="text-xs italic mt-1" style={{ color: "var(--muted)" }}>{row.en}</p>
+                  </div>
+                  <p className="text-sm" style={{ color: "var(--muted)" }}>{row.answer}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="border-l-2 pl-5" style={{ borderColor: ACCENT }}>
+              <p className="text-xs uppercase tracking-widest mb-2" style={{ color: ACCENT }}>Next</p>
+              <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
+                We&apos;re measuring citation change against the August baseline once Google re-crawls the pages. The next content gap is a visa and work-permit FAQ for international candidates.
+              </p>
             </div>
           </section>
 
